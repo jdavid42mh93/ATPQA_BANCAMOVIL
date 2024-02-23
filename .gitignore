@@ -9,3 +9,4 @@ app/
 #Files
 .env
 appiumNexus6P.appiumsession
+data/data.txt

@@ -14,7 +14,7 @@ describe('Iniciar sesion con usuario y contraseña',() =>{
 
 describe('Ingreso de descripcion y monto desde archivo transferencias_exterior_dolares.txt', () => {
     it('Ingreso de descripcion y monto', async() => {
-        await CommonActions.navigateToTransferSection();
+        await CommonActions.navegarSeccionTransferencia();
         await driver.pause(5000);
         await Commons.transferenciaAlExterior();
         await driver.pause(5000);

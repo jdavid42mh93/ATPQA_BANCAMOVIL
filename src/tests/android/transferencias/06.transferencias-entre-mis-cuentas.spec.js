@@ -1,6 +1,10 @@
 import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
 import transferenciaController from "../../../controllers/Transferencias/transferencia.controller";
 
+/*  Autor: Juan Callataxi
+    Fecha Creacion: 23 Febrero 2024
+    Ultima Modificacion: 23 Febrero 2024    */
+
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
     it('Ingresar usuario y contraseña', async()=>{
