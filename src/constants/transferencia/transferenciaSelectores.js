@@ -58,7 +58,7 @@ export const institucionesBancariasSelectores = {
 export const motivoEconomicoOpcionSelectores = {
     '105_importaciones':        `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="105 - IMPORTACIONES"]`,
     '110_anticipoImportaciones':`${checkedTextViewClass}[@resource-id="android:id/text1" and @text="110 - ANTICIPOS POR IMPORTACIONES"]`,
-    '201_servTranspMaritimoRC': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="201 - SERVICIOS DE TRANSPORTE MARÍTIMO (RUTAS INTERNACIONALES)"]`,
+    '201_servTranspMaritimoRI': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="201 - SERVICIOS DE TRANSPORTE MARÍTIMO (RUTAS INTERNACIONALES)"]`,
     '202_servTranspMaritimoF':  `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="202 - SERVICIOS DE TRANSPORTE MARITIMO (FLETES)"]`,
     '203_servPorturarios':      `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="203 - SERVICIOS PORTUARIOS Y DE AEROPUERTO"]`,
     '205_viajes':               `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="205 - VIAJES, SALVO SERVICIOS DE TRANSPORTE DE PASAJEROS"]`,
@@ -75,4 +75,22 @@ export const cuentasBeneficiariasSelectores = {
     'EXTERIOR': `${textViewClass}[@text="EXTERIOR"]`,
     'THIRDBH8': `${textViewClass}[@text="THIRDBH8LGTXW36Z"]`,
     'THIRDBIM': `${textViewClass}[@text="THIRDBIM58N5Q19W"]`,
-}
+};
+
+export const motivoEconomicoOpcion = {
+    '105-IMPORTACIONES':                                        '105 - IMPORTACIONES',
+    '110-ANTICIPOPORIMPORTACIONES':                             '110 - ANTICIPO POR IMPORTACIONES',
+    '201-SERVICIOSDETRANSPORTEMARITIMO(RUTASINTERNACIONALES)':  '201 - SERVICIOS DE TRANSPORTE MARITIMO (RUTAS INTERNACIONALES)',
+    '202-SERVICIOSDETRANSPORTEMARITIMO(FLETES)':                '202 - SERVICIOS DE TRANSPORTE MARITIMO (FLETES)',
+    '203-SERVICIOSPORTUARIOSYDEAEROPUERTO':                     '203 - SERVICIOS PORTUARIOS Y DE AEROPUERTO',
+    '205-VIAJES,SALVOSERVICIOSDETRANSPORTEDEPASAJEROS':         '205 - VIAJES, SALVO SERVICIOS DE TRANSPORTE DE PASAJEROS',
+    '210-PRIMASPORREASEGUROS-RETROCESIONES':                    '210 - PRIMAS POR REASEGUROS - RETROCESIONES',
+    '212-INDEMNIZACIONESDESEGUROS':                             '212 - INDEMNIZACIONES DE SEGUROS',
+    '214-SERVICIOSFINANCIEROS':                                 '214 - SERVICIOS FINANCIEROS',
+    '216-RESTITUCIONDEAVALESYGARANTIASENMONEDAEXTRANJERA':      '216 - RESTITUCION DE AVALES Y GARANTIAS EN MONEDA EXTRANJERA',
+    '218-ARRENDAMIENTOMERCANTIL':                               '218 - ARRENDAMIENTO MERCANTIL',
+    '220-SERVICIOSDETELECOMUNICACIONES':                        '220 - SERVICIOS DE TELECOMUNICACIONES',
+    '222-SERVICIOSDEINFORMATICAYDEINFORMACION':                 '222 - SERVICIOS DE INFORMATICA Y DE INFORMACION',
+    '224-MARCASYPATENTES':                                      '224 - MARCAS Y PATENTES',
+    '225-REGALIAS,DERECHOSDELICENCIAYDEAUTOR':                  '225 - REGALIAS, DERECHOS DE LICENCIA Y DE AUTOR',
+  };

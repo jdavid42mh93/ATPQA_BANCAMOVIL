@@ -39,11 +39,11 @@ class CommonActions{
         }
     }
 
-    async navigateToTransferSection(){
+    async navegarSeccionTransferencia(){
         try{
             await TransferScreen.transferenciaSeccion();
         }catch(error){
-            console.error('Error navigating to transfer section', error);
+            console.error('Error navegando a la seccion de transferencias', error);
         }
     }
 

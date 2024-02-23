@@ -1,13 +1,13 @@
 import { transferenciaSelectores } from "../../../../constants/transferencia/transferenciaSelectores";
 
-// Seccion de Pagos
+// Seccion de Transferencias
 class TransfersScreen{
-    get getTransferenciaSeccion() {
+    get getTransferenciaSelector() {
         return $(transferenciaSelectores.transferencias);
     }
 
     async transferenciaSeccion(){
-        await this.getTransferenciaSeccion.click();
+        await this.getTransferenciaSelector.click();
     }
 }
 
