@@ -27,7 +27,8 @@ export const transferenciaAlExteriorSelectores = {
     'cuentaBeneficiariaExterior':   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[5]/android.widget.TextView[1]`,
     'montoExterior':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'motivoEconomico':              `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[1]`,
-    'referencia':                   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[1]`,
+    'gastosExterior':               `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[7]/android.widget.TextView[1]`,
+    'referencia':                   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[8]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
 };
 
 export const transferenciaEventualesSelectores = {
@@ -76,6 +77,11 @@ export const cuentasBeneficiariasSelectores = {
     'THIRDBH8': `${textViewClass}[@text="THIRDBH8LGTXW36Z"]`,
     'THIRDBIM': `${textViewClass}[@text="THIRDBIM58N5Q19W"]`,
 };
+
+export const gastoExteriorOpcion = {
+    'N-OUR': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="N - OUR"]`,
+    'S-SHA': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="S - SHA"]`,
+}
 
 export const motivoEconomicoOpcion = {
     '105-IMPORTACIONES':                                        '105 - IMPORTACIONES',

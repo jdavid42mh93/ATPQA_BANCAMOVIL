@@ -17,18 +17,18 @@ export const dataConditions = {
 };
 
 export const dataTypes = {
-  'transferencias': 'transferencias',
-  'pagos':          'pagos',
+  'transferencias': 'Transferencias',
+  'pagos':          'Pagos',
 };
 
 export const dataSubtypes = {
-  'EntreMisCuentas':      'EntreMisCuentas',
+  'EntreMisCuentas':      'Entre Mis Cuentas',
   'Registradas':          'Registradas',
   'Eventuales':           'Eventuales',
-  'AlExterior':           'AlExterior',
-  'ServiciosRegistrados': 'ServiciosRegistrados',
-  'ServiciosEventuales':  'ServiciosEventuales',
-  'MisTarjetas':          'MisTarjetas',
-  'TarjetasRegistradas':  'TarjetasRegistradas',
-  'TarjetasEventuales':   'TarjetasEventuales',
+  'AlExterior':           'Al Exterior',
+  'ServiciosRegistrados': 'Servicios Registrados',
+  'ServiciosEventuales':  'Servicios Eventuales',
+  'MisTarjetas':          'Mis Tarjetas',
+  'TarjetasRegistradas':  'Tarjetas Registradas',
+  'TarjetasEventuales':   'Tarjetas Eventuales',
 };
