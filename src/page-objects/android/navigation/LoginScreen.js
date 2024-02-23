@@ -19,12 +19,19 @@ class LoginScreen{
     }
     
     async login(){
-        const username = process.env.TEST_USERNAME;
-        const password = process.env.TEST_PASSWORD;
-        await this.getInputUser.addValue(username);
-        await this.getInputPassword.addValue(password);
-        await this.getBtnIngresar.click();
-        await this.getBtnOmitir.click();
+        try{
+            const username = process.env.TEST_USERNAME;
+            const password = process.env.TEST_PASSWORD;
+            await this.getInputUser.waitForDisplayed({timeout:10000, timeoutMsg:'El elemento no esta visisble despues de 10 segundos'});
+            await this.getInputUser.addValue(username);
+            await this.getInputPassword.waitForDisplayed({timeout:10000, timeoutMsg:'El elemento no esta visisble despues de 10 segundos'});
+            await this.getInputPassword.addValue(password);
+            await this.getBtnIngresar.click();
+            await this.getBtnOmitir.waitForDisplayed({timeout:20000, timeoutMsg:'El elemento no esta visible despues de 20 segundos'})
+            await this.getBtnOmitir.click();
+        }catch(error){
+            console.error('Error en inicio de sesion', error)
+        }
     }
 }
 

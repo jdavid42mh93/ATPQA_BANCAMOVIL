@@ -7,11 +7,12 @@ import TransferScreen from "../navigation/Transferencias/TransferenciasScreen";
 import CertificateScreen from "../navigation/Certificados/CertificadosScreen";
 
 class CommonActions{
-    async navigateToInitSession(){
+    async navegarAInicioSesion(){
         try{
+            await MenuNavigation.getInitSession.waitForDisplayed({timeout:5000,timeoutMsg:'El elemento no esta visible despues de 5 segundos'});
             await MenuNavigation.getInitSession.click();
         }catch(error){
-            console.error('Error navigating to init session', error);
+            console.error('Error navegando al inicio de sesion', error);
         }   
     }
     

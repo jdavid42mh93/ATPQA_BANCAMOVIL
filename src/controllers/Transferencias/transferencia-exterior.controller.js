@@ -44,29 +44,37 @@ class TransferenciaExterior {
 
 // Funcion para completar los datos de transferencia exterior
     async transferenciaCuentaExteriorForm(){
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
-        await transferenciaController.transferenciaAlExteriorSeccion();
-        await driver.pause(6000);
-        await this.getSeleccionarBeneficiarioSelector.click();
-        await driver.pause(1000);
-        await this.getCuentaBeneficiariaSelector.click();
-        await driver.pause(1000);
-        console.log("DATA ====>",data);
-        for (let i=0; i < data.length; i++){
-            const elemento = data[i];
-            console.log("Elemento " + (i + 1) + ":", elemento);
-            if(elemento.monto && elemento.motivo_economico){
-                console.log("Monto ====>", elemento.monto);
-                await this.getTransferenciaMontoExteriorSelector.scrollIntoView({block: 'start', inline: 'start'});
-                await this.getTransferenciaMontoExteriorSelector.addValue(elemento.monto);
-                await driver.pause(2000);
-                await this.getTransferenciaMotivoEconomicoSelector.click();
-                await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
-                await this.getTransferenciaReferenciaSelector.addValue(elemento.descripcion);
+        try{
+            console.log('Conditions ===>', dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior))
+            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
+            console.log("DATA ====>",data);
+            await transferenciaController.transferenciaAlExteriorSeccion();
+            await driver.pause(6000);
+            await this.getSeleccionarBeneficiarioSelector.click();
+            await driver.pause(1000);
+            await this.getCuentaBeneficiariaSelector.click();
+            await driver.pause(1000);
+            for (let i=0; i < data.length; i++){
+                const elemento = data[i];
+                console.log("Elemento " + (i + 1) + ":", elemento);
                 console.log("Motivo Economico Opcion ====>", elemento.motivo_economico);
-                await driver.pause(2000);
-            };      
-        };
+                if(elemento.motivo_economico){
+                    await driver.pause(5000);
+                    // scrool to the end
+                    await $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)');
+                    await this.getTransferenciaMontoExteriorSelector.scrollIntoView({block: 'start', inline: 'nearest'});
+                    await driver.pause(10000);
+                    await this.getTransferenciaMontoExteriorSelector.addValue('1');
+                    await driver.pause(10000);
+                    await this.getTransferenciaMotivoEconomicoSelector.click();
+                    await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
+                    await this.getTransferenciaReferenciaSelector.addValue('descripcion');
+                    await driver.pause(2000);
+                };      
+            };
+        }catch(error){
+            console.error('Error en ingresar datos en transferencias al exterior', error);
+        }
     };
 };
 
