@@ -1,0 +1,26 @@
+{
+  "name": "atpqa_bancamovil",
+  "devDependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/core": "^7.23.7",
+    "@babel/preset-env": "^7.23.8",
+    "@babel/register": "^7.23.7",
+    "@wdio/appium-service": "^8.28.0",
+    "@wdio/cli": "^8.31.1",
+    "@wdio/globals": "^8.31.1",
+    "@wdio/local-runner": "^8.28.0",
+    "@wdio/mocha-framework": "^8.28.0",
+    "@wdio/spec-reporter": "^8.28.0",
+    "appium": "^2.4.1",
+    "appium-uiautomator2-driver": "^2.42.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-wdio": "^8.24.12",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "wdio-html-nice-reporter": "^8.1.6"
+  },
+  "scripts": {
+    "wdio": "wdio run ./wdio.conf.js"
+  }
+}

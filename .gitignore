@@ -1,0 +1,11 @@
+#Folder
+node_modules
+app
+reports
+screenshots
+videos
+app/
+
+#Files
+.env
+appiumNexus6P.appiumsession

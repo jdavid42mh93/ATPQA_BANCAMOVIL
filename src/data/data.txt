@@ -1,0 +1,7 @@
+{"case":"4", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Al Exterior" ,"numero_cuenta_beneficiario": "THIRDB" ,"motivo_economico": "105 - IMPORTACIONES" ,"monto": "1" ,"descripcion": "Pago1"}
+{"case":"5", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Eventuales" ,"cuenta": "420621460 - USD" ,"institucion_bancaria": "BANCO DEL AUSTRO" ,"numero_cuenta_beneficiario": "EXTERIOR" ,"correo_beneficiario": "mail10@gmail.com" ,"descripcion": "Pago2" ,"monto": "5"}
+{"case":"6", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Registradas" ,"numero_cuenta_beneficiario": "THIRDBH8" ,"correo_beneficiario": "mail10@gmail.com" ,"monto": "2" ,"descripcion": "Pago3"}
+{"case":"7", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Al Exterior" ,"numero_cuenta_beneficiario": "THIRDBIM" ,"motivo_economico": "110 - ANTICIPO POR IMPORTACIONES" ,"monto": "3" ,"descripcion": "Pago4"}
+{"case":"8", "status": "pending", "msg": "", "orderStatus":"","type":"Pagos","subtype":"Mis Tarjetas" ,"monto": "5"}
+{"case":"9", "status": "pending", "msg": "", "orderStatus":"","type":"Pagos","subtype":"Servicios Registrados" ,"monto": "10" ,"grupo_servicios": "REGISTRO CIVIL"}
+{"case":"10", "status": "pending", "msg": "", "orderStatus":"","type":"Pagos","subtype":"Servicios Eventuales" ,"grupo_servicios": "CASAS COMERCIALES"}
