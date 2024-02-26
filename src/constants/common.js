@@ -1,13 +1,19 @@
+// Selectores generales
 export const androidWidgetSelector =   '//android.widget.';
 export const androidViewSelector =     '//android.view.';
 export const beginSelector =           '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup';
 export const endSelector =             'android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText';
 
+// Selectores para distintas clases
 export const buttonClass =             `${androidWidgetSelector}Button`;
 export const textViewClass =           `${androidWidgetSelector}TextView`;
 export const checkedTextViewClass =    `${androidWidgetSelector}CheckedTextView`;
 export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
+
+// Constantes para transferencias y pagos
+export const monto = '1';
+export const descipcion = 'atp qa';
 
 // Selectores para la session de login
 export const loginSelectors = {
