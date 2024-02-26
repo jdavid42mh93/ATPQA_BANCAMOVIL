@@ -1,34 +1,35 @@
-import { buttons, loginSelectors } from "../../../constants/common";
+import { buttonsSelectores, loginSelectors } from "../../../constants/common";
+import CommonActions from "../common-actions/CommonActions";
 
-// Seccion Login Screen
+// Seccion Login Screen. Contiene funciones para obtener los selectores y login en la aplicacion
 class LoginScreen{
-    get getInputUser(){
+    get getInitSessionSelector() {
+        return $(loginSelectors.signIn);
+    }
+
+    get getInputUserSelector(){
         return $(loginSelectors.usuario);
     }
 
-    get getInputPassword(){
+    get getInputPasswordSelector(){
         return $(loginSelectors.contrasena);
     }
 
-    get getBtnIngresar(){
-        return $(buttons.ingresar);
-    }
-
-    get getBtnOmitir(){
-        return $(buttons.omitir);
+    get getBtnIngresarSelector(){
+        return $(buttonsSelectores.ingresar);
     }
     
     async login(){
         try{
             const username = process.env.TEST_USERNAME;
             const password = process.env.TEST_PASSWORD;
-            await this.getInputUser.waitForDisplayed({timeout:10000, timeoutMsg:'El elemento no esta visisble despues de 10 segundos'});
-            await this.getInputUser.addValue(username);
-            await this.getInputPassword.waitForDisplayed({timeout:10000, timeoutMsg:'El elemento no esta visisble despues de 10 segundos'});
-            await this.getInputPassword.addValue(password);
-            await this.getBtnIngresar.click();
-            await this.getBtnOmitir.waitForDisplayed({timeout:20000, timeoutMsg:'El elemento no esta visible despues de 20 segundos'})
-            await this.getBtnOmitir.click();
+            await this.getInputUserSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
+            await this.getInputUserSelector.addValue(username); 
+            await this.getInputPasswordSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
+            await this.getInputPasswordSelector.addValue(password);
+            await this.getBtnIngresarSelector.click();
+            await CommonActions.getBtnOmitirSelector.waitForDisplayed({timeout:20000, timeoutMsg:`El elemento no esta visible despues de 20 segundos`})
+            await CommonActions.getBtnOmitirSelector.click();
         }catch(error){
             console.error('Error en inicio de sesion', error)
         }

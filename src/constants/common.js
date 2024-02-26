@@ -11,9 +11,15 @@ export const checkedTextViewClass =    `${androidWidgetSelector}CheckedTextView`
 export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
 
-// Constantes para transferencias y pagos
-export const monto = '1';
-export const descipcion = 'atp qa';
+export const datosGenerales = {
+    monto: '1',
+    descripcion: 'atp qa',
+}
+
+// Selectores UIAutomator
+export const UIAutomatorSelectores = {
+    scroll: 'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3,20)'
+}
 
 // Selectores para la session de login
 export const loginSelectors = {
@@ -33,7 +39,7 @@ export const summarySelectors = {
 };
 
 // Selectores para botones
-export const buttons = {
+export const buttonsSelectores = {
     'ingresar':     `${buttonClass}[@text="Ingresar"]`,
     'omitir':       `${buttonClass}[@text="Omitir"]`,
     'toggleButton': `${androidViewSelector}ViewGroup[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,

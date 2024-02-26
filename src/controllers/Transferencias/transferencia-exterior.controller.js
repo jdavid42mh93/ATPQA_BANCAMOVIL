@@ -1,7 +1,9 @@
 import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, motivoEconomicoOpcion } from "../../constants/transferencia/transferenciaSelectores";
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
+import { UIAutomatorSelectores } from "../../constants/common";
 import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
+import { datosGenerales } from "../../constants/common";
 
 // Seccion de transferencias al exterior
 class TransferenciaExterior {
@@ -15,7 +17,7 @@ class TransferenciaExterior {
     };
 
     get getTransferenciaMotivoEconomicoSelector() {
-        return $(transferenciaAlExteriorSelectores.motivoEconomico);
+        return $(transferenciaAlExteriorSelectores.MotivoEconomico);
     };
 
     get getTransferenciaMontoExteriorSelector() {
@@ -33,6 +35,7 @@ class TransferenciaExterior {
                 break;
             case motivoEconomicoOpcion["110-ANTICIPOPORIMPORTACIONES"]:
                 motivoEconomicoOpcionSelectores["110_anticipoImportaciones"].click();
+                console.log(motivoEconomicoOpcionSelectores["110_anticipoImportaciones"])
                 break;
             case motivoEconomicoOpcion["201-SERVICIOSDETRANSPORTEMARITIMO(RUTASINTERNACIONALES)"]:
                 motivoEconomicoOpcionSelectores["201_servTranspMaritimoRI"].click();
@@ -45,9 +48,7 @@ class TransferenciaExterior {
 // Funcion para completar los datos de transferencia exterior
     async transferenciaCuentaExteriorForm(){
         try{
-            console.log('Conditions ===>', dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior))
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
-            console.log("DATA ====>",data);
             await transferenciaController.transferenciaAlExteriorSeccion();
             await driver.pause(6000);
             await this.getSeleccionarBeneficiarioSelector.click();
@@ -56,20 +57,13 @@ class TransferenciaExterior {
             await driver.pause(1000);
             for (let i=0; i < data.length; i++){
                 const elemento = data[i];
-                console.log("Elemento " + (i + 1) + ":", elemento);
-                console.log("Motivo Economico Opcion ====>", elemento.motivo_economico);
                 if(elemento.motivo_economico){
                     await driver.pause(5000);
-                    // scrool to the end
-                    await $('android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,5)');
-                    await this.getTransferenciaMontoExteriorSelector.scrollIntoView({block: 'start', inline: 'nearest'});
-                    await driver.pause(10000);
-                    await this.getTransferenciaMontoExteriorSelector.addValue('1');
-                    await driver.pause(10000);
+                    await $(UIAutomatorSelectores.scroll);   // scroll to the end
+                    await this.getTransferenciaMontoExteriorSelector.addValue(datosGenerales.monto);
                     await this.getTransferenciaMotivoEconomicoSelector.click();
                     await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
-                    await this.getTransferenciaReferenciaSelector.addValue('descripcion');
-                    await driver.pause(2000);
+                    await this.getTransferenciaReferenciaSelector.addValue(datosGenerales.descripcion);
                 };      
             };
         }catch(error){

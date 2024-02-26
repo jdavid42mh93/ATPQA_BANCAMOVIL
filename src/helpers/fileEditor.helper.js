@@ -21,9 +21,7 @@ export const searchEntry = (path, condition) => {
           return;
         }
         const parsedData = JSON.parse(element);
-        console.log(parsedData);
         const evaluation = eval(`parsedData${condition.join(' && parsedData')}`);
-        console.log('Evaluation ===>',evaluation);
         if (evaluation) {
           result.push(parsedData);
         };
