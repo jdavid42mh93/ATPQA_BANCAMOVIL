@@ -33,6 +33,12 @@ class TransferenciaOpciones{
     };
 
     async transferenciaAlExteriorSeccion(){
+        (await this.getTransferenciaAlExterior).waitUntil(async function () {
+            return ((await $(transferenciaSelectores.extranjero)).isDisplayed())
+        }, {
+            timeout: 5000,
+            timeoutMsg: 'Error en visualizar boton Transferencias Al Exterior'
+        })
         await this.getTransferenciaAlExterior.click();
     };
 };

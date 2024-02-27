@@ -12,13 +12,15 @@ export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
 
 export const datosGenerales = {
-    monto: '1',
+    monto: '10',
     descripcion: 'atp qa',
 }
 
 // Selectores UIAutomator
 export const UIAutomatorSelectores = {
-    scroll: 'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3,20)'
+    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,20)',
+    scrollIntoView:     (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("${data}")`,
+    scrollTextIntoView: (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${data}")`,
 }
 
 // Selectores para la session de login
