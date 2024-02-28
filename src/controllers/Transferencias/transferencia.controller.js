@@ -3,25 +3,25 @@ import { transferenciaSelectores } from "../../constants/transferencia/transfere
 // Seccion de Opciones de Transferencias
 class TransferenciaOpciones{
 // Funciones para obtener los selectores
-    get getTransferenciaMisCuentas() {
-        return $(transferenciaSelectores.misCuentas);
+    get getTransferenciaEntreMisCuentasSelector() {
+        return $(transferenciaSelectores.entreMisCuentas);
     };
 
-    get getTransferenciaRegistradas() {
+    get getTransferenciaRegistradasSelector() {
         return $(transferenciaSelectores.registradas);
     };
 
-    get getTransferenciaEventuales() {
+    get getTransferenciaEventualesSelector() {
         return $(transferenciaSelectores.eventuales);
     };
 
-    get getTransferenciaAlExterior() {
+    get getTransferenciaAlExteriorSelector() {
         return $(transferenciaSelectores.extranjero);
     };
     
 // Funciones para interaccion con el selector
-    async transferenciaMisCuentasSeccion(){
-        await this.getTransferenciaMisCuentas.click();
+    async transferenciaEntreMisCuentasSeccion(){
+        await this.getTransferenciaEntreMisCuentasSelector.click();
     };
 
     async transferenciaRegistradasSeccion(){
@@ -33,13 +33,13 @@ class TransferenciaOpciones{
     };
 
     async transferenciaAlExteriorSeccion(){
-        (await this.getTransferenciaAlExterior).waitUntil(async function () {
-            return ((await $(transferenciaSelectores.extranjero)).isDisplayed())
+        await this.getTransferenciaAlExteriorSelector.waitUntil(async function () {
+            return ((await $(transferenciaSelectores.alExterior)).isDisplayed())
         }, {
             timeout: 5000,
             timeoutMsg: 'Error en visualizar boton Transferencias Al Exterior'
         })
-        await this.getTransferenciaAlExterior.click();
+        await this.getTransferenciaAlExteriorSelector.click();
     };
 };
 

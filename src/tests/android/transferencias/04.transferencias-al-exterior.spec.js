@@ -1,6 +1,6 @@
 import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
 import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
-import Commons from "../../../page-objects/android/navigation/Transferencias/Commons";
+import TransferenciasNavigation from "../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
@@ -10,12 +10,13 @@ describe('Iniciar sesion con usuario y contraseña',() =>{
     });
 });
 
-// Test de navegacion a la seccion de transferencia y transferencia al exterior 
+// Test de navegacion a la seccion de transferencia y transferencia al exterior
+// Nota: La transferencia exteriro utilizan cuentas ya registradas para el usuario de testing, si se desea una nueva cuenta es necesario ingresarla manualmente
 describe('Transferencia Al Exterior desde el archivo data.txt', () => {
     it('Navegar a la seccion de transferencia al exterior y completar el formulario', async() => {
         await MenuNavigation.navegarSeccionTransferencia();
         await driver.pause(5000);
-        await Commons.transferenciaAlExterior();
+        await TransferenciasNavigation.transferenciaAlExterior();
         await driver.pause(5000);
     });
 });

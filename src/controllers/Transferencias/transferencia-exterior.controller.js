@@ -30,7 +30,7 @@ class TransferenciaExterior {
 
     get getGastoExteriorSelector(){
         return $(transferenciaAlExteriorSelectores.gastosExterior); 
-    }
+    };
 
     get getGastoExteriorOpcionSelector(){
         return $(gastoExteriorOpcion["N-OUR"]);
@@ -38,7 +38,7 @@ class TransferenciaExterior {
 
     get getBtnContinuarSelector(){
         return $(buttonsSelectores.continuar);
-    }
+    };
 
     async getMotivoEconomicoOpcion(motivoEconomico){
         switch (motivoEconomico) {
@@ -76,6 +76,9 @@ class TransferenciaExterior {
                     await $(UIAutomatorSelectores.scrollToEnd)
                     await this.getGastoExteriorSelector.click();
                     await this.getGastoExteriorOpcionSelector.click();
+                    await this.getBtnContinuarSelector.waitForDisplayed();
+                    await this.getBtnContinuarSelector.click();
+                    await this.getBtnContinuarSelector.waitForDisplayed();
                     await this.getBtnContinuarSelector.click();
                 };
             };

@@ -1,21 +1,22 @@
 import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
-import transferenciaController from "../../../controllers/Transferencias/transferencia.controller";
+import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
+import TransferenciasNavigation from "../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
 
-/*  Autor: Juan Callataxi  */
+/*  Nota: Los test utilizan cuentas registradas propias del usuario registradas anteriormente  */
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
     it('Ingresar usuario y contraseña', async()=>{
-        await CommonActions.navegarAInicioSesion();
+        await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
     });
 });
 
 describe('Ingreso de descripcion y monto desde archivo transferencias.txt', () => {
     it('Ingreso de descripcion y monto', async() => {
-        await CommonActions.navegarSeccionTransferencia();
+        await MenuNavigation.navegarSeccionTransferencia();
         await driver.pause(5000);
-        await transferenciaController.transferMyAccounts();
+        await TransferenciasNavigation.transferenciaEntreMisCuentas();
         await driver.pause(5000);
     });
 });

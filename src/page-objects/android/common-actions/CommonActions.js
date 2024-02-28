@@ -8,6 +8,14 @@ class CommonActions{
         return $(buttonsSelectores.omitir);
     };
 
+    get getBtnContinuarSelector(){
+        return $(buttonsSelectores.continuar);
+    };
+
+    get getBtnFinalizarSelector(){
+        return $(buttonsSelectores.finalizar);
+    };
+    
     async login(){
         try{
             await LoginScreen.login();
