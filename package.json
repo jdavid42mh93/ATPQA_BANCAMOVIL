@@ -5,6 +5,7 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
     "@babel/register": "^7.23.7",
+    "@wdio/allure-reporter": "^8.32.2",
     "@wdio/appium-service": "^8.28.0",
     "@wdio/cli": "^8.31.1",
     "@wdio/globals": "^8.31.1",
@@ -22,5 +23,8 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js"
+  },
+  "dependencies": {
+    "allure-commandline": "^2.27.0"
   }
 }

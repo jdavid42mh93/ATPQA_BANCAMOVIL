@@ -2,13 +2,13 @@ import { summarySelectors } from "../../../../constants/common";
 
 // Seccion Posicion Consolidada
 class ConsolidatePositionScreen{
-    get getViewMore(){
+    get getVerMas(){
         return $(summarySelectors.consolidatePosition);
     }
 
     async consolidatePosition(){
         await expect(summarySelectors.consolidatePosition).isDisplayed;
-        await this.getViewMore.click();
+        await this.getVerMas.click();
     }
 }
 

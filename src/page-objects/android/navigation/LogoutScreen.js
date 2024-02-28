@@ -1,18 +1,16 @@
-import { buttons, logoutSelectors } from "../../../constants/common";
+import { logoutSelectors } from "../../../constants/common";
+import MenuNavigation from "./MenuNavigation";
+
 
 // Seccion Logout Screen
 class LogoutScreen{
-    get getToogleMenu(){
-        return $(buttons.toggleButton);
-    }
-
-    get getBtnExit(){
+    get getBtnSalirSelector(){
         return $(logoutSelectors.salir);
     }
 
     async logout(){
-        await this.getToogleMenu.click();
-        await this.getBtnExit.click();
+        await MenuNavigation.getToogleMenuSelector.click();
+        await this.getBtnSalirSelector.click();
     }
 }
 

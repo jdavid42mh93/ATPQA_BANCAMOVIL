@@ -2,19 +2,11 @@ import { textViewClass, checkedTextViewClass, scrollViewClass, editTextClass } f
 // Selectores para la seccion de transferencias
 export const transferenciaSelectores = {
     'transferencias':       `${textViewClass}[@text=" Transferir   "]`,
-    'misCuentas':           `${textViewClass}[@text="Entre Mis Cuentas"]`,
+    'entreMisCuentas':      `${textViewClass}[@text="Entre Mis Cuentas"]`,
     'registradas':          `${textViewClass}[@text="Registradas"]`,
     'eventuales':           `${textViewClass}[@text="Eventuales"]"]`,
-    'extranjero':           `${textViewClass}[@text="Al Exterior"]`,
-    'cuentaDebito':         `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
+    'alExterior':           `${textViewClass}[@text="Al Exterior"]`,
     'mensajeConfirmacion':  `${textViewClass}[@text="Tu transacción se realizó con éxito"]`,
-    'cuentaCorriente':      `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="110609286-CUENTA CORRIENTE"]`,
-    'cuentaAhorros1':       `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="118043573-CUENTA DE AHORROS"]`,
-    'cuentaAhorros2':       `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="630709065-CUENTA DE AHORROS"]`,
-    'cuentaCorrienteDest':  `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="110609286-CUENTA CORRIENTE"]`,
-    'cuentaAhorrosDest1':   `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="118043573-CUENTA DE AHORROS"]`,
-    'cuentaAhorroProgDest': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="420818482-CUENTA DE AHORRO PROGRAMADO"]`,
-    'cuentaAhorrosDest2':   `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="630709065-CUENTA DE AHORROS"]`,
     'cuentaBeneficiaria':   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[4]/android.widget.TextView[1]`,
     'institucionFinanciera':`${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[2]`,
     'descripcion':          `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[5]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
@@ -23,13 +15,33 @@ export const transferenciaSelectores = {
     'cuentaBeneficiaria':   `${editTextClass}[@text="630709065-CUENTA DE AHORROS"]`,
 };
 
+export const transferenciaEntreMisCuentasSelectores = {
+    'CuentaDebito':         `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
+    'cuentaDebito':         `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[1]/android.widget.TextView[1]`,
+    'cuentaCorriente':      `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="110609286-CUENTA CORRIENTE"]`,
+    'cuentaAhorros1':       `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="118043573-CUENTA DE AHORROS"]`,
+    'cuentaAhorros2':       `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="630709065-CUENTA DE AHORROS"]`,
+    'cuentaBeneficiaria':   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[4]/android.widget.TextView[1]`,
+    'cuentaCorrienteDest':  `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="110609286-CUENTA CORRIENTE"]`,
+    'cuentaAhorrosDest1':   `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="118043573-CUENTA DE AHORROS"]`,
+    'cuentaAhorroProgDest': `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="420818482-CUENTA DE AHORRO PROGRAMADO"]`,
+    'cuentaAhorrosDest2':   `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="630709065-CUENTA DE AHORROS"]`,
+};
+
 export const transferenciaAlExteriorSelectores = {
     'cuentaBeneficiariaExterior':   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[5]/android.widget.TextView[1]`,
-    'montoExterior':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
-    'motivoEconomico':              `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[1]`,
-    'gastosExterior':               `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[7]/android.widget.TextView[1]`,
+    'montoExterior':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'referencia':                   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[8]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
+    'motivoEconomico':              `${textViewClass}[@text="Motivo Económico"]`,
+    'referencia':                   `${textViewClass}[@text="Referencia"]`,
+    'gastosExterior':               `${textViewClass}[@text="Gastos del exterior por Cuenta del Beneficiario"]`,
 };
+
+export const constTransferenciasAlExterior = {
+    'MotivoEconomico':              'Motivo Económico',
+    'MontoExterior':                'Monto',
+    'Referencia':                   'Referencia',
+}
 
 export const transferenciaEventualesSelectores = {
 

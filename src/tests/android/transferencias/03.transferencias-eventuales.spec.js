@@ -1,20 +1,19 @@
 import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
+import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
     it('Ingresar usuario y contraseña', async()=>{
-        await driver.pause(5000);
-        await CommonActions.navigateToInitSession();
-        await driver.pause(10000);
+        await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
-        await driver.pause(20000);
     });
 });
 
+
 // Test de seccion de pagos
-describe('Navegar a seccion de Pagos',() =>{
-    it('Click en el botón de Pagos', async()=>{
-        await CommonActions.navigateToPaymentsSection();
+describe('Navegar a la section de Transferencias',() =>{
+    it('Click en el boton de Transferencias', async()=>{
+        await CommonActions.navegarSeccionTransferencia();
         await driver.pause(5000);
     });
 });
