@@ -129,19 +129,23 @@ class TransferenciaEntreMisCuentas {
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas),]);
             console.log("Data =====>", data);
             await transferenciaController.transferenciaEntreMisCuentasSeccion();
+
             // Seleccionando la cuenta de debito
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();
             await this.getCuentaDebitoOpcionSelector.click();
+
             // Seleccionando la cuenta beneficiaria
             await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:15000});
             await this.getCuentaBeneficiariaSelector.click();
             await this.getCuentaBeneficiariaOpcionSelector.click();
+
             // Ingresando Descripcion y Monto
             CommonsTransferencias.ingresarDescripcion();
             await driver.pause(2000);
             CommonsTransferencias.ingresarMonto();
             await driver.pause(2000);
+
             // Seleccionando boton de continuar
             await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
             await CommonActions.getBtnContinuarSelector.click();
