@@ -39,17 +39,30 @@ class TransferenciaRegistrada {
         await driver.hideKeyboard();
     }
 
+    async selectionarCuentaBeneficiaria(opcion){
+        switch (opcion) {
+            case "CONTIFICO":
+                await $(cuentaBeneficiariaOpcion.contifico).waitForDisplayed();
+                await $(cuentaBeneficiariaOpcion.contifico).click();
+                break;
+            default:
+                break;
+        }
+    }
+
 // Funcion para completar los datos de transferencia exterior
     async transferenciaRegistradarForm(){
         try{
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Registradas),]);
+            let elemento;
             await transferenciaController.transferenciaRegistradasSeccion();
-            console.log("Data =====>",data);
             // Selecciona cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
             await this.getSeleccionarBeneficiarioSelector.click();
-            await this.getCuentaBeneficiariaOpcionSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
-            await this.getCuentaBeneficiariaOpcionSelector.click();
+            for (let i=0; i < data.length; i++){
+                elemento = data[i];
+            };
+            await this.selectionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto
             // Ingresa Monto y Descripcion
             this.ingresarDescripcion();
