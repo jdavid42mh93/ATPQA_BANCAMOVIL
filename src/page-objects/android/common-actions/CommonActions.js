@@ -6,15 +6,15 @@ import { buttonsSelectores } from "../../../constants/common";
 class CommonActions{
     get getBtnOmitirSelector(){
         return $(buttonsSelectores.omitir);
-    };
+    }
 
     get getBtnContinuarSelector(){
         return $(buttonsSelectores.continuar);
-    };
+    }
 
     get getBtnFinalizarSelector(){
         return $(buttonsSelectores.finalizar);
-    };
+    }
     
     async login(){
         try{
@@ -22,7 +22,7 @@ class CommonActions{
         }catch(error){
             console.error('Error iniciando sesion', error);
         }
-    };
+    }
 
     async logout(){
         try{
@@ -30,7 +30,7 @@ class CommonActions{
         }catch(error){
             console.error('Error cerrando sesion', error);
         }
-    };
-};
+    }
+}
 
 export default new CommonActions();

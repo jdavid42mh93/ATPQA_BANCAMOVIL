@@ -1,44 +1,41 @@
-import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, motivoEconomicoOpcion, constTransferenciasAlExterior, gastoExteriorOpcion } from "../../constants/transferencia/transferenciaSelectores";
+import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, motivoEconomicoOpcion, constTransferenciasAlExterior, gastoExteriorOpcion } from "../../constants/transferencia/transferenciaAlExterior";
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
 import { UIAutomatorSelectores } from "../../constants/common";
 import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
-import { datosGenerales, buttonsSelectores } from "../../constants/common";
+import { datosGenerales } from "../../constants/common";
+import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
 // Seccion de transferencias al exterior
 class TransferenciaExterior {
 // Funciones para obtener los selectores
     get getSeleccionarBeneficiarioSelector() {
         return $(transferenciaAlExteriorSelectores.cuentaBeneficiariaExterior);
-    };
+    }
 
     get getCuentaBeneficiariaSelector() {
         return $(cuentasBeneficiariasSelectores.THIRDB);
-    };
+    }
 
     get getTransferenciaMotivoEconomicoSelector() {
         return $(transferenciaAlExteriorSelectores.motivoEconomico);
-    };
+    }
 
     get getTransferenciaMontoExteriorSelector() {
         return $(transferenciaAlExteriorSelectores.montoExterior);
-    };
+    }
 
     get getTransferenciaReferenciaSelector() {
         return $(transferenciaAlExteriorSelectores.referencia);
-    };
+    }
 
     get getGastoExteriorSelector(){
         return $(transferenciaAlExteriorSelectores.gastosExterior); 
-    };
+    }
 
     get getGastoExteriorOpcionSelector(){
         return $(gastoExteriorOpcion["N-OUR"]);
-    };
-
-    get getBtnContinuarSelector(){
-        return $(buttonsSelectores.continuar);
-    };
+    }
 
     async getMotivoEconomicoOpcion(motivoEconomico){
         switch (motivoEconomico) {
@@ -54,7 +51,7 @@ class TransferenciaExterior {
             default:
                 break;
         }
-    };
+    }
 
 // Funcion para completar los datos de transferencia exterior
     async transferenciaCuentaExteriorForm(){
@@ -76,16 +73,16 @@ class TransferenciaExterior {
                     await $(UIAutomatorSelectores.scrollToEnd)
                     await this.getGastoExteriorSelector.click();
                     await this.getGastoExteriorOpcionSelector.click();
-                    await this.getBtnContinuarSelector.waitForDisplayed();
-                    await this.getBtnContinuarSelector.click();
-                    await this.getBtnContinuarSelector.waitForDisplayed();
-                    await this.getBtnContinuarSelector.click();
-                };
-            };
+                    await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
+                    await CommonsTransferencias.getBtnContinuarSelector.click();
+                    await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
+                    await CommonsTransferencias.getBtnContinuarSelector.click();
+                }
+            }
         }catch(error){
             console.error('Error en ingresar datos en transferencias al exterior', error);
         }
-    };
-};
+    }
+}
 
 export default new TransferenciaExterior ();

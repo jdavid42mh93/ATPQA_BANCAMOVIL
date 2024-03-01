@@ -5,42 +5,42 @@ class TransferenciaOpciones{
 // Funciones para obtener los selectores
     get getTransferenciaEntreMisCuentasSelector() {
         return $(transferenciaSelectores.entreMisCuentas);
-    };
+    }
 
     get getTransferenciaRegistradasSelector() {
         return $(transferenciaSelectores.registradas);
-    };
+    }
 
     get getTransferenciaEventualesSelector() {
         return $(transferenciaSelectores.eventuales);
-    };
+    }
 
     get getTransferenciaAlExteriorSelector() {
-        return $(transferenciaSelectores.extranjero);
-    };
+        return $(transferenciaSelectores.alExterior);
+    }
     
-// Funciones para interaccion con el selector
+// Funciones para navegar entre las distintas opciones de transferencias
     async transferenciaEntreMisCuentasSeccion(){
         await this.getTransferenciaEntreMisCuentasSelector.click();
-    };
+    }
 
     async transferenciaRegistradasSeccion(){
-        await this.getTransferenciaRegistradas.click();
-    };
+        await this.getTransferenciaRegistradasSelector.waitUntil(async () => {
+            return ((await $(transferenciaSelectores.registradas)).isDisplayed());
+        });
+        await this.getTransferenciaRegistradasSelector.click();
+    }
 
     async transferenciaEventualesSeccion(){
-        await this.getTransferenciaEventuales.click();
-    };
+        await this.getTransferenciaEventualesSelector.click();
+    }
 
     async transferenciaAlExteriorSeccion(){
         await this.getTransferenciaAlExteriorSelector.waitUntil(async function () {
             return ((await $(transferenciaSelectores.alExterior)).isDisplayed())
-        }, {
-            timeout: 5000,
-            timeoutMsg: 'Error en visualizar boton Transferencias Al Exterior'
         })
         await this.getTransferenciaAlExteriorSelector.click();
-    };
-};
+    }
+}
 
 export default new TransferenciaOpciones();

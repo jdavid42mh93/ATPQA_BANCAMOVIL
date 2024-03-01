@@ -22,7 +22,9 @@
     "wdio-html-nice-reporter": "^8.1.6"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "lint": "eslint .  --ext .js",
+    "lint-fix": "eslint . --ext .js --fix"
   },
   "dependencies": {
     "allure-commandline": "^2.27.0"

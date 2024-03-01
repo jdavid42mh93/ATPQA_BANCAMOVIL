@@ -7,7 +7,7 @@ class ConsolidatePositionScreen{
     }
 
     async consolidatePosition(){
-        await expect(summarySelectors.consolidatePosition).isDisplayed;
+        await expect(summarySelectors.consolidatePosition).isDisplayed();
         await this.getVerMas.click();
     }
 }
