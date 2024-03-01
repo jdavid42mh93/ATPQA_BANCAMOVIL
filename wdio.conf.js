@@ -26,7 +26,7 @@ exports.config = {
     //
     specs: [
         // ToDo: define location for spec files here
-        path.join(process.cwd(), './src/tests/android/**/01.transferencias-entre-mis-cuentas.spec.js')
+        path.join(process.cwd(), './src/tests/android/**/02.transferencias-registradas.spec.js')
     ],
     // Patterns to exclude.
     exclude: [
@@ -211,7 +211,7 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {object} suite suite details
      */
-    beforeSuite: function (suite) {
+    beforeSuite: function () {
         console.log('====== Ejecutando antes de cada suite =======')
     },
     /**

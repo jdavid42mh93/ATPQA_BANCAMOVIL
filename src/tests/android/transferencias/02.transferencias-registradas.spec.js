@@ -1,5 +1,6 @@
 import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
 import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
+import TransferenciasNavigation from "../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
@@ -13,7 +14,9 @@ describe('Iniciar sesion con usuario y contraseña',() =>{
 // Test de seccion de pagos
 describe('Navegar a la section de Transferencias',() =>{
     it('Click en el boton de Transferencias', async()=>{
-        await CommonActions.navegarSeccionTransferencia();
+        await MenuNavigation.navegarSeccionTransferencia();
+        await driver.pause(5000);
+        await TransferenciasNavigation.transferenciaRegistrada();
         await driver.pause(5000);
     });
 });

@@ -24,7 +24,7 @@ export const searchEntry = (path, condition) => {
         const evaluation = eval(`parsedData${condition.join(' && parsedData')}`);
         if (evaluation) {
           result.push(parsedData);
-        };
+        }
     });
     return result;
   };
