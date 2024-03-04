@@ -1,6 +1,6 @@
 // Selectores generales
 export const androidWidgetSelector =   '//android.widget.';
-export const androidViewSelector =     '//android.view.';
+export const androidViewSelector =     '//android.view.ViewGroup';
 export const beginSelector =           '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup';
 export const endSelector =             'android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText';
 
@@ -46,7 +46,7 @@ export const summarySelectors = {
 export const buttonsSelectores = {
     'ingresar':     `${buttonClass}[@text="Ingresar"]`,
     'omitir':       `${buttonClass}[@text="Omitir"]`,
-    'toggleButton': `${androidViewSelector}ViewGroup[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
+    'toggleButton': `${androidViewSelector}[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
     'continuar':    `${buttonClass}[@text="Continuar"]`,
     'finalizar':    `${buttonClass}[@text="Finalizar"]`,
     'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,

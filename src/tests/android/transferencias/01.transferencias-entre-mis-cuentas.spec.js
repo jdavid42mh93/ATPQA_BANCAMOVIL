@@ -2,7 +2,7 @@ import CommonActions from "../../../page-objects/android/common-actions/CommonAc
 import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
 import TransferenciasNavigation from "../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
 
-/*  Nota: Los test utilizan cuentas registradas propias del usuario registradas anteriormente  */
+/*  Nota: Los tests utilizan cuentas propias del usuario registradas anteriormente  */
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
@@ -12,12 +12,13 @@ describe('Iniciar sesion con usuario y contraseña',() =>{
     });
 });
 
-describe('Ingreso de descripcion y monto desde archivo transferencias.txt', () => {
-    it('Ingreso de descripcion y monto', async() => {
+// Test de seccion de Transferencias y Transferencias Entre Mis Cuentas
+describe('Navegar a la section de Transferencias', () => {
+    it('Click en el boton de Transferencias', async() => {
         await MenuNavigation.navegarSeccionTransferencia();
-        await driver.pause(5000);
+    });
+    it('Click en el boton de Transferencias Entre Mis Cuentas', async() => {
         await TransferenciasNavigation.transferenciaEntreMisCuentas();
-        await driver.pause(5000);
     });
 });
 
@@ -25,6 +26,5 @@ describe('Ingreso de descripcion y monto desde archivo transferencias.txt', () =
 describe('Cerrar sesión',() =>{
     it('Click en el boton de menu lateral y cerrar sesión', async()=>{
         await CommonActions.logout();
-        await driver.pause(5000);
     });
 });

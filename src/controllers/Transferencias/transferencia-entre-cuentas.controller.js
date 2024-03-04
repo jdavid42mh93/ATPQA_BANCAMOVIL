@@ -25,22 +25,19 @@ class TransferenciaEntreMisCuentas {
     }
 
 // Funciones para seleccionar cuenta de debito y cuenta beneficiaria
-    async seleccionarCuentaDebito(cuentaDebitoOpcion){
-        console.log("Funcion seleccionar Cuenta Debito", cuentaDebitoOpcion);
-        await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
-        await this.getTransferenciaCuentaDebitoSelector.click();
-        switch (cuentaDebitoOpcion) {
+    async seleccionarCuentaDebito(opcion){
+        switch (opcion) {
             case "110609286-CUENTA CORRIENTE":
-                console.log("opcion correcta cuenta debito");
                 await $(transferenciaEntreMisCuentasSelectores.cuentaCorriente).waitForDisplayed();
                 await $(transferenciaEntreMisCuentasSelectores.cuentaCorriente).click();
                 break;
             case "118043573-CUENTA DE AHORROS":
-                console.log("opcion incorrecta cuenta debito")
-                $(transferenciaEntreMisCuentasSelectores.cuentaAhorros1).click();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorros1).waitForDisplayed();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorros1).click();
                 break;
             case "630709065-CUENTA DE AHORROS":
-                $(transferenciaEntreMisCuentasSelectores.cuentaAhorros2).click();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorros2).waitForDisplayed();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorros2).click();
                 break;
             default:
                 break;
@@ -48,23 +45,22 @@ class TransferenciaEntreMisCuentas {
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async seleccionarCuentaBeneficiaria(cuentaBeneficiariaOpcion){
-        await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:15000});
-        await this.getCuentaBeneficiariaSelector.click();
-        switch (cuentaBeneficiariaOpcion) {
+    async seleccionarCuentaBeneficiaria(opcion){
+        switch (opcion) {
             case "110609286-CUENTA CORRIENTE":
                 $(transferenciaEntreMisCuentasSelectores.cuentaCorrienteDest).click();
                 break;
             case "118043573-CUENTA DE AHORROS":
-                console.log("opcion correcta cuenta beneficiaria")
                 await $(transferenciaEntreMisCuentasSelectores.cuentaAhorrosDest1).waitForDisplayed();
                 await $(transferenciaEntreMisCuentasSelectores.cuentaAhorrosDest1).click();
                 break;
             case "420818482-CUENTA DE AHORRO PROGRAMADO":
-                $(transferenciaEntreMisCuentasSelectores.cuentaAhorroProgDest).click();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorroProgDest).waitForDisplayed();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorroProgDest).click();
                 break;
             case "630709065-CUENTA DE AHORROS":
-                $(transferenciaEntreMisCuentasSelectores.cuentaAhorrosDest2).click()
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorrosDest2).waitForDisplayed();
+                await $(transferenciaEntreMisCuentasSelectores.cuentaAhorrosDest2).click()
                 break;
             default:
                 break;
@@ -75,31 +71,39 @@ class TransferenciaEntreMisCuentas {
     async transferenciaEntreMisCuentasForm(){
         try{
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas),]);
-            console.log("Data =====>", data);
+            let elemento;
             await transferenciaController.transferenciaEntreMisCuentasSeccion();
-
+            for (let i=0; i < data.length; i++){
+                elemento = data[i];
+            };
             // Seleccionando la cuenta de debito
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();
-            await this.getCuentaDebitoOpcionSelector.click();
-
+            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // await this.getCuentaDebitoOpcionSelector.click();
             // Seleccionando la cuenta beneficiaria
-            await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:15000});
+            await this.getCuentaBeneficiariaSelector.waitForDisplayed();
             await this.getCuentaBeneficiariaSelector.click();
-            await this.getCuentaBeneficiariaOpcionSelector.click();
+            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
+            // await this.getCuentaBeneficiariaOpcionSelector.click();
 
             // Ingresando Descripcion y Monto
             CommonsTransferencias.ingresarDescripcion();
-            await driver.pause(2000);
             CommonsTransferencias.ingresarMonto();
-            await driver.pause(2000);
 
             // Seleccionando boton de continuar
             await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
             await CommonActions.getBtnContinuarSelector.click();
             await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
             await CommonActions.getBtnContinuarSelector.click();
-            await CommonActions.getBtnFinalizarSelector.waitForDisplayed({timeout: 20000});
+
+            // Click en boton Finalizar
+            await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
+                return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
+            },{
+                timeout: 20000
+            });
+            await CommonsTransferencias.validarConfirmacionOK();
             await CommonActions.getBtnFinalizarSelector.click();
         }catch(error){
             console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
