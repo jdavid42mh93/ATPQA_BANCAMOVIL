@@ -57,28 +57,43 @@ class TransferenciaExterior {
     async transferenciaCuentaExteriorForm(){
         try{
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
+            let elemento;
             await transferenciaController.transferenciaAlExteriorSeccion();
+            for (let i=0; i < data.length; i++){
+                elemento = data[i];
+            };
+            // Seleccionar cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
             await this.getSeleccionarBeneficiarioSelector.click();
+            // Seleccionar cuenta beneficiaria opcion
             await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
             await this.getCuentaBeneficiariaSelector.click();
-            for (let i=0; i < data.length; i++){
-                const elemento = data[i];
-                if(elemento.motivo_economico){
-                    await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
-                    await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
-                    await this.getTransferenciaMontoExteriorSelector.click();
-                    await this.getTransferenciaMontoExteriorSelector.addValue(datosGenerales.monto);
-                    await driver.hideKeyboard();
-                    await $(UIAutomatorSelectores.scrollToEnd)
-                    await this.getGastoExteriorSelector.click();
-                    await this.getGastoExteriorOpcionSelector.click();
-                    await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-                    await CommonsTransferencias.getBtnContinuarSelector.click();
-                    await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-                    await CommonsTransferencias.getBtnContinuarSelector.click();
-                }
-            }
+
+            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
+            // Obtener motivo economico
+            await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
+            // Ingresar monto 
+            await this.getTransferenciaMontoExteriorSelector.click();
+            await this.getTransferenciaMontoExteriorSelector.addValue(datosGenerales.monto);
+            await driver.hideKeyboard();
+            await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
+            // Seleccionar opcion de gasto exterior
+            await this.getGastoExteriorSelector.click();
+            await this.getGastoExteriorOpcionSelector.click();
+            // Click en boton Continuar
+            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
+            await CommonsTransferencias.getBtnContinuarSelector.click();
+            // Click en boton Continuar
+            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
+            await CommonsTransferencias.getBtnContinuarSelector.click();
+            // Click en boton Finalizar
+            await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
+                return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
+            },{
+                timeout: 20000
+            });
+            await CommonsTransferencias.validarConfirmacionOK();
+            await CommonActions.getBtnFinalizarSelector.click();
         }catch(error){
             console.error('Error en ingresar datos en transferencias al exterior', error);
         }

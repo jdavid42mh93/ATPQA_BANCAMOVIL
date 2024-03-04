@@ -9,6 +9,7 @@ class LogoutScreen{
     }
 
     async logout(){
+        await MenuNavigation.getToogleMenuSelector.waitForDisplayed();
         await MenuNavigation.getToogleMenuSelector.click();
         await this.getBtnSalirSelector.click();
     }
