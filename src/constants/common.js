@@ -12,8 +12,10 @@ export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
 
 export const datosGenerales = {
-    monto: '10',
-    descripcion: 'atp qa',
+    monto:                  '10',
+    descripcion:            'atp qa',
+    nombreBeneficiario:     'atp qa',
+    numeroIdentificacion:   '1722146485',
 }
 
 // Selectores UIAutomator
@@ -49,4 +51,5 @@ export const buttonsSelectores = {
     'finalizar':    `${buttonClass}[@text="Finalizar"]`,
     'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,
     'cancelar':     `${buttonClass}[@text="Cancel"]`,
+    'cerrar':       `${buttonClass}[@text="CERRAR"]`
 };

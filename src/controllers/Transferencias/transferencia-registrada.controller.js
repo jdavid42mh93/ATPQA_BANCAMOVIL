@@ -8,7 +8,7 @@ import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
-// Seccion de transferencias al exterior
+// Seccion de transferencias cuentas registradas
 class TransferenciaRegistrada {
 // Funciones para obtener los selectores
     get getSeleccionarBeneficiarioSelector() {
@@ -51,7 +51,7 @@ class TransferenciaRegistrada {
     }
 
 // Funcion para completar los datos de transferencia exterior
-    async transferenciaRegistradarForm(){
+    async transferenciaRegistradaForm(){
         try{
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Registradas),]);
             let elemento;

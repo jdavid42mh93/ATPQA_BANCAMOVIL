@@ -1,4 +1,4 @@
-{"case":"4", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Eventuales" ,"institucion_bancaria": "BANCO AMAZONAS"}
+{"case":"4", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Eventuales" ,"institucion_bancaria": "BANCO DEL PACIFICO" ,"cuenta_debito": "1052458576" ,"tipo_documento": "CEDULA" ,"tipo_cuenta": "CUENTA DE AHORROS"}
 {"case":"5", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Entre Mis Cuentas" ,"cuenta_debito": "110609286-CUENTA CORRIENTE" ,"numero_cuenta_beneficiario": "118043573-CUENTA DE AHORROS"}
 {"case":"6", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Registradas" ,"numero_cuenta_beneficiario": "CONTIFICO"}
 {"case":"7", "status": "pending", "msg": "", "orderStatus":"","type":"Transferencias","subtype":"Al Exterior" ,"numero_cuenta_beneficiario": "EXTERIOR" ,"motivo_economico": "110 - ANTICIPO POR IMPORTACIONES"}

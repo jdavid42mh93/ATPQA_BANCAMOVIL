@@ -5,6 +5,7 @@ import transferenciaController from "./transferencia.controller";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
+// Seccion de transferencias entre cuentas propias del usuario
 class TransferenciaEntreMisCuentas {
 // Funciones para obtener los selectores de transferencias entre mis cuentas
     get getTransferenciaCuentaDebitoSelector() {

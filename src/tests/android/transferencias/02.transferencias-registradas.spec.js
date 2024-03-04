@@ -11,7 +11,7 @@ describe('Iniciar sesion con usuario y contraseña',() =>{
 });
 
 
-// Test de seccion de pagos
+// Test de seccion de transferencias
 describe('Navegar a la section de Transferencias',() =>{
     it('Click en el boton de Transferencias', async()=>{
         await MenuNavigation.navegarSeccionTransferencia();

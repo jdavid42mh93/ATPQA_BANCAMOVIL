@@ -26,7 +26,7 @@ exports.config = {
     //
     specs: [
         // ToDo: define location for spec files here
-        path.join(process.cwd(), './src/tests/android/**/02.transferencias-registradas.spec.js')
+        path.join(process.cwd(), './src/tests/android/**/03.transferencias-eventuales.spec.js')
     ],
     // Patterns to exclude.
     exclude: [

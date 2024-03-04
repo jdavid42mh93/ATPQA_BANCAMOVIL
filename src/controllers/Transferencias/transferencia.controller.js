@@ -32,6 +32,9 @@ class TransferenciaOpciones{
     }
 
     async transferenciaEventualesSeccion(){
+        await this.getTransferenciaEventualesSelector.waitUntil(async function () {
+            return ((await $(transferenciaSelectores.eventuales)).isDisplayed())
+        })
         await this.getTransferenciaEventualesSelector.click();
     }
 

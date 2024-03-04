@@ -4,7 +4,7 @@ export const transferenciaSelectores = {
     'transferencias':       `${textViewClass}[@text=" Transferir   "]`,
     'entreMisCuentas':      `${textViewClass}[@text="Entre Mis Cuentas"]`,
     'registradas':          `${textViewClass}[@text="Registradas"]`,
-    'eventuales':           `${textViewClass}[@text="Eventuales"]"]`,
+    'eventuales':           `${textViewClass}[@text="Eventuales"]`,
     'alExterior':           `${textViewClass}[@text="Al Exterior"]`,
     'mensajeConfirmacion':  `${textViewClass}[@text="Tu transacción se realizó con éxito"]`,
     'institucionFinanciera':`${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[2]`,
