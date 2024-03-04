@@ -18,7 +18,7 @@ class TransferenciasNavigation{
     }
 
     async transferenciaAlExterior() {
-        await transferenciaExteriorController.transferenciaCuentaExteriorForm();
+        await transferenciaExteriorController.transferenciaAlExteriorForm();
     }
 }
 

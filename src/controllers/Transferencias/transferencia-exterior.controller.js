@@ -17,15 +17,11 @@ class TransferenciaExterior {
         return $(cuentasBeneficiariasSelectores.THIRDB);
     }
 
-    get getTransferenciaMotivoEconomicoSelector() {
-        return $(transferenciaAlExteriorSelectores.motivoEconomico);
+    get getMontoSelector() {
+        return $(transferenciaAlExteriorSelectores.monto);
     }
 
-    get getTransferenciaMontoExteriorSelector() {
-        return $(transferenciaAlExteriorSelectores.montoExterior);
-    }
-
-    get getTransferenciaReferenciaSelector() {
+    get getReferenciaSelector() {
         return $(transferenciaAlExteriorSelectores.referencia);
     }
 
@@ -37,8 +33,13 @@ class TransferenciaExterior {
         return $(gastoExteriorOpcion["N-OUR"]);
     }
 
-    async getMotivoEconomicoOpcion(motivoEconomico){
-        switch (motivoEconomico) {
+    async ingresarMonto(){
+        await this.getMontoSelector.addValue(datosGenerales.monto);
+        await driver.hideKeyboard();
+    }
+
+    async getMotivoEconomicoOpcion(opcion){
+        switch (opcion) {
             case motivoEconomicoOpcion["105-IMPORTACIONES"]:
                 $(motivoEconomicoOpcionSelectores["105_importaciones"]).click();
                 break;
@@ -54,7 +55,7 @@ class TransferenciaExterior {
     }
 
 // Funcion para completar los datos de transferencia exterior
-    async transferenciaCuentaExteriorForm(){
+    async transferenciaAlExteriorForm(){
         try{
             const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
             let elemento;
@@ -72,10 +73,9 @@ class TransferenciaExterior {
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
             // Obtener motivo economico
             await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
-            // Ingresar monto 
-            await this.getTransferenciaMontoExteriorSelector.click();
-            await this.getTransferenciaMontoExteriorSelector.addValue(datosGenerales.monto);
-            await driver.hideKeyboard();
+            // Ingresar monto
+            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.Monto)).click();
+            await this.ingresarMonto()
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
             // Seleccionar opcion de gasto exterior
             await this.getGastoExteriorSelector.click();
