@@ -138,7 +138,7 @@ class TransferenciaEventual {
             await this.seleccionarTipoDocumento(elemento.tipo_documento);
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));  //Scroll hasta encontrar la palabra Monto
             // Ingresar numero de identificacion
-            await this.getNumeroIdentificacionSelector.addValue(datosGenerales.numeroIdentificacion);
+            await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identifiacion);
             // Ingresar nombre beneficiario
             await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario)
             // Ingresa Monto y Descripcion
