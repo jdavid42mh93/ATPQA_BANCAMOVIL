@@ -73,7 +73,7 @@ class TransferenciaRegistrada {
             await transferenciaController.transferenciaRegistradasSeccion();
             for (let i=0; i < data.length; i++){
                 elemento = data[i];
-            };
+            }
             // Seleccionar cuenta debito
             await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`})
             await this.getSeleccionarCuentaDebitoSelector.click();

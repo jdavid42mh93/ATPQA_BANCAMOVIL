@@ -74,7 +74,7 @@ class TransferenciaEventual {
             default:
                 break;
         }
-    };
+    }
 
     async seleccionarTipoDocumento(opcion){
         switch (opcion) {
@@ -93,7 +93,7 @@ class TransferenciaEventual {
             default:
                 break;
         }
-    };
+    }
 
     async seleccionarTipoCuenta(opcion){
         switch (opcion) {
@@ -118,7 +118,7 @@ class TransferenciaEventual {
             await transferenciaController.transferenciaEventualesSeccion();
             for (let i=0; i < data.length; i++){
                 elemento = data[i];
-            };
+            }
             // Selecciona institucion bancaria
             await this.getInstitucionBancariaSelector.waitForDisplayed({timeout:30000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
             await this.getInstitucionBancariaSelector.click();

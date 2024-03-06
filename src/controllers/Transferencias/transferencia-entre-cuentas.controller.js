@@ -75,7 +75,7 @@ class TransferenciaEntreMisCuentas {
             await transferenciaController.transferenciaEntreMisCuentasSeccion();
             for (let i=0; i < data.length; i++){
                 elemento = data[i];
-            };
+            }
             // Seleccionando la cuenta de debito
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();

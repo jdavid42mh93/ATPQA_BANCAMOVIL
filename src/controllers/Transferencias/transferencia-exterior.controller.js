@@ -5,6 +5,7 @@ import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias al exterior
 class TransferenciaExterior {
@@ -62,7 +63,7 @@ class TransferenciaExterior {
             await transferenciaController.transferenciaAlExteriorSeccion();
             for (let i=0; i < data.length; i++){
                 elemento = data[i];
-            };
+            }
             // Seleccionar cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
             await this.getSeleccionarBeneficiarioSelector.click();
