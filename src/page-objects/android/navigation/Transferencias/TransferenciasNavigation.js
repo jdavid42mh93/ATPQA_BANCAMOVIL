@@ -5,8 +5,8 @@ import transferenciaEventualesController from "../../../../controllers/Transfere
 
 // Funciones para navegar entrelos distintos tipos de transferencias
 class TransferenciasNavigation{
-    async transferenciaEntreMisCuentas() {
-        await transferenciaEntreCuentasController.transferenciaEntreMisCuentasForm();
+    async transferenciaEntreMisCuentas(data) {
+        await transferenciaEntreCuentasController.transferenciaEntreMisCuentasForm(data);
     }
 
     async transferenciaRegistrada() {

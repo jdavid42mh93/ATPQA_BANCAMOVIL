@@ -21,6 +21,9 @@ class TransferenciaOpciones{
     
 // Funciones para navegar entre las distintas opciones de transferencias
     async transferenciaEntreMisCuentasSeccion(){
+        await this.getTransferenciaEntreMisCuentasSelector.waitUntil(async () => {
+            return ((await $(transferenciaSelectores.entreMisCuentas)).isDisplayed());
+        });
         await this.getTransferenciaEntreMisCuentasSelector.click();
     }
 

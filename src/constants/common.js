@@ -51,5 +51,16 @@ export const buttonsSelectores = {
     'finalizar':    `${buttonClass}[@text="Finalizar"]`,
     'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,
     'cancelar':     `${buttonClass}[@text="Cancel"]`,
-    'cerrar':       `${buttonClass}[@text="CERRAR"]`
+    'cerrar':       `${buttonClass}[@text="CERRAR"]`,
+    'button':       (data) => `${buttonClass}[@text="${data}"]`
 };
+
+export const buttons = {
+    'ingresar':             'Ingresar',
+    'omitir':               'Omiitir',
+    'continuar':            'Continuar',
+    'finalizar':            'Finalizar',
+    'compartirComprobante': 'Compartir comprobante',
+    'cancelar':             'Cancel',
+    'cerrar':               'CERRAR',
+}

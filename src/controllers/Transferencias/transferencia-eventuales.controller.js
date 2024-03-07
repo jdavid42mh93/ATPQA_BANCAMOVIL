@@ -145,11 +145,7 @@ class TransferenciaEventual {
             this.ingresarDescripcion();
             this.ingresarMonto();
             // Click en boton Continuar
-            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-            await CommonsTransferencias.getBtnContinuarSelector.click();
-            // Click en boton Continuar
-            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-            await CommonsTransferencias.getBtnContinuarSelector.click();
+            await CommonsTransferencias.clickBtnContinuar();
             // Click en boton Cerrar
             await this.getBotonCerrarSelector.waitForDisplayed();
             await this.getBotonCerrarSelector.click();
