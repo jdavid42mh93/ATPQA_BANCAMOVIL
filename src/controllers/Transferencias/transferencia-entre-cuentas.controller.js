@@ -1,6 +1,6 @@
 import { transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
-import { searchEntry } from "../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
+import { editEntry } from "../../helpers/fileEditor.helper";
+import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import transferenciaController from "./transferencia.controller";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
@@ -68,9 +68,8 @@ class TransferenciaEntreMisCuentas {
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async transferenciaEntreMisCuentasForm(){
+    async transferenciaEntreMisCuentasForm(data){
         try{
-            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas),]);
             let elemento;
             await transferenciaController.transferenciaEntreMisCuentasSeccion();
             for (let i=0; i < data.length; i++){
@@ -80,31 +79,23 @@ class TransferenciaEntreMisCuentas {
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();
             await this.seleccionarCuentaDebito(elemento.cuenta_debito);
-            // await this.getCuentaDebitoOpcionSelector.click();
+
             // Seleccionando la cuenta beneficiaria
             await this.getCuentaBeneficiariaSelector.waitForDisplayed();
             await this.getCuentaBeneficiariaSelector.click();
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
-            // await this.getCuentaBeneficiariaOpcionSelector.click();
 
             // Ingresando Descripcion y Monto
             CommonsTransferencias.ingresarDescripcion();
             CommonsTransferencias.ingresarMonto();
 
-            // Seleccionando boton de continuar
-            await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
-            await CommonActions.getBtnContinuarSelector.click();
-            await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
-            await CommonActions.getBtnContinuarSelector.click();
+            // Click en boton Continuar
+            await CommonsTransferencias.clickBtnContinuar();
 
             // Click en boton Finalizar
-            await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
-                return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
-            },{
-                timeout: 20000
-            });
-            await CommonsTransferencias.validarConfirmacionOK();
-            await CommonActions.getBtnFinalizarSelector.click();
+            await CommonsTransferencias.clickBtnFinalizar();
+            
+            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
         }

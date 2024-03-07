@@ -37,5 +37,6 @@ export const dataStatus = {
 };
 
 export const dataInstructions = {
-  'assignStatus':   (data) => `.status = '${data}'`,
+  'assignStatus':   (data) => `.status === '${data}'`,
+  'case':           (data) => `.case === '${data}'`,  
 };

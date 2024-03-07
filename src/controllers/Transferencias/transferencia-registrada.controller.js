@@ -88,19 +88,9 @@ class TransferenciaRegistrada {
             this.ingresarDescripcion();
             this.ingresarMonto();
             // Click en boton Continuar
-            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-            await CommonsTransferencias.getBtnContinuarSelector.click();
-            // Click en boton Continuar
-            await CommonsTransferencias.getBtnContinuarSelector.waitForDisplayed();
-            await CommonsTransferencias.getBtnContinuarSelector.click();
+            await CommonsTransferencias.clickBtnContinuar();
             // Click en boton Finalizar
-            await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
-                return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
-            },{
-                timeout: 30000
-            });
-            await CommonsTransferencias.validarConfirmacionOK();
-            await CommonActions.getBtnFinalizarSelector.click();
+            await CommonsTransferencias.clickBtnFinalizar();
         }catch(error){
             console.error('Error en ingresar datos en transferencias al exterior', error);
         }

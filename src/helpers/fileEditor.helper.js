@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-eval */
 const fsLibrary = require('fs');
 const os = require('os');
 
@@ -51,13 +49,13 @@ export const editEntry = (path, condition, edit) => {
       if (!element) {
         return;
       }
-      const parsedData = JSON.parse(element);
-      const evaluation = eval(`parsedData${condition.join(' && parsedData')}`);
+      const data = JSON.parse(element);
+      const evaluation = eval(`data${condition.join(' && data')}`);
       if (evaluation) {
         edit.forEach((instruction) => {
-          eval(`parsedData${instruction}`);
+          eval(`data${instruction}`);
         });
       }
-      writeLine(path, JSON.stringify(parsedData));
+      writeLine(path, JSON.stringify(data));
     });
 };

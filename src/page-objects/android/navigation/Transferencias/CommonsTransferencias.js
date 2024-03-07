@@ -1,5 +1,6 @@
 import { transferenciaSelectores } from "../../../../constants/transferencia/transferenciaSelectores";
 import { datosGenerales, buttonsSelectores } from "../../../../constants/common";
+import CommonActions from "../../common-actions/CommonActions";
 
 // Seccion de Pagos que contiene los disntintos tipos de transferencias
 class CommonsTransferencias{
@@ -10,10 +11,6 @@ class CommonsTransferencias{
 
     get getTransferenciaDescripcionSelector() {
         return $(transferenciaSelectores.descripcion);
-    }
-
-    get getBtnContinuarSelector(){
-        return $(buttonsSelectores.continuar);
     }
 
     get getMensajeConfirmacionSelector() {
@@ -32,10 +29,29 @@ class CommonsTransferencias{
         await this.getTransferenciaDescripcionSelector.addValue(datosGenerales.descripcion);
         await driver.hideKeyboard();
     }
+
 // Funcion para validar mensaje de confirmacion
     async validarConfirmacionOK() {
         await this.getMensajeConfirmacionSelector.waitForDisplayed();
         await expect(this.getMensajeConfirmacionSelector).toHaveText(expect.stringContaining('Tu transacción se realizó con éxito'))
+    }
+// Funcion para dar clik en el boton Continuar
+    async clickBtnContinuar() {
+        // Seleccionar boton de continuar
+        await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
+        await CommonActions.getBtnContinuarSelector.click();
+        await CommonActions.getBtnContinuarSelector.waitForDisplayed({timeout: 20000});
+        await CommonActions.getBtnContinuarSelector.click();
+    }
+// Funcion para dar click en el boton Finalizar
+    async clickBtnFinalizar(){
+        await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
+            return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
+            },{
+                 timeout: 30000
+            });
+        await this.validarConfirmacionOK();
+        await CommonActions.getBtnFinalizarSelector.click();
     }
 }
 
