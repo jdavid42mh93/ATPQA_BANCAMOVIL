@@ -2,16 +2,16 @@ import { scrollViewClass, checkedTextViewClass, textViewClass } from "../common"
 
 export const transferenciaAlExteriorSelectores = {
     'cuentaBeneficiariaExterior':   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[5]/android.widget.TextView[1]`,
-    'montoExterior':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
+    'monto':                        `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'motivoEconomico':              `${textViewClass}[@text="Motivo Económico"]`,
     'referencia':                   `${textViewClass}[@text="Referencia"]`,
     'gastosExterior':               `${textViewClass}[@text="Gastos del exterior por Cuenta del Beneficiario"]`,
 };
 
 export const constTransferenciasAlExterior = {
-    'MotivoEconomico':              'Motivo Económico',
-    'MontoExterior':                'Monto',
-    'Referencia':                   'Referencia',
+    'MotivoEconomico':      'Motivo Económico',
+    'Monto':                'Monto',
+    'Referencia':           'Referencia',
 }
 
 export const motivoEconomicoOpcionSelectores = {

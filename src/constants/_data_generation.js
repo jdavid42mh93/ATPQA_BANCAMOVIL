@@ -3,9 +3,7 @@ import { createBasePath } from "../helpers/fileEditor.helper";
 const basePath = createBasePath();
 
 export const files = {
-  'transferencias':                   `${basePath}transferencias.txt`,
   'data':                             `${basePath}data.txt`,
-  'transferecias_exterior_dolares':   `${basePath}transferencias_exterior_dolares.txt`,
 };
 
 export const dataConditions = {
@@ -31,4 +29,14 @@ export const dataSubtypes = {
   'MisTarjetas':          'Mis Tarjetas',
   'TarjetasRegistradas':  'Tarjetas Registradas',
   'TarjetasEventuales':   'Tarjetas Eventuales',
+};
+
+export const dataStatus = {
+  'active':   'active',
+  'pending':  'pending',
+};
+
+export const dataInstructions = {
+  'assignStatus':   (data) => `.status === '${data}'`,
+  'case':           (data) => `.case === '${data}'`,  
 };

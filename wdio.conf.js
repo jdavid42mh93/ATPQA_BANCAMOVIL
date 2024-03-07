@@ -26,7 +26,7 @@ exports.config = {
     //
     specs: [
         // ToDo: define location for spec files here
-        path.join(process.cwd(), './src/tests/android/**/02.transferencias-registradas.spec.js')
+        path.join(process.cwd(), './src/tests/android/**/01.transferencias-entre-mis-cuentas.spec.js')
     ],
     // Patterns to exclude.
     exclude: [
@@ -60,7 +60,9 @@ exports.config = {
         "appium:deviceName": "Pixel 7 Pro API 24",
         "appium:automationName": "UIAutomator2",
         "appium:app": path.join(process.cwd(), "app/android/Banca Movil 9.apk"),
-        "appium:autoGrantPermissions": true
+        "appium:autoGrantPermissions": true,
+        "appium:appWaitActivity": 'com.fisa.omnia.mobile.baninterv404.BancaMovilActivity',
+        "appium:appActivity": 'com.fisa.omnia.mobile.baninterv404.BancaMovilActivity',
     }],
 
     //

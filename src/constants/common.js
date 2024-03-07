@@ -1,6 +1,6 @@
 // Selectores generales
 export const androidWidgetSelector =   '//android.widget.';
-export const androidViewSelector =     '//android.view.';
+export const androidViewSelector =     '//android.view.ViewGroup';
 export const beginSelector =           '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup';
 export const endSelector =             'android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText';
 
@@ -12,8 +12,10 @@ export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
 
 export const datosGenerales = {
-    monto: '10',
-    descripcion: 'atp qa',
+    monto:                  '10',
+    descripcion:            'atp qa',
+    nombreBeneficiario:     'atp qa',
+    numeroIdentificacion:   '1722146485',
 }
 
 // Selectores UIAutomator
@@ -44,9 +46,21 @@ export const summarySelectors = {
 export const buttonsSelectores = {
     'ingresar':     `${buttonClass}[@text="Ingresar"]`,
     'omitir':       `${buttonClass}[@text="Omitir"]`,
-    'toggleButton': `${androidViewSelector}ViewGroup[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
+    'toggleButton': `${androidViewSelector}[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
     'continuar':    `${buttonClass}[@text="Continuar"]`,
     'finalizar':    `${buttonClass}[@text="Finalizar"]`,
     'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,
     'cancelar':     `${buttonClass}[@text="Cancel"]`,
+    'cerrar':       `${buttonClass}[@text="CERRAR"]`,
+    'button':       (data) => `${buttonClass}[@text="${data}"]`
 };
+
+export const buttons = {
+    'ingresar':             'Ingresar',
+    'omitir':               'Omiitir',
+    'continuar':            'Continuar',
+    'finalizar':            'Finalizar',
+    'compartirComprobante': 'Compartir comprobante',
+    'cancelar':             'Cancel',
+    'cerrar':               'CERRAR',
+}
