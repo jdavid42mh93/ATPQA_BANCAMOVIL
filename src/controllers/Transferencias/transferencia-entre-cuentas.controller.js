@@ -2,7 +2,6 @@ import { transferenciaEntreMisCuentasSelectores } from "../../constants/transfer
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import transferenciaController from "./transferencia.controller";
-import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
 // Seccion de transferencias entre cuentas propias del usuario

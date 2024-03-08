@@ -1,9 +1,19 @@
 import { textViewClass, checkedTextViewClass } from "../common";
 
 // Selectores para la seccion de pagos
-export const paymentsSelectors = {
-    'pagos':                  `${textViewClass}[@text=" Pagos   "]`,
-    'serviciosRegistrados':   `${textViewClass}[@text="Servicios Registrados"]`,
-    'gruposServicios':        `${textViewClass}[@text="Grupo de Servicio"]`,
-    'servicioAgua':           `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="SERVICIO BÁSICO AGUA"]`
+export const pagosSelectors = {
+    'pagos':                    `${textViewClass}[@text=" Pagos   "]`,
+    'servicio':                 `${textViewClass}[@text="Servicio"]`,
+    'gruposServicios':          `${textViewClass}[@text="Grupo de Servicio"]`,
+    'pagoOpcion':               (data) => `${textViewClass}[@text="${data}"]`,
+    'grupoServicioOpcion':      (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
+    'servicioOpcion':           (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
 };
+
+export const pagosOpciones = {
+    'serviciosRegistrados':     'Servicios Registrados',
+    'serviciosEventuales':      'Servicios Eventuales',
+    'misTarjetas':              'Mis Tarjetas',
+    'tarjetasRegistradas':      'Tarjetas Registradas',
+    'tarjetasEventuales':       'Tarjetas Eventuales',
+}
