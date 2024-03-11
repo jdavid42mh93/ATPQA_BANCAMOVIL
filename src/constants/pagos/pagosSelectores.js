@@ -25,5 +25,5 @@ export const serviciosOpciones = {
     'servicioLuz':      'SERVICIO BASICO LUZ',
     'servicioTelefono': 'SERVICIO BASICO TELEFOMO',
     'registroCivil':    'REGISTRO CIVIL',
-    'casaComercial':    'CASAS COMERCIALES',
+    'casaComercial':    'CASAS COMERCIALES'
 }
