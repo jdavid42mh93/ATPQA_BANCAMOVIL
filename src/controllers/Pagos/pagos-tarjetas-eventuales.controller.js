@@ -9,7 +9,7 @@ class PagosTarjetasEventuales {
 // Funciones para obtener los selectores de pagos de tarjetas eventuales
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async pagosServiciosRegistradosForm(data){
+    async pagosTarjetasEventualesForm(data){
         try{
             let elemento;
             await transferenciaController.transferenciaEntreMisCuentasSeccion();

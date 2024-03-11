@@ -63,4 +63,5 @@ export const buttons = {
     'compartirComprobante': 'Compartir comprobante',
     'cancelar':             'Cancel',
     'cerrar':               'CERRAR',
+    'ok':                   'Ok'
 }

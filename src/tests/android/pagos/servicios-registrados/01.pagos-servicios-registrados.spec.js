@@ -4,6 +4,7 @@ import { searchEntry } from "../../../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
 import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import pagosServiciosRegistradosController from "../../../../controllers/Pagos/pagos-servicios-registrados.controller";
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
@@ -22,8 +23,8 @@ describe('Navegar a seccion de Pagos',() =>{
         await PagosNavigation.pagosServiciosRegistrados();
     });
     it('Seleccionar Servicio Basico Agua', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados),]);
-        await TransferenciasNavigation.transferenciaEntreMisCuentas(data);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados)]);
+        await pagosServiciosRegistradosController.pagosServiciosRegistradosForm(data);
     });
     it('Click en el botón Continuar', async()=>{
         await CommonsTransferencias.clickBtnContinuar();

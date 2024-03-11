@@ -9,7 +9,7 @@ class PagosTarjetasRegistradas {
 // Funciones para obtener los selectores de pagos de tarjetas registradas
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async pagosServiciosRegistradosForm(data){
+    async pagosTarjetasRegistradasForm(data){
         try{
             let elemento;
             for (let i=0; i < data.length; i++){

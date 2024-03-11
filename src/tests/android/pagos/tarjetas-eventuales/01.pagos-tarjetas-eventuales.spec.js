@@ -4,6 +4,7 @@ import { searchEntry } from "../../../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
 import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import pagosTarjetasEventualesController from "../../../../controllers/Pagos/pagos-tarjetas-eventuales.controller";
 
 // Test de inicio de sesion 
 describe('Iniciar sesion con usuario y contraseña',() =>{
@@ -23,7 +24,7 @@ describe('Navegar a seccion de Pagos',() =>{
     });
     it('Seleccionar la tarjeta eventual a pagar', async()=>{
         const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.TarjetasEventuales),]);
-        await TransferenciasNavigation.transferenciaEntreMisCuentas(data);
+        await pagosTarjetasEventualesController.pagosTarjetasEventualesForm(data);
     });
     it('Click en el botón Continuar', async()=>{
         await CommonsTransferencias.clickBtnContinuar();
