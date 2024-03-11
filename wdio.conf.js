@@ -61,8 +61,10 @@ exports.config = {
         "appium:automationName": "UIAutomator2",
         "appium:app": path.join(process.cwd(), "app/android/Banca Movil 9.apk"),
         "appium:autoGrantPermissions": true,
-        "appium:appWaitActivity": 'com.fisa.omnia.mobile.baninterv404.BancaMovilActivity',
-        "appium:appActivity": 'com.fisa.omnia.mobile.baninterv404.BancaMovilActivity',
+        "appium:appWaitActivity": "com.fisa.omnia.mobile.baninterv404.BancaMovilActivity",
+        "appium:appActivity": "com.fisa.omnia.mobile.baninterv404.BancaMovilActivity",
+        "appium:appPackage": "com.fisa.omnia.mobile.baninterv404",
+        "appium:forceAppLaunch": true,
     }],
 
     //

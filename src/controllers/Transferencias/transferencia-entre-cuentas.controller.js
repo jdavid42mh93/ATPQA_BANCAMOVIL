@@ -80,7 +80,7 @@ class TransferenciaEntreMisCuentas {
             await this.seleccionarCuentaDebito(elemento.cuenta_debito);
 
             // Seleccionando la cuenta beneficiaria
-            await this.getCuentaBeneficiariaSelector.waitForDisplayed();
+            await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:25000});
             await this.getCuentaBeneficiariaSelector.click();
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
@@ -93,8 +93,11 @@ class TransferenciaEntreMisCuentas {
 
             // Click en boton Finalizar
             await CommonsTransferencias.clickBtnFinalizar();
-            
-            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
+            // console.log("Conditions =====>", [dataConditions.caseIs(elemento.case)])
+            // console.log("Edit =====> ", [dataInstructions.assignStatus(dataStatus.active)])
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
         }
