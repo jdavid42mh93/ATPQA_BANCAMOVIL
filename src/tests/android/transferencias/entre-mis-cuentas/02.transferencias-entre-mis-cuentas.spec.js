@@ -1,8 +1,8 @@
-import CommonActions from "../../../page-objects/android/common-actions/CommonActions";
-import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigation";
-import TransferenciasNavigation from "../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
-import { searchEntry } from "../../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../../constants/_data_generation";
+import CommonActions from "../../../../page-objects/android/common-actions/CommonActions";
+import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavigation";
+import TransferenciasNavigation from "../../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
+import { searchEntry } from "../../../../helpers/fileEditor.helper";
+import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
 
 /*  Nota: Los tests utilizan cuentas propias del usuario registradas anteriormente  */
 
