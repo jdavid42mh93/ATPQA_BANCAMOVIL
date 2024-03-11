@@ -2,7 +2,7 @@ import CommonActions from "../../../../page-objects/android/common-actions/Commo
 import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavigation";
 import TransferenciasNavigation from "../../../../page-objects/android/navigation/Transferencias/TransferenciasNavigation";
 import { searchEntry } from "../../../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
+import { files, dataConditions, dataTypes, dataSubtypes, dataStatus } from "../../../../constants/_data_generation";
 
 /*  Nota: Los tests utilizan cuentas propias del usuario registradas anteriormente  */
 
@@ -20,7 +20,7 @@ describe('Navegar a la section de Transferencias', () => {
         await MenuNavigation.navegarSeccionTransferencia();
     });
     it('Click en el boton de Transferencias Entre Mis Cuentas', async() => {
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas)]);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending)]);
         await TransferenciasNavigation.transferenciaEntreMisCuentas(data);
     });
 });
