@@ -3,15 +3,14 @@ import { createBasePath } from "../helpers/fileEditor.helper";
 const basePath = createBasePath();
 
 export const files = {
-  'data':                             `${basePath}data.txt`,
+  'data':   `${basePath}data.txt`,
 };
 
 export const dataConditions = {
   'typeIs':       (data) => `.type === '${data}'`,
   'subtypeIs':    (data) => `.subtype === '${data}'`,
-  'subtypeIsNot': (data) => `.subtype !== '${data}'`,
   'statusIs':     (data) => `.status === '${data}'`,
-  'statusIsNot':  (data) => `.status !== '${data}'`,
+  'caseIs':       (data) => `.case === '${data}'`, 
 };
 
 export const dataTypes = {
@@ -37,6 +36,5 @@ export const dataStatus = {
 };
 
 export const dataInstructions = {
-  'assignStatus':   (data) => `.status === '${data}'`,
-  'case':           (data) => `.case === '${data}'`,  
+  'assignStatus': (data) => `.status = '${data}'`, 
 };
