@@ -4,12 +4,10 @@ import { textViewClass, checkedTextViewClass, scrollViewClass } from "../common"
 export const pagosSelectors = {
     'pagos':                    `${textViewClass}[@text=" Pagos   "]`,
     'servicio':                 `${textViewClass}[@text="Servicio"]`,
-    // 'gruposServicios':          `${textViewClass}[@text="Grupo de Servicio"]`,
     'gruposServicios':          `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]`,
     'pagoOpcion':               (data) => `${textViewClass}[@text="${data}"]`,
     'grupoServicioOpcion':      (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
-    // 'servicioOpcion':           (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
-    'servicio':           `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView[1]`,
+    'servicio':                 `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView[1]`,
 };
 
 export const pagosOpciones = {
@@ -21,9 +19,9 @@ export const pagosOpciones = {
 }
 
 export const serviciosOpciones = {
-    'servicioAgua':     'SERVICIO BASICO AGUA',
-    'servicioLuz':      'SERVICIO BASICO LUZ',
-    'servicioTelefono': 'SERVICIO BASICO TELEFOMO',
+    'servicioAgua':     'SERVICIO BÁSICO AGUA',
+    'servicioLuz':      'SERVICIO BÁSICO LUZ',
+    'servicioTelefono': 'SERVICIO BÁSICO TELÉFONO',
     'registroCivil':    'REGISTRO CIVIL',
     'casaComercial':    'CASAS COMERCIALES'
 }

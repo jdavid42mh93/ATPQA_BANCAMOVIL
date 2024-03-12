@@ -23,7 +23,7 @@ describe('Navegar a seccion de Pagos',() =>{
         await PagosNavigation.pagosTarjetasEventuales();
     });
     it('Seleccionar la tarjeta eventual a pagar', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.TarjetasEventuales),]);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
         await pagosTarjetasEventualesController.pagosTarjetasEventualesForm(data);
     });
     it('Click en el botón Continuar', async()=>{

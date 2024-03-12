@@ -33,6 +33,8 @@ Private Sub CommandButton1_Click()
         strNumeroTarjeta = Hoja1.Range("J" & i).Value
         strTipoDocumento = Hoja1.Range("K" & i).Value
         strTipoCuenta = Hoja1.Range("L" & i).Value
+        strNumeroIdentificacion = Hoja1.Range("M" & i).Value
+        strBeneficiarioAgua = Hoja1.Range("N" & i).Value
         
         If (strTipo <> "") Then
               strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
@@ -89,6 +91,13 @@ Private Sub CommandButton1_Click()
                                     MsgBox "Campo -Tipo Cuenta- se encuentra vacio."
                                     Exit Sub
                                 End If
+                                
+                                If (strNumeroIdentificacion <> "") Then
+                                    strLinea = strLinea & " ,""numero_identifiacion"": """ & strNumeroIdentificacion & """"
+                                Else
+                                    MsgBox "Campo -Numero de Identificacion- se encuentra vacio."
+                                    Exit Sub
+                                End If
 
 
                             Case "Al Exterior"
@@ -122,6 +131,13 @@ Private Sub CommandButton1_Click()
                                 End If
                             
                             Case "Registradas"
+                                If (strCuentaDebito <> "") Then
+                                    strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
                                 If (strCuentaBeneficiario <> "") Then
                                     strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
                                 Else
@@ -148,6 +164,18 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""grupo_servicios"": """ & strGrupoServicio & """"
                                 Else
                                     MsgBox "Campo -Grupo de Servicios- se encuentra vacio."
+                                End If
+                                
+                                If (strServicio <> "") Then
+                                    strLinea = strLinea & " ,""servicio"": """ & strServicio & """"
+                                Else
+                                    MsgBox "Campo -Servicio- se encuentra vacio."
+                                End If
+                                
+                                If (strBeneficiarioAgua <> "") Then
+                                    strLinea = strLinea & " ,""beneficiario"": """ & strBeneficiarioAgua & """"
+                                Else
+                                    MsgBox "Campo -Beneficiario- se encuentra vacio."
                                 End If
                             
                             Case "Servicios Eventuales"

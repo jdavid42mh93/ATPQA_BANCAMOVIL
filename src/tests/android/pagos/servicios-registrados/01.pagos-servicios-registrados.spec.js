@@ -1,7 +1,7 @@
 import CommonActions from "../../../../page-objects/android/common-actions/CommonActions";
 import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavigation";
 import { searchEntry } from "../../../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
+import { files, dataConditions, dataTypes, dataSubtypes, dataStatus } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
 import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import pagosServiciosRegistradosController from "../../../../controllers/Pagos/pagos-servicios-registrados.controller";
@@ -23,7 +23,7 @@ describe('Navegar a seccion de Pagos',() =>{
         await PagosNavigation.pagosServiciosRegistrados();
     });
     it('Seleccionar Servicio Basico Agua', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados)]);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
         await pagosServiciosRegistradosController.pagosServiciosRegistradosForm(data);
     });
     it('Click en el botón Continuar', async()=>{

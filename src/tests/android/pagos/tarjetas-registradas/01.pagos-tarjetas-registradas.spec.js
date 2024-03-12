@@ -23,7 +23,7 @@ describe('Navegar a seccion de Pagos',() =>{
         await PagosNavigation.pagosTarjetasRegistradas();
     });
     it('Seleccionar la tarjeta registrada a pagar', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.TarjetasRegistradas),]);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
         await pagosTarjetasRegistradasController.pagosTarjetasRegistradasForm(data);
     });
     it('Click en el botón Continuar', async()=>{

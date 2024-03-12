@@ -1,7 +1,5 @@
-import { transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import transferenciaController from "./transferencia.controller";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
 // Seccion de pagos de servicios eventuales

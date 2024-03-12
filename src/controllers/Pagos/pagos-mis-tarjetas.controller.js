@@ -1,12 +1,22 @@
-import { transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import transferenciaController from "./transferencia.controller";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import { pagosMisTarjetasSelectores, tarjetas } from "../../constants/pagos/pagosMisTarjetas";
+import { datosGenerales } from "../../constants/common";
 
-// Seccion de transferencias entre cuentas propias del usuario
+// Seccion de pagos de tarjetas propias del usuario
 class PagosMisTarjetas {
-// Funciones para obtener los selectores de transferencias entre mis cuentas
+// Funciones para obtener los selectores de pagos de tarjetas propias del usuario
+    get getSeleccionarTarjetaSelector() {
+        return $(pagosMisTarjetasSelectores.seleccionarTarjeta)
+    }
+
+    get getSeleccionarTarjetaOpcionSelector() {
+        return $(tarjetas.tarjetaVisa1)
+    }
+
+    get getMontoSelector() {
+        return $(pagosMisTarjetasSelectores.monto)
+    }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
     async pagosMisTarjetasForm(data){
@@ -15,22 +25,22 @@ class PagosMisTarjetas {
             for (let i=0; i < data.length; i++){
                 elemento = data[i];
             }
-            // Seleccionando la cuenta de debito
-            await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
-            await this.getTransferenciaCuentaDebitoSelector.click();
-            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar la tarjeta a pagar
+            await this.getSeleccionarTarjetaSelector.waitForDisplayed({timeout:25000});
+            await this.getSeleccionarTarjetaSelector.click();
+            // Seleccionar opcion de tarjeta a pagar
+            await this.getSeleccionarTarjetaOpcionSelector.waitForDisplayed();
+            await this.getSeleccionarTarjetaOpcionSelector.click();
 
-            // Seleccionando la cuenta beneficiaria
-            await this.getCuentaBeneficiariaSelector.waitForDisplayed();
-            await this.getCuentaBeneficiariaSelector.click();
-            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
+            // Ingresar Monto
+            await this.getMontoSelector.waitForDisplayed();
+            await this.getMontoSelector.click();
+            await this.getMontoSelector.addValue(datosGenerales.monto);
 
-            // Ingresando Descripcion y Monto
-            CommonsTransferencias.ingresarDescripcion();
-            CommonsTransferencias.ingresarMonto();
-
-            
-            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
+            // Editar elemento
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
         }

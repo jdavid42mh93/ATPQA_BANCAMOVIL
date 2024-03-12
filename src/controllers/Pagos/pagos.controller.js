@@ -25,36 +25,36 @@ class PagosOpciones{
     
 // Funciones para navegar entre las distintas opciones de transferencias
     async pagosServiciosRegistradosSeccion(){
-        await $(this.getPagosServiciosRegistradosSelector).waitUntil(async () => {
-            return ((await $(this.getPagosServiciosRegistradosSelector)).isDisplayed());
+        await this.getPagosServiciosRegistradosSelector.waitUntil(async () => {
+            return (await this.getPagosServiciosRegistradosSelector.isDisplayed());
         });
         await this.getPagosServiciosRegistradosSelector.click();
     }
 
     async pagosServiciosEventualesSeccion(){
         await this.getPagosServiciosEventualesSelector.waitUntil(async () => {
-            return ((await $(this.getPagosServiciosEventualesSelector)).isDisplayed());
+            return (await this.getPagosServiciosEventualesSelector.isDisplayed());
         });
         await this.getPagosServiciosEventualesSelector.click();
     }
 
     async pagosMisTarjetasSeccion(){
-        await this.getPagosMisTarjetasSelector.waitUntil(async function () {
-            return ((await $(this.getPagosMisTarjetasSelector)).isDisplayed())
-        })
+        await this.getPagosMisTarjetasSelector.waitUntil(async () => {
+            return (await this.getPagosMisTarjetasSelector.isDisplayed());
+        });
         await this.getPagosMisTarjetasSelector.click();
     }
 
     async pagosTarjetasRegistradasSeccion(){
-        await this.getPagosTarjetasRegistradasSelector.waitUntil(async function () {
-            return ((await $(this.getPagosTarjetasRegistradasSelector)).isDisplayed())
+        await this.getPagosTarjetasRegistradasSelector.waitUntil(async () => {
+            return (await this.getPagosTarjetasRegistradasSelector.isDisplayed());
         })
         await this.getPagosTarjetasRegistradasSelector.click();
     }
 
     async pagosTarjetasEventualesSeccion(){
-        await this.getPagosTarjetasEventualesSelector.waitUntil(async function () {
-            return ((await $(this.getPagosTarjetasEventualesSelector)).isDisplayed())
+        await this.getPagosTarjetasEventualesSelector.waitUntil(async () => {
+            return (await this.getPagosTarjetasEventualesSelector.isDisplayed());
         })
         await this.getPagosTarjetasEventualesSelector.click();
     }

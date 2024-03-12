@@ -1,7 +1,8 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import { pagosServiciosRegistradosSelectores } from "../../constants/pagos/pagosServiciosRegistrados";
-import { pagosSelectors, serviciosOpciones } from "../../constants/pagos/pagosSelectores";
+import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
+import { opcionesPago, pagosServiciosRegistradosSelectores, servicios, textos } from "../../constants/pagos/pagosServiciosRegistrados";
+import { pagosSelectors } from "../../constants/pagos/pagosSelectores";
+import { UIAutomatorSelectores } from "../../constants/common";
 
 // Seccion de pagos de servicios registrados del usuario
 class PagosServiciosRegistrados {
@@ -10,35 +11,40 @@ class PagosServiciosRegistrados {
         return $(pagosSelectors.gruposServicios)
     }
 
-    get getBeneficiarioSelector () {
+    get getBeneficiarioSelector() {
         return $(pagosServiciosRegistradosSelectores.beneficiario)
     }
 
-    get getServicioSelector () {
+    get getServicioSelector() {
         return $(pagosSelectors.servicio)
     }
 
-    get getTipoPagoSelector () {
+    get getTipoPagoSelector() {
         return $(pagosServiciosRegistradosSelectores.tipoPago)
     }
 
-    async seleccionarGrupoServicio (opcion) {
-        switch (opcion) {
-            case serviciosOpciones.servicioAgua:
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).waitForDisplayed();
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).click();
-                break;
-            case serviciosOpciones.servicioLuz:
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).waitForDisplayed();
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).click();
-                break;
-            case serviciosOpciones.servicioTelefono:
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).waitForDisplayed();
-                await $(pagosSelectors.grupoServicioOpcion(opcion)).click();
-                break;
-            default:
-                break;
-        }
+    get getServicioOpcioSelector() {
+        return $(servicios.servicioAgua)
+    }
+
+    async seleccionarGrupoServicio(grupoServicio) {
+        await $(pagosSelectors.grupoServicioOpcion(grupoServicio)).waitForDisplayed();
+        await $(pagosSelectors.grupoServicioOpcion(grupoServicio)).click();
+    }
+
+    async seleccionarServicio(servicio) {
+        await $(pagosServiciosRegistradosSelectores.servicioOpcion(servicio)).waitForDisplayed();
+        await $(pagosServiciosRegistradosSelectores.servicioOpcion(servicio)).click();
+    }
+
+    async seleccionarBeneficiario(beneficiario) {
+        await $(pagosServiciosRegistradosSelectores.beneficiarioOpcion(beneficiario)).waitForDisplayed();
+        await $(pagosServiciosRegistradosSelectores.beneficiarioOpcion(beneficiario)).click();
+    }
+
+    async seleccionarTipoPago(tipoPago) {
+        await $(pagosServiciosRegistradosSelectores.tipoPagoOpcion(tipoPago)).waitForDisplayed();
+        await $(pagosServiciosRegistradosSelectores.tipoPagoOpcion(tipoPago)).click();
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
@@ -58,18 +64,22 @@ class PagosServiciosRegistrados {
             await this.getServicioSelector.waitForDisplayed();
             await this.getServicioSelector.click();
             // Seleccionar servicio opcion
-            await $(pagosServiciosRegistradosSelectores.servicioOpcion(elemento)).waitForDisplayed();
-            await $(pagosServiciosRegistradosSelectores.servicioOpcion(elemento)).click();
-
+            await this.seleccionarServicio(elemento.servicio);
+            
             // Seleccionar beneficiario
             await this.getBeneficiarioSelector.waitForDisplayed();
             await this.getBeneficiarioSelector.click();
+            // Seleccionar beneficiario opcion
+            await this.seleccionarBeneficiario(elemento.beneficiario);
 
             // Seleccionar tipo de pago
-            await this.getTipoPagoSelector.waitForDisplayed();
-            await this.getTipoPagoSelector.click();
+            await $(UIAutomatorSelectores.scrollTextIntoView(textos.tipoPago)).click();
+            // Seleccioanr tipo de pago opcion
+            await this.seleccionarTipoPago(opcionesPago.debitoCuenta);
             
-            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
         }

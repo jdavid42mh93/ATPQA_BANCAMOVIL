@@ -1,7 +1,7 @@
 import CommonActions from "../../../../page-objects/android/common-actions/CommonActions";
 import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavigation";
 import { searchEntry } from "../../../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
+import { files, dataConditions, dataTypes, dataSubtypes, dataStatus } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
 import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import pagosMisTarjetasController from "../../../../controllers/Pagos/pagos-mis-tarjetas.controller";
@@ -23,7 +23,7 @@ describe('Navegar a seccion de Pagos',() =>{
         await PagosNavigation.pagosMisTarjetas();
     });
     it('Completar los datos en el formulario de pago', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.MisTarjetas),]);
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.MisTarjetas),dataConditions.statusIs(dataStatus.pending)]);
         await pagosMisTarjetasController.pagosMisTarjetasForm(data);
     });
     it('Click en el botón Continuar', async()=>{
