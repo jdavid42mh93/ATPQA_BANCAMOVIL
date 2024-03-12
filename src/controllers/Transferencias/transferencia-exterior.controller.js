@@ -5,7 +5,6 @@ import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias al exterior
 class TransferenciaExterior {

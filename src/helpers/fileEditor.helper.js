@@ -40,8 +40,6 @@ export const searchEntry = (path, condition) => {
   };
 
 export const editEntry = (path, condition, edit) => {
-    console.log("Condition =====>",condition)
-    console.log("Edit",edit)
     const stream = readFile(path);
     const lines = stream.split(os.EOL);
 
@@ -52,21 +50,12 @@ export const editEntry = (path, condition, edit) => {
         return;
       }
       const data = JSON.parse(element);
-      // console.log("Data =====>",data);
       const evaluation = eval(`data${condition.join(' && data')}`);
-      // console.log(`data${condition.join(' && data')}`)
-      // console.log("Evaluation =====>", evaluation);
       if (evaluation) {
         edit.forEach((instruction) => {
           eval(`data${instruction}`);
-          // console.log(`data${instruction}`);
-          // console.log('instruction =====>', instruction)
-          // console.log("Eval =====>", eval(`data${instruction}`));
-          // console.log(edit.forEach((instruction) => {
-          //   eval(`data${instruction}`)}))
         });
       }
       writeLine(path, JSON.stringify(data));
-      // console.log(JSON.stringify(data));
     });
 };

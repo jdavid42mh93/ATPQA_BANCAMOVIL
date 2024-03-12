@@ -1,4 +1,4 @@
-import { buttonsSelectores, loginSelectors } from "../../../constants/common";
+import { buttons, buttonsSelectores, loginSelectors } from "../../../constants/common";
 import CommonActions from "../common-actions/CommonActions";
 
 // Seccion Login Screen. Contiene funciones para obtener los selectores y login en la aplicacion
@@ -16,7 +16,7 @@ class LoginScreen{
     }
 
     get getBtnIngresarSelector(){
-        return $(buttonsSelectores.ingresar);
+        return $(buttonsSelectores.button(buttons.ingresar));
     }
     
     async login(){
