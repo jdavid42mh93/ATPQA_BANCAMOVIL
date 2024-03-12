@@ -6,7 +6,6 @@ import { transferenciaRegistradasSelectores, cuentaBeneficiariaOpcion, cuentaDeb
 import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias cuentas registradas
 class TransferenciaRegistrada {

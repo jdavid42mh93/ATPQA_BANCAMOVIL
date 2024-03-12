@@ -1,19 +1,19 @@
 import LoginScreen from "../navigation/LoginScreen";
 import LogoutScreen from "../navigation/LogoutScreen";
-import { buttonsSelectores } from "../../../constants/common";
+import { buttons, buttonsSelectores } from "../../../constants/common";
 
 // Clase: contiene funciones para login, logout y omitir pin
 class CommonActions{
     get getBtnOmitirSelector(){
-        return $(buttonsSelectores.omitir);
+        return $(buttonsSelectores.button(buttons.Omitir));
     }
 
     get getBtnContinuarSelector(){
-        return $(buttonsSelectores.continuar);
+        return $(buttonsSelectores.button(buttons.Continuar));
     }
 
     get getBtnFinalizarSelector(){
-        return $(buttonsSelectores.finalizar);
+        return $(buttonsSelectores.button(buttons.Finalizar));
     }
     
     async login(){

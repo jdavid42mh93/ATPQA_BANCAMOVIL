@@ -1,14 +1,16 @@
 Private Sub CommandButton1_Click()
-    Dim fs As New FileSystemObject, PathFile As String
+    Dim fs As Object
+    Dim PathFile As String
     Dim Hoja1 As Worksheet
     Dim Tabla As ListObject
     Dim Pregunta As Byte
     Dim strLinea As String
     Dim strSubTipoLine As String
     
-     
+    ' Utilizar la función CreateObject para crear una instancia de FileSystemObject
+    Set fs = CreateObject("Scripting.FileSystemObject")
     '-------------------------------------------------------
-    '  GENERA DATOS PARA INGRESAR ARCHIVO D PAGOS
+    '  GENERA DATOS PARA INGRESAR ARCHIVO DE PAGOS y TRANSFERENCIAS
     '--------------------------------------------------------
     ' Validar Datos
     Set Hoja1 = ThisWorkbook.Sheets("Trans Banca Movil")
@@ -18,7 +20,8 @@ Private Sub CommandButton1_Click()
     Pregunta = MsgBox("Desea generar el archivo?", vbYesNo + vbQuestion)
     If Pregunta = vbNo Then Exit Sub
     
-    Set fnTransferencias = fs.CreateTextFile(PathFile, True)
+    Dim fnTransferencias As Object
+    Set fnTransferencias = fs.CreateTextFile(PathFile, True, True) ' Crear el archivo con Unicode (UTF-8) encoding
     
     For i = 4 To 100
         strTipo = Hoja1.Range("A" & i).Value
@@ -75,6 +78,13 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
                                 Else
                                     MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
+                                If (strCuentaBeneficiario <> "") Then
+                                    strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
                                     Exit Sub
                                 End If
                                 

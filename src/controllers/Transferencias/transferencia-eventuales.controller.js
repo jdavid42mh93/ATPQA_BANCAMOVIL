@@ -1,5 +1,5 @@
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
-import { UIAutomatorSelectores, buttonsSelectores } from "../../constants/common";
+import { UIAutomatorSelectores, buttons, buttonsSelectores } from "../../constants/common";
 import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
 import { transferenciaEventualesSelectores, 
@@ -49,7 +49,7 @@ class TransferenciaEventual {
     }
 
     get getBotonCerrarSelector(){
-        return $(buttonsSelectores.cerrar);
+        return $(buttonsSelectores.button(buttons.Cerrar));
     }
 
     async ingresarDescripcion(){
