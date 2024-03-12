@@ -7,11 +7,11 @@ class TransfersScreen{
     }
 
     async transferenciaSeccion(){
-        await expect(this.getTransferenciaSelector).toBeExisting();
-        await expect(this.getTransferenciaSelector).toHaveText(expect.stringContaining('Transferir'));
         (await this.getTransferenciaSelector).waitUntil(async () => {
             return (await this.getTransferenciaSelector).isDisplayed();
         });
+        await expect(this.getTransferenciaSelector).toBeExisting();
+        await expect(this.getTransferenciaSelector).toHaveText(expect.stringContaining('Transferir'));
         await this.getTransferenciaSelector.click();
     }
 }

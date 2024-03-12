@@ -44,23 +44,17 @@ export const summarySelectors = {
 
 // Selectores para botones
 export const buttonsSelectores = {
-    'ingresar':     `${buttonClass}[@text="Ingresar"]`,
-    'omitir':       `${buttonClass}[@text="Omitir"]`,
     'toggleButton': `${androidViewSelector}[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
-    'continuar':    `${buttonClass}[@text="Continuar"]`,
-    'finalizar':    `${buttonClass}[@text="Finalizar"]`,
-    'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,
-    'cancelar':     `${buttonClass}[@text="Cancel"]`,
-    'cerrar':       `${buttonClass}[@text="CERRAR"]`,
     'button':       (data) => `${buttonClass}[@text="${data}"]`
 };
 
 export const buttons = {
     'ingresar':             'Ingresar',
-    'omitir':               'Omiitir',
-    'continuar':            'Continuar',
-    'finalizar':            'Finalizar',
-    'compartirComprobante': 'Compartir comprobante',
-    'cancelar':             'Cancel',
-    'cerrar':               'CERRAR',
+    'Omitir':               'Omitir',
+    'Continuar':            'Continuar',
+    'Finalizar':            'Finalizar',
+    'CompartirComprobante': 'Compartir comprobante',
+    'Cancelar':             'Cancel',
+    'Cerrar':               'CERRAR',
+    'Ok':                   'Ok',
 }

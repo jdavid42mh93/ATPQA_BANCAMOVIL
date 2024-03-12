@@ -33,6 +33,7 @@ export const dataSubtypes = {
 export const dataStatus = {
   'active':   'active',
   'pending':  'pending',
+  'canceled': 'canceled',
 };
 
 export const dataInstructions = {

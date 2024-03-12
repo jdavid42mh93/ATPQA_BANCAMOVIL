@@ -1,14 +1,16 @@
 Private Sub CommandButton1_Click()
-    Dim fs As New FileSystemObject, PathFile As String
+    Dim fs As Object
+    Dim PathFile As String
     Dim Hoja1 As Worksheet
     Dim Tabla As ListObject
     Dim Pregunta As Byte
     Dim strLinea As String
     Dim strSubTipoLine As String
     
-     
+    ' Utilizar la función CreateObject para crear una instancia de FileSystemObject
+    Set fs = CreateObject("Scripting.FileSystemObject")
     '-------------------------------------------------------
-    '  GENERA DATOS PARA INGRESAR ARCHIVO D PAGOS
+    '  GENERA DATOS PARA INGRESAR ARCHIVO DE PAGOS y TRANSFERENCIAS
     '--------------------------------------------------------
     ' Validar Datos
     Set Hoja1 = ThisWorkbook.Sheets("Trans Banca Movil")
@@ -18,7 +20,8 @@ Private Sub CommandButton1_Click()
     Pregunta = MsgBox("Desea generar el archivo?", vbYesNo + vbQuestion)
     If Pregunta = vbNo Then Exit Sub
     
-    Set fnTransferencias = fs.CreateTextFile(PathFile, True)
+    Dim fnTransferencias As Object
+    Set fnTransferencias = fs.CreateTextFile(PathFile, True, True) ' Crear el archivo con Unicode (UTF-8) encoding
     
     For i = 4 To 100
         strTipo = Hoja1.Range("A" & i).Value
@@ -33,6 +36,8 @@ Private Sub CommandButton1_Click()
         strNumeroTarjeta = Hoja1.Range("J" & i).Value
         strTipoDocumento = Hoja1.Range("K" & i).Value
         strTipoCuenta = Hoja1.Range("L" & i).Value
+        strNumeroIdentificacion = Hoja1.Range("M" & i).Value
+        strBeneficiarioAgua = Hoja1.Range("N" & i).Value
         
         If (strTipo <> "") Then
               strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
@@ -76,6 +81,13 @@ Private Sub CommandButton1_Click()
                                     Exit Sub
                                 End If
                                 
+                                If (strCuentaBeneficiario <> "") Then
+                                    strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
                                 If (strTipoDocumento <> "") Then
                                     strLinea = strLinea & " ,""tipo_documento"": """ & strTipoDocumento & """"
                                 Else
@@ -87,6 +99,13 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""tipo_cuenta"": """ & strTipoCuenta & """"
                                 Else
                                     MsgBox "Campo -Tipo Cuenta- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
+                                If (strNumeroIdentificacion <> "") Then
+                                    strLinea = strLinea & " ,""numero_identifiacion"": """ & strNumeroIdentificacion & """"
+                                Else
+                                    MsgBox "Campo -Numero de Identificacion- se encuentra vacio."
                                     Exit Sub
                                 End If
 
@@ -122,6 +141,13 @@ Private Sub CommandButton1_Click()
                                 End If
                             
                             Case "Registradas"
+                                If (strCuentaDebito <> "") Then
+                                    strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
                                 If (strCuentaBeneficiario <> "") Then
                                     strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
                                 Else
@@ -148,6 +174,18 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""grupo_servicios"": """ & strGrupoServicio & """"
                                 Else
                                     MsgBox "Campo -Grupo de Servicios- se encuentra vacio."
+                                End If
+                                
+                                If (strServicio <> "") Then
+                                    strLinea = strLinea & " ,""servicio"": """ & strServicio & """"
+                                Else
+                                    MsgBox "Campo -Servicio- se encuentra vacio."
+                                End If
+                                
+                                If (strBeneficiarioAgua <> "") Then
+                                    strLinea = strLinea & " ,""beneficiario"": """ & strBeneficiarioAgua & """"
+                                Else
+                                    MsgBox "Campo -Beneficiario- se encuentra vacio."
                                 End If
                             
                             Case "Servicios Eventuales"
