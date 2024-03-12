@@ -5,7 +5,10 @@ reports
 screenshots
 videos
 app/
+allure-report
+allure-results
 
 #Files
 .env
 appiumNexus6P.appiumsession
+src/data/data.txt

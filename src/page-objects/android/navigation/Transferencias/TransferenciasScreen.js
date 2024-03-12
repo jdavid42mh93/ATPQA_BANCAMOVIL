@@ -1,13 +1,18 @@
 import { transferenciaSelectores } from "../../../../constants/transferencia/transferenciaSelectores";
 
-// Seccion de Pagos
+// Seccion de Transferencias
 class TransfersScreen{
-    get getTransferenciaSeccion() {
+    get getTransferenciaSelector() {
         return $(transferenciaSelectores.transferencias);
     }
 
     async transferenciaSeccion(){
-        await this.getTransferenciaSeccion.click();
+        (await this.getTransferenciaSelector).waitUntil(async () => {
+            return (await this.getTransferenciaSelector).isDisplayed();
+        });
+        await expect(this.getTransferenciaSelector).toBeExisting();
+        await expect(this.getTransferenciaSelector).toHaveText(expect.stringContaining('Transferir'));
+        await this.getTransferenciaSelector.click();
     }
 }
 

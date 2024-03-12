@@ -26,7 +26,7 @@ exports.config = {
     //
     specs: [
         // ToDo: define location for spec files here
-        path.join(process.cwd(), './src/tests/android/**/07.transfExterior.spec.js')
+        path.join(process.cwd(), './src/tests/android/**/01.transferencias-entre-mis-cuentas.spec.js')
     ],
     // Patterns to exclude.
     exclude: [
@@ -60,7 +60,11 @@ exports.config = {
         "appium:deviceName": "Pixel 7 Pro API 24",
         "appium:automationName": "UIAutomator2",
         "appium:app": path.join(process.cwd(), "app/android/Banca Movil 9.apk"),
-        "appium:autoGrantPermissions": true
+        "appium:autoGrantPermissions": true,
+        "appium:appWaitActivity": "com.fisa.omnia.mobile.baninterv404.BancaMovilActivity",
+        "appium:appActivity": "com.fisa.omnia.mobile.baninterv404.BancaMovilActivity",
+        "appium:appPackage": "com.fisa.omnia.mobile.baninterv404",
+        "appium:forceAppLaunch": true,
     }],
 
     //
@@ -97,7 +101,7 @@ exports.config = {
     baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 15000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -133,13 +137,17 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: false,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
 
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 18000000
     },
 
     //
@@ -207,7 +215,7 @@ exports.config = {
      * Hook that gets executed before the suite starts
      * @param {object} suite suite details
      */
-    beforeSuite: function (suite) {
+    beforeSuite: function () {
         console.log('====== Ejecutando antes de cada suite =======')
     },
     /**
@@ -237,8 +245,11 @@ exports.config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   information about spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    /*afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if (error) {
+            await driver.takeScreenshot();
+        }
+    },*/
 
 
     /**

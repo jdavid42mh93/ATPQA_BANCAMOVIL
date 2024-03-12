@@ -1,13 +1,29 @@
+// Selectores generales
 export const androidWidgetSelector =   '//android.widget.';
-export const androidViewSelector =     '//android.view.';
+export const androidViewSelector =     '//android.view.ViewGroup';
 export const beginSelector =           '//android.widget.FrameLayout[@resource-id="android:id/content"]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup';
 export const endSelector =             'android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText';
 
+// Selectores para distintas clases
 export const buttonClass =             `${androidWidgetSelector}Button`;
 export const textViewClass =           `${androidWidgetSelector}TextView`;
 export const checkedTextViewClass =    `${androidWidgetSelector}CheckedTextView`;
 export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
+
+export const datosGenerales = {
+    monto:                  '10',
+    descripcion:            'atp qa',
+    nombreBeneficiario:     'atp qa',
+    numeroIdentificacion:   '1722146485',
+}
+
+// Selectores UIAutomator
+export const UIAutomatorSelectores = {
+    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,20)',
+    scrollIntoView:     (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("${data}")`,
+    scrollTextIntoView: (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${data}")`,
+}
 
 // Selectores para la session de login
 export const loginSelectors = {
@@ -27,12 +43,18 @@ export const summarySelectors = {
 };
 
 // Selectores para botones
-export const buttons = {
-    'ingresar':     `${buttonClass}[@text="Ingresar"]`,
-    'omitir':       `${buttonClass}[@text="Omitir"]`,
-    'toggleButton': `${androidViewSelector}ViewGroup[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
-    'continuar':    `${buttonClass}[@text="Continuar"]`,
-    'finalizar':    `${buttonClass}[@text="Finalizar"]`,
-    'comprobante':  `${buttonClass}[@text="Compartir comprobante"]`,
-    'cancelar':     `${buttonClass}[@text="Cancel"]`,
+export const buttonsSelectores = {
+    'toggleButton': `${androidViewSelector}[@resource-id="com.fisa.omnia.mobile.baninterv404:id/drawer_layout_toolbar"]/android.view.ViewGroup/android.view.ViewGroup[1]/android.widget.ImageView`,
+    'button':       (data) => `${buttonClass}[@text="${data}"]`
 };
+
+export const buttons = {
+    'ingresar':             'Ingresar',
+    'Omitir':               'Omitir',
+    'Continuar':            'Continuar',
+    'Finalizar':            'Finalizar',
+    'CompartirComprobante': 'Compartir comprobante',
+    'Cancelar':             'Cancel',
+    'Cerrar':               'CERRAR',
+    'Ok':                   'Ok',
+}

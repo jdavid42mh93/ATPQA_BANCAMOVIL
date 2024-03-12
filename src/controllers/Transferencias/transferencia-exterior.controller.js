@@ -1,67 +1,93 @@
-import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, transferenciaSelectores } from "../../constants/transferencia/transferenciaSelectores";
+import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, motivoEconomicoOpcion, constTransferenciasAlExterior, gastoExteriorOpcion } from "../../constants/transferencia/transferenciaAlExterior";
 import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
+import { UIAutomatorSelectores } from "../../constants/common";
 import { searchEntry } from "../../helpers/fileEditor.helper";
 import transferenciaController from "./transferencia.controller";
+import { datosGenerales } from "../../constants/common";
+import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
 // Seccion de transferencias al exterior
 class TransferenciaExterior {
 // Funciones para obtener los selectores
-    get getSeleccionarBeneficiario() {
+    get getSeleccionarBeneficiarioSelector() {
         return $(transferenciaAlExteriorSelectores.cuentaBeneficiariaExterior);
-    };
+    }
 
-    get getCuentaBeneficiaria() {
+    get getCuentaBeneficiariaSelector() {
         return $(cuentasBeneficiariasSelectores.THIRDB);
-    };
+    }
 
-    get getTransferenciaMotivoEconomico() {
-        return $(transferenciaAlExteriorSelectores.motivoEconomico);
-    };
+    get getMontoSelector() {
+        return $(transferenciaAlExteriorSelectores.monto);
+    }
 
-    get getTransferenciaMontoExterior() {
-        return $(transferenciaAlExteriorSelectores.montoExterior);
-    };
-
-    get getTransferenciaReferencia() {
+    get getReferenciaSelector() {
         return $(transferenciaAlExteriorSelectores.referencia);
-    };
+    }
 
-    async getMotivoEconomicoOpcion(motivoEconomico){
-        switch (motivoEconomico) {
-            case "105_importaciones":
-                motivoEconomico = motivoEconomicoOpcionSelectores["105_importaciones"]
+    get getGastoExteriorSelector(){
+        return $(transferenciaAlExteriorSelectores.gastosExterior); 
+    }
+
+    get getGastoExteriorOpcionSelector(){
+        return $(gastoExteriorOpcion["N-OUR"]);
+    }
+
+    async ingresarMonto(){
+        await this.getMontoSelector.addValue(datosGenerales.monto);
+        await driver.hideKeyboard();
+    }
+
+    async getMotivoEconomicoOpcion(opcion){
+        switch (opcion) {
+            case motivoEconomicoOpcion["105-IMPORTACIONES"]:
+                $(motivoEconomicoOpcionSelectores["105_importaciones"]).click();
+                break;
+            case motivoEconomicoOpcion["110-ANTICIPOPORIMPORTACIONES"]:
+                $(motivoEconomicoOpcionSelectores["110_anticipoImportaciones"]).click();
+                break;
+            case motivoEconomicoOpcion["201-SERVICIOSDETRANSPORTEMARITIMO(RUTASINTERNACIONALES)"]:
+                $(motivoEconomicoOpcionSelectores["201_servTranspMaritimoRI"]).click();
                 break;
             default:
                 break;
         }
-        return motivoEconomico
     }
 
 // Funcion para completar los datos de transferencia exterior
-    async transferenciaCuentaExteriorForm(){
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
-        await transferenciaController.transferenciaAlExteriorSeccion();
-        await driver.pause(6000);
-        await this.getSeleccionarBeneficiario.click();
-        await driver.pause(1000);
-        await this.getCuentaBeneficiaria.click();
-        await driver.pause(1000);
-        console.log("DATA ====>",data);
-        for (let i=0; i < data.length; i++){
-            const elemento = data[i];
-            console.log("Elemento " + (i + 1) + ":", elemento);
-            if(elemento.monto && elemento.motivo_economico){
-                console.log("Monto ====>", elemento.monto);
-                await this.getTransferenciaMontoExterior.scrollIntoView({block: 'center', inline: 'center'});
-                await this.getTransferenciaMontoExterior.addValue(elemento.monto);
-                await driver.pause(2000);
-                await this.getTransferenciaMotivoEconomico.click();
-                await this.getTransferenciaReferencia.addValue(elemento.descripcion);
-                console.log("Motivo Economico Opcion ====>", elemento.motivo_economico);
-                await driver.pause(2000);
-            };      
-        };
-    };
-};
+    async transferenciaAlExteriorForm(){
+        try{
+            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
+            let elemento;
+            await transferenciaController.transferenciaAlExteriorSeccion();
+            for (let i=0; i < data.length; i++){
+                elemento = data[i];
+            }
+            // Seleccionar cuenta beneficiaria
+            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
+            await this.getSeleccionarBeneficiarioSelector.click();
+            // Seleccionar cuenta beneficiaria opcion
+            await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
+            await this.getCuentaBeneficiariaSelector.click();
+
+            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
+            // Obtener motivo economico
+            await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
+            // Ingresar monto
+            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.Monto)).click();
+            await this.ingresarMonto()
+            await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
+            // Seleccionar opcion de gasto exterior
+            await this.getGastoExteriorSelector.click();
+            await this.getGastoExteriorOpcionSelector.click();
+            // Click en boton Continuar
+            await CommonsTransferencias.clickBtnContinuar();
+            // Click en boton Finalizar
+            await CommonsTransferencias.clickBtnFinalizar();
+        }catch(error){
+            console.error('Error en ingresar datos en transferencias al exterior', error);
+        }
+    }
+}
 
 export default new TransferenciaExterior ();
