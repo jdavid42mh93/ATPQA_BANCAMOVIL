@@ -4,6 +4,7 @@ import { transferenciaRegistradasSelectores } from "../../constants/transferenci
 import { constTransferencias, mensajes } from "../../constants/transferencia/transferenciaSelectores";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import { editEntry } from "../../helpers/fileEditor.helper";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias cuentas registradas
 class TransferenciaRegistrada {
@@ -36,12 +37,12 @@ class TransferenciaRegistrada {
         await driver.hideKeyboard();
     }
 
-    async selectionarCuentaDebito(cuentaDebito) {
+    async seleccionarCuentaDebito(cuentaDebito) {
         await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
         await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
     }
 
-    async selectionarCuentaBeneficiaria(cuentaBeneficiaria) {
+    async seleccionarCuentaBeneficiaria(cuentaBeneficiaria) {
         await $(UIAutomatorSelectores.scrollTextIntoView(cuentaBeneficiaria));   // scroll hasta encontrar la cuenta beneficiaria
         await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
         await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
@@ -53,12 +54,12 @@ class TransferenciaRegistrada {
             // Seleccionar cuenta debito
             await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:30000})
             await this.getSeleccionarCuentaDebitoSelector.click();
-            await this.selectionarCuentaDebito(elemento.cuenta_debito);
+            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
             
             // Seleccionar cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
             await this.getSeleccionarBeneficiarioSelector.click();
-            await this.selectionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
+            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
 
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto
             
@@ -67,7 +68,7 @@ class TransferenciaRegistrada {
             this.ingresarMonto();
             
             // Click en boton Continuar
-            await CommonsTransferencias.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
             if (CommonsTransferencias.mensajeError(mensajes.mensajeFondosInsuficientes)){
                 // Visualizar mensaje de error
                 await $(buttonsSelectores.button(buttons.Ok)).click();
@@ -78,10 +79,10 @@ class TransferenciaRegistrada {
                     [dataInstructions.assignStatus(dataStatus.canceled)]);
             } else {
                 // Click en boton Continuar
-                await CommonsTransferencias.clickBtnContinuar();
+                await CommonActions.clickBtnContinuar();
                 
                 // Click en boton Finalizar
-                await CommonsTransferencias.clickBtnFinalizar();
+                await CommonActions.clickBtnFinalizar();
 
                 // Editar registro en archivo data.txt
                 editEntry(files.data,    

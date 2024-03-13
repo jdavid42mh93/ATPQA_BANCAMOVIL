@@ -1,20 +1,15 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import transferenciaController from "./transferencia.controller";
+import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de pagos de tarjetas eventuales del usuario
 class PagosTarjetasEventuales {
 // Funciones para obtener los selectores de pagos de tarjetas eventuales
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async pagosTarjetasEventualesForm(data){
+    async pagosTarjetasEventualesForm(elemento){
         try{
-            let elemento;
-            await transferenciaController.transferenciaEntreMisCuentasSeccion();
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Seleccionando la cuenta de debito
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();
@@ -29,9 +24,19 @@ class PagosTarjetasEventuales {
             CommonsTransferencias.ingresarDescripcion();
             CommonsTransferencias.ingresarMonto();
 
-            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
+            // Click en boton Continuar
+            await CommonActions.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
+
+            // Click en boton Finalizar
+            await CommonActions.clickBtnFinalizar();
+
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
-            console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
+            console.error('Error en ingresar datos en pagos de tarjetas eventuales', error);
         }
     }
 }

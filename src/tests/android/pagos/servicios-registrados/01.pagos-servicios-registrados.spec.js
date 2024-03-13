@@ -3,41 +3,21 @@ import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavi
 import { searchEntry } from "../../../../helpers/fileEditor.helper";
 import { files, dataConditions, dataTypes, dataSubtypes, dataStatus } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
-import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import pagosServiciosRegistradosController from "../../../../controllers/Pagos/pagos-servicios-registrados.controller";
+import pagosController from "../../../../controllers/Pagos/pagos.controller";
 
-// Test de inicio de sesion 
-describe('Iniciar sesion con usuario y contraseña',() =>{
-    it('Ingresar usuario y contraseña', async()=>{
+// Test de seccion de Pagos y Pagos de Servicios Eventuales
+describe('Generacion de Pagos', () => {
+    it('Generacion de Pagos de Servicios Eventuales', async() => {
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
-    });
-});
-
-// Test de seccion de pagos
-describe('Navegar a seccion de Pagos',() =>{
-    it('Click en el botón de Pagos', async()=>{
-        await MenuNavigation.navegarSeccionPagos();
-    });
-    it('Click en el botón de Servicios Registrados', async()=>{
-        await PagosNavigation.pagosServiciosRegistrados();
-    });
-    it('Seleccionar Servicio Basico Agua', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
-        await pagosServiciosRegistradosController.pagosServiciosRegistradosForm(data);
-    });
-    it('Click en el botón Continuar', async()=>{
-        await CommonsTransferencias.clickBtnContinuar();
-    });
-    it('Click en el botón Finalizar', async()=>{
-        await CommonsTransferencias.clickBtnFinalizar();
-    });
-});
-
-// Test de logout
-describe('Cerrar sesión',() =>{
-    it('Click en el boton de menu lateral y cerrar sesión', async()=>{
-        await CommonActions.logout();
-        await driver.pause(5000);
+        for (let i=0; i < data.length; i++){
+            if (data[i].status === dataStatus.pending){
+                await MenuNavigation.navegarSeccionPagos();
+                await pagosController.pagosServiciosRegistradosSeccion();
+                await PagosNavigation.pagosServiciosRegistrados(data[i]);
+            }
+        }
+        await CommonActions.logout();    
     });
 });

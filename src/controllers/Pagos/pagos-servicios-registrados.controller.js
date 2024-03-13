@@ -3,6 +3,7 @@ import { files, dataConditions, dataInstructions, dataStatus } from "../../const
 import { opcionesPago, pagosServiciosRegistradosSelectores, servicios, textos } from "../../constants/pagos/pagosServiciosRegistrados";
 import { pagosSelectors } from "../../constants/pagos/pagosSelectores";
 import { UIAutomatorSelectores } from "../../constants/common";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de pagos de servicios registrados del usuario
 class PagosServiciosRegistrados {
@@ -48,12 +49,8 @@ class PagosServiciosRegistrados {
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
-    async pagosServiciosRegistradosForm(data){
+    async pagosServiciosRegistradosForm(elemento){
         try{
-            let elemento;
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Seleccionar grupo de servicio
             await this.getGrupoServicioSelector.waitForDisplayed();
             await this.getGrupoServicioSelector.click();
@@ -77,11 +74,19 @@ class PagosServiciosRegistrados {
             // Seleccioanr tipo de pago opcion
             await this.seleccionarTipoPago(opcionesPago.debitoCuenta);
             
+            // Click en boton Continuar
+            await CommonActions.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
+
+            // Click en boton Finalizar
+            await CommonActions.clickBtnFinalizar();
+
+           // Editar registro en archivo data.txt
             editEntry(files.data,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
-            console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
+            console.error('Error en ingresar datos en pagos de servicios registrados', error);
         }
     }
 }

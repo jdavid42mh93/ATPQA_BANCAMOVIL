@@ -1,18 +1,15 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes, dataInstructions, dataStatus } from "../../constants/_data_generation";
+import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de pagos de servicios eventuales
 class PagosServiciosEventuales {
 // Funciones para obtener los selectores de pagos de servicios eventuales
 
 // Funcion para ingresr los datos del pago en el formulario
-    async pagosServiciosEventualesForm(data){
+    async pagosServiciosEventualesForm(elemento){
         try{
-            let elemento;
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Seleccionando la cuenta de debito
             await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
             await this.getTransferenciaCuentaDebitoSelector.click();
@@ -27,10 +24,16 @@ class PagosServiciosEventuales {
             CommonsTransferencias.ingresarDescripcion();
             CommonsTransferencias.ingresarMonto();
 
+            // Click en boton Continuar
+            await CommonActions.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
             
-            editEntry(files.data,[dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.EntreMisCuentas), dataConditions.statusIs(dataStatus.pending), dataInstructions.case(elemento.case)],[dataInstructions.assignStatus(dataStatus.active)]);
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
-            console.error('Error en ingresar datos en transferencias entre mis cuentas', error);
+            console.error('Error en ingresar datos en pagos de servicios eventuales', error);
         }
     }
 }

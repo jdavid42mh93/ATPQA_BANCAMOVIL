@@ -58,3 +58,14 @@ export const buttons = {
     'Cerrar':               'CERRAR',
     'Ok':                   'Ok',
 }
+
+export const commonsSelectores = {
+    'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
+}
+
+export const mensajes = {
+    'mensajeError':                 'Cuenta de débito y crédito no pueden ser la mismas',
+    'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
+    'mensajeDocumentoPagado':       'Documento ya fue pagado',
+    'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
+}

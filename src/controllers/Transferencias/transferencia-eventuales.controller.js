@@ -8,6 +8,7 @@ import { transferenciaEventualesSelectores,
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias eventuales
 class TransferenciaEventual {
@@ -61,7 +62,7 @@ class TransferenciaEventual {
         await driver.hideKeyboard();
     }
 
-    async selectionarInstitucionBancaria(insitucionBancaria){
+    async seleccionarInstitucionBancaria(insitucionBancaria){
         await $(UIAutomatorSelectores.scrollTextIntoView(insitucionBancaria));
         await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).waitForDisplayed();
         await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).click();
@@ -84,7 +85,7 @@ class TransferenciaEventual {
             await this.getInstitucionBancariaSelector.waitForDisplayed({timeout:30000});
             await this.getInstitucionBancariaSelector.click();
             // Seleccionar opcion de institucion bancaria
-            await this.selectionarInstitucionBancaria(elemento.institucion_bancaria);
+            await this.seleccionarInstitucionBancaria(elemento.institucion_bancaria);
 
             // Ingresar numero de cuenta beneficiario
             await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.numero_cuenta_beneficiario)
@@ -114,8 +115,8 @@ class TransferenciaEventual {
             this.ingresarMonto();
             
             // Click en boton Continuar
-            await CommonsTransferencias.clickBtnContinuar();
-            await CommonsTransferencias.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
             
             // Click en boton Cerrar
             await this.getBotonCerrarSelector.waitForDisplayed();

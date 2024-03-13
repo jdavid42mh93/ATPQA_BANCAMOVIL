@@ -23,7 +23,7 @@ class PagosOpciones{
         return $(pagosSelectors.pagoOpcion(pagosOpciones.tarjetasEventuales));
     }
     
-// Funciones para navegar entre las distintas opciones de transferencias
+// Funciones para navegar entre las distintas opciones de pagos
     async pagosServiciosRegistradosSeccion(){
         await this.getPagosServiciosRegistradosSelector.waitUntil(async () => {
             return (await this.getPagosServiciosRegistradosSelector.isDisplayed());

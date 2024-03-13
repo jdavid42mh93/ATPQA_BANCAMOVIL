@@ -1,24 +1,29 @@
-import pagosController from "../../../../controllers/Pagos/pagos.controller";
-// Funciones para navegar entrelos distintos tipos de transferencias
+import pagosMisTarjetasController from "../../../../controllers/Pagos/pagos-mis-tarjetas.controller";
+import pagosServiciosEventualesController from "../../../../controllers/Pagos/pagos-servicios-eventuales.controller";
+import pagosServiciosRegistradosController from "../../../../controllers/Pagos/pagos-servicios-registrados.controller";
+import pagosTarjetasEventualesController from "../../../../controllers/Pagos/pagos-tarjetas-eventuales.controller";
+import pagosTarjetasRegistradasController from "../../../../controllers/Pagos/pagos-tarjetas-registradas.controller";
+
+// Funciones para navegar entre los distintos tipos de pagos
 class PagosNavigation{
-    async pagosServiciosRegistrados() {
-        await pagosController.pagosServiciosRegistradosSeccion();
+    async pagosServiciosRegistrados(data) {
+        await pagosServiciosRegistradosController.pagosServiciosRegistradosForm(data);
     }
 
-    async pagosServiciosEventuales() {
-        await pagosController.pagosServiciosEventualesSeccion();
+    async pagosServiciosEventuales(data) {
+        await pagosServiciosEventualesController.pagosServiciosEventualesForm(data);
     }
 
-    async pagosMisTarjetas() {
-        await pagosController.pagosMisTarjetasSeccion();
+    async pagosMisTarjetas(data) {
+        await pagosMisTarjetasController.pagosMisTarjetasForm(data);
     }
 
-    async pagosTarjetasRegistradas() {
-        await pagosController.pagosTarjetasRegistradasSeccion();
+    async pagosTarjetasRegistradas(data) {
+        await pagosTarjetasRegistradasController.pagosTarjetasRegistradasForm(data);
     }
 
-    async pagosTarjetasEventuales() {
-        await pagosController.pagosTarjetasEventualesSeccion();
+    async pagosTarjetasEventuales(data) {
+        await pagosTarjetasEventualesController.pagosTarjetasEventualesForm(data);
     }
 }
 

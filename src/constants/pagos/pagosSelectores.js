@@ -7,7 +7,7 @@ export const pagosSelectors = {
     'gruposServicios':          `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.widget.TextView[1]`,
     'pagoOpcion':               (data) => `${textViewClass}[@text="${data}"]`,
     'grupoServicioOpcion':      (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
-    'servicio':                 `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView[1]`,
+    //'servicio':                 `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView[1]`,
 };
 
 export const pagosOpciones = {

@@ -209,6 +209,19 @@ Private Sub CommandButton1_Click()
                             Case "Mis Tarjetas"
                                 strSubTipoLine = "Mis Tarjetas"
                                 strLinea = strLinea & ",""subtype"":""" & strSubTipoLine & """"
+                                
+                                If (strCuentaDebito <> "") Then
+                                    strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
+                                If (strNumeroTarjeta <> "") Then
+                                    strLinea = strLinea & " ,""numero_tarjeta"": """ & strNumeroTarjeta & """"
+                                Else
+                                    MsgBox "Campo -Numero de Tarjeta- se encuentra vacio."
+                                End If
                             
                             Case "Tarjetas Registradas"
                                 strSubTipoLine = "Tarjetas Registradas"

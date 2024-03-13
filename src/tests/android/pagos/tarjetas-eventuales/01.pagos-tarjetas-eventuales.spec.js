@@ -1,43 +1,23 @@
 import CommonActions from "../../../../page-objects/android/common-actions/CommonActions";
 import MenuNavigation from "../../../../page-objects/android/navigation/MenuNavigation";
 import { searchEntry } from "../../../../helpers/fileEditor.helper";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../../../constants/_data_generation";
+import { files, dataConditions, dataTypes, dataSubtypes, dataStatus } from "../../../../constants/_data_generation";
 import PagosNavigation from "../../../../page-objects/android/navigation/Pagos/PagosNavigation";
-import CommonsTransferencias from "../../../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import pagosTarjetasEventualesController from "../../../../controllers/Pagos/pagos-tarjetas-eventuales.controller";
+import pagosController from "../../../../controllers/Pagos/pagos.controller";
 
-// Test de inicio de sesion 
-describe('Iniciar sesion con usuario y contraseña',() =>{
-    it('Ingresar usuario y contraseña', async()=>{
+// Test de seccion de Pagos y Pagos de Tarjetas Eventuales
+describe('Generacion de Pagos', () => {
+    it('Generacion de Pagos de Tarjetas Eventuales', async() => {
+        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.TarjetasEventuales), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
-    });
-});
-
-// Test de seccion de pagos
-describe('Navegar a seccion de Pagos',() =>{
-    it('Click en el botón de Pagos', async()=>{
-        await MenuNavigation.navegarSeccionPagos();
-    });
-    it('Click en el botón de Tarjetas Eventuales', async()=>{
-        await PagosNavigation.pagosTarjetasEventuales();
-    });
-    it('Seleccionar la tarjeta eventual a pagar', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
-        await pagosTarjetasEventualesController.pagosTarjetasEventualesForm(data);
-    });
-    it('Click en el botón Continuar', async()=>{
-        await CommonsTransferencias.clickBtnContinuar();
-    });
-    it('Click en el botón Finalizar', async()=>{
-        await CommonsTransferencias.clickBtnFinalizar();
-    });
-});
-
-// Test de logout
-describe('Cerrar sesión',() =>{
-    it('Click en el boton de menu lateral y cerrar sesión', async()=>{
-        await CommonActions.logout();
-        await driver.pause(5000);
+        for (let i=0; i < data.length; i++){
+            if (data[i].status === dataStatus.pending){
+                await MenuNavigation.navegarSeccionPagos();
+                await pagosController.pagosTarjetasEventualesSeccion();
+                await PagosNavigation.pagosTarjetasEventuales(data[i]);
+            }
+        }
+        await CommonActions.logout();    
     });
 });
