@@ -1,16 +1,12 @@
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
+import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { UIAutomatorSelectores, buttons, buttonsSelectores } from "../../constants/common";
-import { searchEntry } from "../../helpers/fileEditor.helper";
-import transferenciaController from "./transferencia.controller";
+import { editEntry } from "../../helpers/fileEditor.helper";
 import { transferenciaEventualesSelectores, 
     institucionBancariaSelectores, 
-    tipoDocumento, 
     tipoDocumentoOpcionSelectores, 
-    tipoCuenta,
     tipoCuentaOpcionSelectores } from "../../constants/transferencia/transferenciaEventuales";
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import { bancos } from "../../constants/transferencia/transferenciaEventuales";
 import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
 
 // Seccion de transferencias eventuales
@@ -52,6 +48,7 @@ class TransferenciaEventual {
         return $(buttonsSelectores.button(buttons.Cerrar));
     }
 
+
     async ingresarDescripcion(){
         await this.getDescripcionSelector.click();
         await this.getDescripcionSelector.addValue(datosGenerales.descripcion);
@@ -64,97 +61,78 @@ class TransferenciaEventual {
         await driver.hideKeyboard();
     }
 
-    async selectionarInstitucionBancaria(opcion){
-        await $(UIAutomatorSelectores.scrollTextIntoView(opcion));
-        switch (opcion) {
-            case bancos.bancoPacifico:
-                await $(institucionBancariaSelectores.institucionBancariaOpcion(opcion)).waitForDisplayed();
-                await $(institucionBancariaSelectores.institucionBancariaOpcion(opcion)).click();
-                break;
-            default:
-                break;
-        }
+    async selectionarInstitucionBancaria(insitucionBancaria){
+        await $(UIAutomatorSelectores.scrollTextIntoView(insitucionBancaria));
+        await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).waitForDisplayed();
+        await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).click();
     }
 
-    async seleccionarTipoDocumento(opcion){
-        switch (opcion) {
-            case tipoDocumento.CI:
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).waitForDisplayed();
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).click();
-                break;
-            case tipoDocumento.PASAPORTE:
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).waitForDisplayed();
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).click();
-                break;
-            case tipoDocumento.RUC:
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).waitForDisplayed();
-                await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(opcion)).click();
-                break;
-            default:
-                break;
-        }
+    async seleccionarTipoDocumento(tipoDocumento){
+        await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(tipoDocumento)).waitForDisplayed();
+        await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(tipoDocumento)).click();
     }
 
-    async seleccionarTipoCuenta(opcion){
-        switch (opcion) {
-            case tipoCuenta.cuentaAhorros:
-                await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(opcion)).waitForDisplayed();
-                await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(opcion)).click();
-                break;
-            case tipoCuenta.cuentaCorriente:
-                await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(opcion)).waitForDisplayed();
-                await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(opcion)).click();
-                break;
-            default:
-                break;
-        }
+    async seleccionarTipoCuenta(tipoCuenta){
+        await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(tipoCuenta)).waitForDisplayed();
+        await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(tipoCuenta)).click();
     }
 
 // Funcion para completar los datos de transferencia exterior
-    async transferenciaEventualForm(){
+    async transferenciaEventualForm(elemento){
         try{
-            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Eventuales),]);
-            let elemento;
-            await transferenciaController.transferenciaEventualesSeccion();
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Selecciona institucion bancaria
-            await this.getInstitucionBancariaSelector.waitForDisplayed({timeout:30000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
+            await this.getInstitucionBancariaSelector.waitForDisplayed({timeout:30000});
             await this.getInstitucionBancariaSelector.click();
             // Seleccionar opcion de institucion bancaria
             await this.selectionarInstitucionBancaria(elemento.institucion_bancaria);
+
             // Ingresar numero de cuenta beneficiario
-            await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.cuenta_debito)
+            await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.numero_cuenta_beneficiario)
+            
             // Seleccionar tipo de cuenta
             await this.getTipoCuentaSelector.waitForDisplayed();
             await this.getTipoCuentaSelector.click();
             // Seleccionar opcion de tipo de cuenta
             await this.seleccionarTipoCuenta(elemento.tipo_cuenta)
+            
             // Seleccionar tipo de identificacion
             await this.getTipoIdentificacionSelector.waitForDisplayed();
             await this.getTipoIdentificacionSelector.click();
             // Seleccionar opcion de tipo de identificacion
             await this.seleccionarTipoDocumento(elemento.tipo_documento);
+            
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));  //Scroll hasta encontrar la palabra Monto
+            
             // Ingresar numero de identificacion
             await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identifiacion);
+            
             // Ingresar nombre beneficiario
             await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario)
+            
             // Ingresa Monto y Descripcion
             this.ingresarDescripcion();
             this.ingresarMonto();
+            
             // Click en boton Continuar
             await CommonsTransferencias.clickBtnContinuar();
+            await CommonsTransferencias.clickBtnContinuar();
+            
             // Click en boton Cerrar
             await this.getBotonCerrarSelector.waitForDisplayed();
             await this.getBotonCerrarSelector.click();
+
+            // Click en boton Finalizar
             // await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
             //     return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
             // },{
             //     timeout: 20000
             // });
             // await CommonActions.getBtnFinalizarSelector.click();
+
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias eventuales', error);
         }

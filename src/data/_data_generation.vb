@@ -1,5 +1,6 @@
 Private Sub CommandButton1_Click()
     Dim fs As Object
+    Dim outFile As Object
     Dim PathFile As String
     Dim Hoja1 As Worksheet
     Dim Tabla As ListObject
@@ -29,7 +30,7 @@ Private Sub CommandButton1_Click()
         strCuentaDebito = Hoja1.Range("C" & i).Value
         strCuentaBeneficiario = Hoja1.Range("D" & i).Value
         strMotivoEconomico = Hoja1.Range("E" & i).Value
-        strGastosEXterior = Hoja1.Range("F" & i).Value
+        strGastosExterior = Hoja1.Range("F" & i).Value
         strInstitucionBancaria = Hoja1.Range("G" & i).Value
         strGrupoServicio = Hoja1.Range("H" & i).Value
         strServicio = Hoja1.Range("I" & i).Value
@@ -122,6 +123,13 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""motivo_economico"": """ & strMotivoEconomico & """"
                                 Else
                                     MsgBox "Campo -Motivo Economico- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
+                                If (strGastosExterior <> "") Then
+                                    strLinea = strLinea & " ,""gastos_del_exterior"": """ & strGastosExterior & """"
+                                Else
+                                    MsgBox "Campo -Gastos del Exterior- se encuentra vacio."
                                     Exit Sub
                                 End If
                             

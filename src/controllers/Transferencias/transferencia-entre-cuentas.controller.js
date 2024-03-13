@@ -1,4 +1,5 @@
-import { mensajes, transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
+import { transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
+import { mensajes } from "../../constants/transferencia/transferenciaSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
@@ -13,12 +14,6 @@ class TransferenciaEntreMisCuentas {
 
     get getCuentaBeneficiariaSelector(){
         return $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiaria);
-    }
-
-// Funcion para obtener el selector de mensajes de error
-    async mensaje(mensajeTxt){
-        await $(transferenciaEntreMisCuentasSelectores.mensaje(mensajeTxt)).waitForDisplayed({timeout:20000});
-        await expect($(transferenciaEntreMisCuentasSelectores.mensaje(mensajeTxt))).toHaveText(mensajes.mensajeError);
     }
 
 // Funciones para seleccionar cuenta de debito y cuenta beneficiaria
@@ -54,7 +49,7 @@ class TransferenciaEntreMisCuentas {
                 await CommonsTransferencias.clickBtnContinuar();
 
                 // Visualizar mensaje de error
-                await this.mensaje(mensajes.mensajeError);
+                await CommonsTransferencias.mensajeError(mensajes.mensajeError);
                 await $(buttonsSelectores.button(buttons.Ok)).click();
 
                 // Editar registro en archivo data.txt

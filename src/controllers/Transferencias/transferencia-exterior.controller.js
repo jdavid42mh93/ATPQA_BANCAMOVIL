@@ -1,8 +1,11 @@
-import { transferenciaAlExteriorSelectores, cuentasBeneficiariasSelectores, motivoEconomicoOpcionSelectores, motivoEconomicoOpcion, constTransferenciasAlExterior, gastoExteriorOpcion } from "../../constants/transferencia/transferenciaAlExterior";
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
+import { transferenciaAlExteriorSelectores, 
+    cuentasBeneficiariasOpcionSelectores, 
+    motivoEconomicoOpcionSelectores, 
+    gastoExteriorOpcionSelectores, 
+    constTransferenciasAlExterior } from "../../constants/transferencia/transferenciaAlExterior";
+import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { UIAutomatorSelectores } from "../../constants/common";
-import { searchEntry } from "../../helpers/fileEditor.helper";
-import transferenciaController from "./transferencia.controller";
+import { editEntry } from "../../helpers/fileEditor.helper";
 import { datosGenerales } from "../../constants/common";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 
@@ -13,12 +16,8 @@ class TransferenciaExterior {
         return $(transferenciaAlExteriorSelectores.cuentaBeneficiariaExterior);
     }
 
-    get getCuentaBeneficiariaSelector() {
-        return $(cuentasBeneficiariasSelectores.THIRDB);
-    }
-
     get getMontoSelector() {
-        return $(transferenciaAlExteriorSelectores.monto);
+        return $(transferenciaAlExteriorSelectores.Monto);
     }
 
     get getReferenciaSelector() {
@@ -29,61 +28,65 @@ class TransferenciaExterior {
         return $(transferenciaAlExteriorSelectores.gastosExterior); 
     }
 
-    get getGastoExteriorOpcionSelector(){
-        return $(gastoExteriorOpcion["N-OUR"]);
-    }
-
     async ingresarMonto(){
+        await this.getMontoSelector.click();
         await this.getMontoSelector.addValue(datosGenerales.monto);
         await driver.hideKeyboard();
     }
 
-    async getMotivoEconomicoOpcion(opcion){
-        switch (opcion) {
-            case motivoEconomicoOpcion["105-IMPORTACIONES"]:
-                $(motivoEconomicoOpcionSelectores["105_importaciones"]).click();
-                break;
-            case motivoEconomicoOpcion["110-ANTICIPOPORIMPORTACIONES"]:
-                $(motivoEconomicoOpcionSelectores["110_anticipoImportaciones"]).click();
-                break;
-            case motivoEconomicoOpcion["201-SERVICIOSDETRANSPORTEMARITIMO(RUTASINTERNACIONALES)"]:
-                $(motivoEconomicoOpcionSelectores["201_servTranspMaritimoRI"]).click();
-                break;
-            default:
-                break;
-        }
+// Funcion para seleccionar una cuenta beneficiaria
+    async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
+        await $(cuentasBeneficiariasOpcionSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
+        await $(cuentasBeneficiariasOpcionSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
+    }
+
+// Funcion para seleccionar un motivo economico
+    async seleccionarMotivoEconomico(motivoEconomico){
+        await $(motivoEconomicoOpcionSelectores.motivoEconomicoOpcion(motivoEconomico)).waitForDisplayed();
+        await $(motivoEconomicoOpcionSelectores.motivoEconomicoOpcion(motivoEconomico)).click();
+    }
+
+// Funcion para seleccionar una opcion de gastos del exterior
+    async seleccionarGastoExterior(gastoExterior){
+        await $(gastoExteriorOpcionSelectores.gastoExteriorOpcion(gastoExterior)).waitForDisplayed();
+        await $(gastoExteriorOpcionSelectores.gastoExteriorOpcion(gastoExterior)).click();
     }
 
 // Funcion para completar los datos de transferencia exterior
-    async transferenciaAlExteriorForm(){
+    async transferenciaAlExteriorForm(elemento){
         try{
-            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior),]);
-            let elemento;
-            await transferenciaController.transferenciaAlExteriorSeccion();
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Seleccionar cuenta beneficiaria
-            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`});
+            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
             await this.getSeleccionarBeneficiarioSelector.click();
+
             // Seleccionar cuenta beneficiaria opcion
-            await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:10000, timeoutMsg:`El elemento no esta visisble despues de 10 segundos`});
-            await this.getCuentaBeneficiariaSelector.click();
+            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
+            
             // Obtener motivo economico
-            await this.getMotivoEconomicoOpcion(elemento.motivo_economico);
+            await this.seleccionarMotivoEconomico(elemento.motivo_economico);
+            
             // Ingresar monto
-            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.Monto)).click();
+            // await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.Monto)).click();
             await this.ingresarMonto()
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
+            
             // Seleccionar opcion de gasto exterior
             await this.getGastoExteriorSelector.click();
-            await this.getGastoExteriorOpcionSelector.click();
+            await this.seleccionarGastoExterior(elemento.gastos_del_exterior);
+            
             // Click en boton Continuar
             await CommonsTransferencias.clickBtnContinuar();
+            await CommonsTransferencias.clickBtnContinuar();
+
             // Click en boton Finalizar
             await CommonsTransferencias.clickBtnFinalizar();
+
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias al exterior', error);
         }
