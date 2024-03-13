@@ -87,7 +87,7 @@ class TransferenciaEventual {
             await this.selectionarInstitucionBancaria(elemento.institucion_bancaria);
 
             // Ingresar numero de cuenta beneficiario
-            await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.cuenta_debito)
+            await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.numero_cuenta_beneficiario)
             
             // Seleccionar tipo de cuenta
             await this.getTipoCuentaSelector.waitForDisplayed();
