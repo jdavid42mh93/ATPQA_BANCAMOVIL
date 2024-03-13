@@ -27,7 +27,7 @@ class TransferenciaExterior {
     get getGastoExteriorSelector(){
         return $(transferenciaAlExteriorSelectores.gastosExterior); 
     }
-
+    
     async ingresarMonto(){
         await this.getMontoSelector.click();
         await this.getMontoSelector.addValue(datosGenerales.monto);
@@ -62,13 +62,12 @@ class TransferenciaExterior {
             // Seleccionar cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
-            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();
-            
+            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();   // Scroll hasta encontrar Motivo Economico
+                        
             // Obtener motivo economico
             await this.seleccionarMotivoEconomico(elemento.motivo_economico);
             
             // Ingresar monto
-            // await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.Monto)).click();
             await this.ingresarMonto()
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
             
