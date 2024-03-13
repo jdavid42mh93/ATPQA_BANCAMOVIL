@@ -9,6 +9,7 @@ export const transferenciaSelectores = {
     'cuentaDebito':         `${editTextClass}[@text="118043573-CUENTA DE AHORROS"]`,
     'cuentaBeneficiaria':   `${editTextClass}[@text="630709065-CUENTA DE AHORROS"]`,
     'transferenciaOpcion':  (data) => `${textViewClass}[@text="${data}"]`,
+    'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
 };
 
 export const constTransferencias = {
@@ -21,4 +22,9 @@ export const transferenciaOpcion = {
     'registradas':          'Registradas',
     'eventuales':           'Eventuales',
     'alExterior':           'Al Exterior',
+}
+
+export const mensajes = {
+    'mensajeError':                 'Cuenta de débito y crédito no pueden ser la mismas',
+    'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
 }
