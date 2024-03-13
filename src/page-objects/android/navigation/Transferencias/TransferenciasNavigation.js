@@ -9,16 +9,16 @@ class TransferenciasNavigation{
         await transferenciaEntreCuentasController.transferenciaEntreMisCuentasForm(data);
     }
 
-    async transferenciaRegistrada() {
-        await transferenciaRegistradaController.transferenciaRegistradaForm();
+    async transferenciaRegistrada(data) {
+        await transferenciaRegistradaController.transferenciaRegistradaForm(data);
     }
 
-    async transferenciaEventuales() {
-        await transferenciaEventualesController.transferenciaEventualForm();
+    async transferenciaEventuales(data) {
+        await transferenciaEventualesController.transferenciaEventualForm(data);
     }
 
-    async transferenciaAlExterior() {
-        await transferenciaExteriorController.transferenciaAlExteriorForm();
+    async transferenciaAlExterior(data) {
+        await transferenciaExteriorController.transferenciaAlExteriorForm(data);
     }
 }
 

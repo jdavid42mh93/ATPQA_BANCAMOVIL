@@ -30,6 +30,11 @@ class CommonsTransferencias{
         await driver.hideKeyboard();
     }
 
+// Funcion para obtener el selector de mensajes de error
+    async mensajeError(mensajeError){
+        await $(transferenciaSelectores.mensaje(mensajeError)).waitForDisplayed({timeout:20000});
+    }
+
 // Funcion para validar mensaje de confirmacion
     async validarConfirmacionOK() {
         await this.getMensajeConfirmacionSelector.waitForDisplayed();

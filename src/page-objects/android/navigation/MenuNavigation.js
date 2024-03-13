@@ -15,7 +15,7 @@ class MenuNavigation{
 // Funcion para navegar a la seccion de inicio de sesion
     async navegarAInicioSesion(){
         try{
-            // await LoginScreen.getInitSessionSelector.waitForDisplayed({timeout:6000,timeoutMsg:`El elemento ${LoginScreen.getInitSessionSelector} no esta visible despues de 5 segundos`});
+            await LoginScreen.getInitSessionSelector.waitForDisplayed({timeout:20000});
             await LoginScreen.getInitSessionSelector.click();
         }catch(error){
             console.error('Error navegando al inicio de sesion', error);
