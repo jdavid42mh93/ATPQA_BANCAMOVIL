@@ -20,6 +20,10 @@ class CommonActions{
         return $(commonsSelectores.mensaje(mensajes.mensajeConfirmacion));
     }
 
+    get getBtnCerrarSelector(){
+        return $(buttonsSelectores.button(buttons.Cerrar));
+    }
+
 // Funcion para validar mensaje de confirmacion
     async validarConfirmacionOK() {
         await this.getMensajeConfirmacionSelector.waitForDisplayed();
@@ -42,6 +46,12 @@ class CommonActions{
             });
         await this.validarConfirmacionOK();
         await this.getBtnFinalizarSelector.click();
+    }
+
+// Funcion para dar click en el boton Finalizar
+    async clickBtnCerrar(){
+        await this.getBtnCerrarSelector.waitForDisplayed();
+        await this.getBtnCerrarSelector.click();
     }
 
 // Funcion para obtener el selector de mensajes de error

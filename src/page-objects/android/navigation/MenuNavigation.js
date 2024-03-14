@@ -1,4 +1,4 @@
-import { buttonsSelectores } from "../../../constants/common";
+import { buttonsSelectores, opcionesMenuLateral } from "../../../constants/common";
 import TransferenciasScreen from "../../../page-objects/android/navigation/Transferencias/TransferenciasScreen";
 import LoginScreen from "./LoginScreen";
 import PosicionConsolidadaScreen from "./PosConsolidada/PosicionConsolidadaScreen";
@@ -56,6 +56,11 @@ class MenuNavigation{
         }catch(error){
             console.error('Error navegando a la seccion de certificados', error);
         }
+    }
+
+// Funcion para seleccionar una opcion del menu lateral
+    async seleccionarOpcionMenuLateral(opcion){
+        await $(opcionesMenuLateral.opcion(opcion)).click();
     }
 }
 

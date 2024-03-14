@@ -16,6 +16,8 @@ export const datosGenerales = {
     descripcion:            'atp qa',
     nombreBeneficiario:     'atp qa',
     numeroIdentificacion:   '1722146485',
+    numeroSuministro:       '7190431',
+    cvv:                    '123',
 }
 
 // Selectores UIAutomator
@@ -68,4 +70,14 @@ export const mensajes = {
     'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
     'mensajeDocumentoPagado':       'Documento ya fue pagado',
     'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
+}
+
+export const opcionesMenuLateral = {
+    'opcion':   (data) => `${textViewClass}[@text="${data}"]`,
+}
+
+export const opciones = {
+    'Pagos':            'Pagos',
+    'Transferencias':   'Transferencias',
+    'Resumen':          'Resumen',
 }

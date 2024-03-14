@@ -6,7 +6,6 @@ import { transferenciaEventualesSelectores,
     tipoDocumentoOpcionSelectores, 
     tipoCuentaOpcionSelectores } from "../../constants/transferencia/transferenciaEventuales";
 import { datosGenerales } from "../../constants/common";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 

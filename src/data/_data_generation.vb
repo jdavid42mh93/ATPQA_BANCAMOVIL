@@ -39,6 +39,7 @@ Private Sub CommandButton1_Click()
         strTipoCuenta = Hoja1.Range("L" & i).Value
         strNumeroIdentificacion = Hoja1.Range("M" & i).Value
         strBeneficiarioAgua = Hoja1.Range("N" & i).Value
+        strOpcionPago = Hoja1.Range("O" & i).Value
         
         If (strTipo <> "") Then
               strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
@@ -112,6 +113,14 @@ Private Sub CommandButton1_Click()
 
 
                             Case "Al Exterior"
+                            
+                                If (strCuentaDebito <> "") Then
+                                    strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
                                 If (strCuentaBeneficiario <> "") Then
                                     strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
                                 Else
@@ -195,15 +204,46 @@ Private Sub CommandButton1_Click()
                                 Else
                                     MsgBox "Campo -Beneficiario- se encuentra vacio."
                                 End If
+                                
+                                If (strOpcionPago <> "") Then
+                                    strLinea = strLinea & " ,""opcion_pago"": """ & strOpcionPago & """"
+                                Else
+                                    MsgBox "Campo -Opciones de Pago- se encuentra vacio."
+                                End If
                             
                             Case "Servicios Eventuales"
                                 strSubTipoLine = "Servicios Eventuales"
                                 strLinea = strLinea & ",""subtype"":""" & strSubTipoLine & """"
                                 
+                                If (strCuentaDebito <> "") Then
+                                    strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Debito- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
                                 If (strGrupoServicio <> "") Then
                                     strLinea = strLinea & " ,""grupo_servicios"": """ & strGrupoServicio & """"
                                 Else
                                     MsgBox "Campo -Grupo de Servicios- se encuentra vacio."
+                                End If
+                                
+                                If (strServicio <> "") Then
+                                    strLinea = strLinea & " ,""servicio"": """ & strServicio & """"
+                                Else
+                                    MsgBox "Campo -Servicio- se encuentra vacio."
+                                End If
+                                
+                                If (strNumeroTarjeta <> "") Then
+                                    strLinea = strLinea & " ,""numero_tarjeta"": """ & strNumeroTarjeta & """"
+                                Else
+                                    MsgBox "Campo -Numero de Tarjeta- se encuentra vacio."
+                                End If
+                                
+                                If (strOpcionPago <> "") Then
+                                    strLinea = strLinea & " ,""opcion_pago"": """ & strOpcionPago & """"
+                                Else
+                                    MsgBox "Campo -Opciones de Pago- se encuentra vacio."
                                 End If
                             
                             Case "Mis Tarjetas"
