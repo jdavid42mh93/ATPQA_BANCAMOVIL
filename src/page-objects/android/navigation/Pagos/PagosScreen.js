@@ -1,13 +1,18 @@
-import { paymentsSelectors } from "../../../../constants/common";
+import { pagosSelectors } from "../../../../constants/pagos/pagosSelectores";
 
 // Seccion de Pagos
 class PaymentsScreen{
-    get getPaymentSection() {
-        return $(paymentsSelectors.pagos);
+    get getPagosSelector() {
+        return $(pagosSelectors.pagos);
     }
 
     async paymentsSection(){
-        await this.getPaymentSection.click();
+        (await this.getPagosSelector).waitUntil(async () => {
+            return (await this.getPagosSelector).isDisplayed();
+        });
+        await expect(this.getPagosSelector).toBeExisting();
+        await expect(this.getPagosSelector).toHaveText(expect.stringContaining('Pagos'));
+        await this.getPagosSelector.click();
     }
 }
 

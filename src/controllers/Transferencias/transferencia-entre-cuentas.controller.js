@@ -4,6 +4,7 @@ import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import { buttons, buttonsSelectores } from "../../constants/common";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias entre cuentas propias del usuario
 class TransferenciaEntreMisCuentas {
@@ -46,7 +47,7 @@ class TransferenciaEntreMisCuentas {
 
             if (elemento.cuenta_debito === elemento.numero_cuenta_beneficiario){
                 // Click en boton Continuar
-                await CommonsTransferencias.clickBtnContinuar();
+                await CommonActions.clickBtnContinuar();
 
                 // Visualizar mensaje de error
                 await CommonsTransferencias.mensajeError(mensajes.mensajeError);
@@ -58,11 +59,11 @@ class TransferenciaEntreMisCuentas {
                     [dataInstructions.assignStatus(dataStatus.canceled)]);
             } else {
                 // Click en boton Continuar
-                await CommonsTransferencias.clickBtnContinuar();
-                await CommonsTransferencias.clickBtnContinuar();
+                await CommonActions.clickBtnContinuar();
+                await CommonActions.clickBtnContinuar();
 
                 // Click en boton Finalizar
-                await CommonsTransferencias.clickBtnFinalizar();
+                await CommonActions.clickBtnFinalizar();
 
                 // Editar registro en archivo data.txt
                 editEntry(files.data,    
