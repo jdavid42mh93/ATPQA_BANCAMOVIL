@@ -15,7 +15,7 @@ describe('Generacion de Pagos', () => {
             if (data[i].status === dataStatus.pending){
                 await MenuNavigation.navegarSeccionPagos();
                 await pagosController.pagosTarjetasRegistradasSeccion();
-                await PagosNavigation.pagosServiciosRegistrados(data[i]);
+                await PagosNavigation.pagosTarjetasRegistradas(data[i]);
             }
         }
         await CommonActions.logout();    

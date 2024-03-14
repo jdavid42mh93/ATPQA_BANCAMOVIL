@@ -63,6 +63,7 @@ export const buttons = {
 
 export const commonsSelectores = {
     'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
+    'cuentaDebito':                   `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
 }
 
 export const mensajes = {
@@ -70,6 +71,7 @@ export const mensajes = {
     'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
     'mensajeDocumentoPagado':       'Documento ya fue pagado',
     'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
+    'pagoListo':                    '¡Tu pago está listo!',
 }
 
 export const opcionesMenuLateral = {
