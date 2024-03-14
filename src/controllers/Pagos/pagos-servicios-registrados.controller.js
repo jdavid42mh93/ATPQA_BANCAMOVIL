@@ -1,6 +1,6 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import { opcionesPago, pagosServiciosRegistradosSelectores, servicios, textos } from "../../constants/pagos/pagosServiciosRegistrados";
+import { pagosServiciosRegistradosSelectores, servicios, labels } from "../../constants/pagos/pagosServiciosRegistrados";
 import { pagosSelectors } from "../../constants/pagos/pagosSelectores";
 import { UIAutomatorSelectores } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
@@ -70,9 +70,9 @@ class PagosServiciosRegistrados {
             await this.seleccionarBeneficiario(elemento.beneficiario);
 
             // Seleccionar tipo de pago
-            await $(UIAutomatorSelectores.scrollTextIntoView(textos.tipoPago)).click();
+            await $(UIAutomatorSelectores.scrollTextIntoView(labels.tipoPago)).click();
             // Seleccioanr tipo de pago opcion
-            await this.seleccionarTipoPago(opcionesPago.debitoCuenta);
+            await this.seleccionarTipoPago(elemento.opcion_pago);
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();

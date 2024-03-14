@@ -1,18 +1,15 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { pagosMisTarjetasSelectores, tarjetas } from "../../constants/pagos/pagosMisTarjetas";
-import { datosGenerales, mensajes } from "../../constants/common";
+import { datosGenerales } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
+import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
 
 // Seccion de pagos de tarjetas propias del usuario
 class PagosMisTarjetas {
 // Funciones para obtener los selectores de pagos de tarjetas propias del usuario
-    get getSeleccionarCuentaDebitoSelector() {
-        return $(pagosMisTarjetasSelectores.cuentaDebito);
-    }
-
     get getSeleccionarTarjetaSelector() {
-        return $(pagosMisTarjetasSelectores.seleccionarTarjeta)
+        return $(pagosMisTarjetasSelectores.tarjeta)
     }
 
     get getMontoSelector() {
@@ -39,8 +36,8 @@ class PagosMisTarjetas {
     async pagosMisTarjetasForm(elemento){
         try{
             // Seleccionar cuenta debito
-            await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:30000})
-            await this.getSeleccionarCuentaDebitoSelector.click();
+            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000})
+            await CommonsPagos.getCuentaDebitoSelector.click();
             // Seleccionar cuenta debito opcion
             await this.seleccionarCuentaDebito(elemento.cuenta_debito);
             

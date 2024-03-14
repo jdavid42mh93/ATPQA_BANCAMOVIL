@@ -7,7 +7,6 @@ import { files, dataConditions, dataInstructions, dataStatus } from "../../const
 import { UIAutomatorSelectores } from "../../constants/common";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { datosGenerales } from "../../constants/common";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias al exterior
