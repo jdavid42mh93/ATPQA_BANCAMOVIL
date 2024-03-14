@@ -1,28 +1,60 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
+import { pagosTarjetasRegistradasSelectores } from "../../constants/pagos/pagosTarjetasRegistradas";
+import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
+import { datosGenerales } from "../../constants/common";
 
 // Seccion de pagos de tarjetas registradas del usuario
 class PagosTarjetasRegistradas {
 // Funciones para obtener los selectores de pagos de tarjetas registradas
+    get getBeneficiarioSelector(){
+        return $(pagosTarjetasRegistradasSelectores.beneficiario);
+    }
+
+    get getMontoSelector(){
+        return $(pagosTarjetasRegistradasSelectores.montoAPagar);
+    }
+
+    get getDescripcionSelector(){
+        return $(pagosTarjetasRegistradasSelectores.descripcion);
+    }
+
+    async ingresarDescripcion(){
+        await this.getDescripcionSelector.click();
+        await this.getDescripcionSelector.addValue(datosGenerales.descripcion);
+        await driver.hideKeyboard();
+    }
+
+    async ingresarMonto(){
+        await this.getMontoSelector.click();
+        await this.getMontoSelector.addValue(datosGenerales.monto);
+        await driver.hideKeyboard();
+    }
+
+    async seleccionarBeneficiario(beneficiario) {
+        await $(pagosTarjetasRegistradasSelectores.beneficiarioOpcion(beneficiario)).waitForDisplayed();
+        await $(pagosTarjetasRegistradasSelectores.beneficiarioOpcion(beneficiario)).click();
+    }
 
 // Funcion para ingresr los datos de la transferencia en el formulario
     async pagosTarjetasRegistradasForm(elemento){
         try{
-            // Seleccionando la cuenta de debito
-            await this.getTransferenciaCuentaDebitoSelector.waitForDisplayed({timeout:25000});
-            await this.getTransferenciaCuentaDebitoSelector.click();
-            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar la cuenta de debito
+            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
+            await CommonsPagos.getCuentaDebitoSelector.click();
+            // Seleccionar la opcion de cuenta de debito
+            await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
 
-            // Seleccionando la cuenta beneficiaria
-            await this.getCuentaBeneficiariaSelector.waitForDisplayed();
-            await this.getCuentaBeneficiariaSelector.click();
-            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
-
-            // Ingresando Descripcion y Monto
-            CommonsTransferencias.ingresarDescripcion();
-            CommonsTransferencias.ingresarMonto();
+            // Ingresar Descripcion y Monto
+            await this.ingresarMonto();
+            await this.ingresarDescripcion();
+            
+            // Seleccionar Beneficiario
+            await this.getBeneficiarioSelector.waitForDisplayed({timeout:30000});
+            await this.getBeneficiarioSelector.click();
+            // Seleccionar Beneficiario opcion
+            await this.seleccionarBeneficiario(elemento.numero_tarjeta);
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();

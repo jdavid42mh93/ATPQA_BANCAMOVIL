@@ -2,7 +2,6 @@ import { files, dataConditions, dataInstructions, dataStatus} from "../../consta
 import { UIAutomatorSelectores, buttons, buttonsSelectores, datosGenerales } from "../../constants/common";
 import { transferenciaRegistradasSelectores } from "../../constants/transferencia/transferenciaRegistradas";
 import { constTransferencias, mensajes } from "../../constants/transferencia/transferenciaSelectores";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
@@ -69,7 +68,7 @@ class TransferenciaRegistrada {
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            if (CommonsTransferencias.mensajeError(mensajes.mensajeFondosInsuficientes)){
+            if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
                 // Visualizar mensaje de error
                 await $(buttonsSelectores.button(buttons.Ok)).click();
 

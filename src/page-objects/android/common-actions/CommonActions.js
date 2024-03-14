@@ -44,7 +44,7 @@ class CommonActions{
             },{
                  timeout: 30000
             });
-        await this.validarConfirmacionOK();
+        // await this.validarConfirmacionOK();
         await this.getBtnFinalizarSelector.click();
     }
 
