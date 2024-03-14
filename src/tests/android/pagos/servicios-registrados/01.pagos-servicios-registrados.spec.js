@@ -7,7 +7,7 @@ import pagosController from "../../../../controllers/Pagos/pagos.controller";
 
 // Test de seccion de Pagos y Pagos de Servicios Eventuales
 describe('Generacion de Pagos', () => {
-    it('Generacion de Pagos de Servicios Eventuales', async() => {
+    it('Generacion de Pagos de Servicios Registrados', async() => {
         const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.ServiciosRegistrados), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
