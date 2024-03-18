@@ -1,7 +1,7 @@
 import { files, dataConditions, dataInstructions, dataStatus} from "../../constants/_data_generation";
-import { UIAutomatorSelectores, buttons, buttonsSelectores, datosGenerales } from "../../constants/common";
+import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { transferenciaRegistradasSelectores } from "../../constants/transferencia/transferenciaRegistradas";
-import { constTransferencias, mensajes } from "../../constants/transferencia/transferenciaSelectores";
+import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
@@ -60,31 +60,21 @@ class TransferenciaRegistrada {
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto
             
             // Ingresar Monto y Descripcion
-            this.ingresarDescripcion();
-            this.ingresarMonto();
+            await this.ingresarDescripcion();
+            await this.ingresarMonto();
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
-                // Visualizar mensaje de error
-                await $(buttonsSelectores.button(buttons.Ok)).click();
-
-                // Editar registro en archivo data.txt
-                editEntry(files.data,    
-                    [dataConditions.caseIs(elemento.case)],
-                    [dataInstructions.assignStatus(dataStatus.canceled)]);
-            } else {
-                // Click en boton Continuar
-                await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
+            await CommonActions.clickBtnContinuar();
                 
-                // Click en boton Finalizar
-                await CommonActions.clickBtnFinalizar();
+            // Click en boton Finalizar
+            await CommonActions.clickBtnFinalizar();
 
-                // Editar registro en archivo data.txt
-                editEntry(files.data,    
-                    [dataConditions.caseIs(elemento.case)],
-                    [dataInstructions.assignStatus(dataStatus.active)]);
-            }
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
             console.error('Error en ingresar datos en transferencias registradas', error);
         }

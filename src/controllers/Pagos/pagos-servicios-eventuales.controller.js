@@ -63,10 +63,10 @@ class PagosServiciosEventuales {
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
             if(elemento.opcion_pago === opcionesTipoPago.debitoCuenta){
                 // Selecionar cuenta de debito
-                await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed();
-                await CommonsPagos.getCuentaDebitoSelector.click();
+                await CommonActions.getCuentaDebitoSelector.waitForDisplayed();
+                await CommonActions.getCuentaDebitoSelector.click();
                 // Seleccionar cuenta de debito opcion
-                await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
+                await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
             } else {
                 // Seleccionar tarjeta de credito
                 await CommonsPagos.getTarjetaSelector.waitForDisplayed();

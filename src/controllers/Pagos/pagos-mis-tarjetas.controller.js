@@ -16,21 +16,20 @@ class PagosMisTarjetas {
     }
 
     async ingresarMonto(){
-        await this.getMontoSelector.waitForDisplayed();
-        await this.getMontoSelector.click();
+        await this.getMontoSelector.doubleClick();
         await this.getMontoSelector.addValue(datosGenerales.monto);
         await driver.hideKeyboard();
     }
 
     async seleccionarNumeroTarjeta(numeroTarjeta){
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed()
+        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
         await $(tarjetas.tarjetaOpcion(numeroTarjeta)).click();
     }
 // Funcion para ingresr los datos del pago en el formulario
     async pagosMisTarjetasForm(elemento){
         try{
             // Seleccionar cuenta debito
-            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000})
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:35000});
             await CommonActions.getCuentaDebitoSelector.click();
             // Seleccionar cuenta debito opcion
             await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
