@@ -1,11 +1,9 @@
-import { files, dataConditions, dataTypes, dataSubtypes } from "../../constants/_data_generation";
-import { UIAutomatorSelectores } from "../../constants/common";
-import { searchEntry } from "../../helpers/fileEditor.helper";
-import transferenciaController from "./transferencia.controller";
-import { transferenciaRegistradasSelectores, cuentaBeneficiariaOpcion, cuentaDebitoOpcion } from "../../constants/transferencia/transferenciaRegistradas";
-import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
-import { datosGenerales } from "../../constants/common";
-import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
+import { files, dataConditions, dataInstructions, dataStatus} from "../../constants/_data_generation";
+import { UIAutomatorSelectores, buttons, buttonsSelectores, datosGenerales } from "../../constants/common";
+import { transferenciaRegistradasSelectores } from "../../constants/transferencia/transferenciaRegistradas";
+import { constTransferencias, mensajes } from "../../constants/transferencia/transferenciaSelectores";
+import { editEntry } from "../../helpers/fileEditor.helper";
+import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias cuentas registradas
 class TransferenciaRegistrada {
@@ -38,60 +36,60 @@ class TransferenciaRegistrada {
         await driver.hideKeyboard();
     }
 
-    async selectionarCuentaDebito(opcion){
-        switch (opcion) {
-            case "110609286-CUENTA CORRIENTE":
-                await $(cuentaDebitoOpcion.cuentaCorriente).waitForDisplayed();
-                await $(cuentaDebitoOpcion.cuentaCorriente).click();
-                break;
-            case "118043573-CUENTA DE AHORROS":
-                await $(cuentaDebitoOpcion.cuentaAhorros1).waitForDisplayed();
-                await $(cuentaDebitoOpcion.cuentaAhorros1).click();
-                break;
-            default:
-                break;
-        }
+    async seleccionarCuentaDebito(cuentaDebito) {
+        await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
+        await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
     }
 
-    async selectionarCuentaBeneficiaria(opcion){
-        switch (opcion) {
-            case "CONTIFICO":
-                await $(cuentaBeneficiariaOpcion.contifico).waitForDisplayed();
-                await $(cuentaBeneficiariaOpcion.contifico).click();
-                break;
-            default:
-                break;
-        }
+    async seleccionarCuentaBeneficiaria(cuentaBeneficiaria) {
+        await $(UIAutomatorSelectores.scrollTextIntoView(cuentaBeneficiaria));   // scroll hasta encontrar la cuenta beneficiaria
+        await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
+        await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
     }
 
 // Funcion para completar los datos de transferencia en cuentas registradas
-    async transferenciaRegistradaForm(){
+    async transferenciaRegistradaForm(elemento){
         try{
-            const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Registradas),]);
-            let elemento;
-            await transferenciaController.transferenciaRegistradasSeccion();
-            for (let i=0; i < data.length; i++){
-                elemento = data[i];
-            }
             // Seleccionar cuenta debito
-            await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:26000, timeoutMsg:`El elemento no esta visisble despues de 26 segundos`})
+            await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:30000})
             await this.getSeleccionarCuentaDebitoSelector.click();
-            await this.selectionarCuentaDebito(elemento.cuenta_debito);
+            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            
             // Seleccionar cuenta beneficiaria
-            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:20000, timeoutMsg:`El elemento no esta visisble despues de 20 segundos`});
+            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
             await this.getSeleccionarBeneficiarioSelector.click();
-            await this.selectionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
+            await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
 
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto
+            
             // Ingresar Monto y Descripcion
             this.ingresarDescripcion();
             this.ingresarMonto();
+            
             // Click en boton Continuar
-            await CommonsTransferencias.clickBtnContinuar();
-            // Click en boton Finalizar
-            await CommonsTransferencias.clickBtnFinalizar();
+            await CommonActions.clickBtnContinuar();
+            if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
+                // Visualizar mensaje de error
+                await $(buttonsSelectores.button(buttons.Ok)).click();
+
+                // Editar registro en archivo data.txt
+                editEntry(files.data,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.canceled)]);
+            } else {
+                // Click en boton Continuar
+                await CommonActions.clickBtnContinuar();
+                
+                // Click en boton Finalizar
+                await CommonActions.clickBtnFinalizar();
+
+                // Editar registro en archivo data.txt
+                editEntry(files.data,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.active)]);
+            }
         }catch(error){
-            console.error('Error en ingresar datos en transferencias al exterior', error);
+            console.error('Error en ingresar datos en transferencias registradas', error);
         }
     }
 }

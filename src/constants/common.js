@@ -16,11 +16,13 @@ export const datosGenerales = {
     descripcion:            'atp qa',
     nombreBeneficiario:     'atp qa',
     numeroIdentificacion:   '1722146485',
+    numeroSuministro:       '7190431',
+    cvv:                    '123',
 }
 
 // Selectores UIAutomator
 export const UIAutomatorSelectores = {
-    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,20)',
+    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,30)',
     scrollIntoView:     (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("${data}")`,
     scrollTextIntoView: (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${data}")`,
 }
@@ -57,4 +59,28 @@ export const buttons = {
     'Cancelar':             'Cancel',
     'Cerrar':               'CERRAR',
     'Ok':                   'Ok',
+}
+
+export const commonsSelectores = {
+    'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
+    'cuentaDebito':                   `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
+}
+
+export const mensajes = {
+    'mensajeError':                 'Cuenta de débito y crédito no pueden ser la mismas',
+    'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
+    'mensajeDocumentoPagado':       'Documento ya fue pagado',
+    'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
+    'pagoListo':                    '¡Tu pago está listo!',
+    'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
+}
+
+export const opcionesMenuLateral = {
+    'opcion':   (data) => `${textViewClass}[@text="${data}"]`,
+}
+
+export const opciones = {
+    'Pagos':            'Pagos',
+    'Transferencias':   'Transferencias',
+    'Resumen':          'Resumen',
 }
