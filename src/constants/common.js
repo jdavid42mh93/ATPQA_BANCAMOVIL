@@ -74,6 +74,7 @@ export const mensajes = {
     'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
     'pagoListo':                    '¡Tu pago está listo!',
     'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
+    'transaccionNoProcesada':       'Transacción no procesada, por favor intenta más tarde (6097)',
 }
 
 export const opcionesMenuLateral = {
