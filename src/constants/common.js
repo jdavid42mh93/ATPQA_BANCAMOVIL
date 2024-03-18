@@ -22,7 +22,7 @@ export const datosGenerales = {
 
 // Selectores UIAutomator
 export const UIAutomatorSelectores = {
-    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,20)',
+    scrollToEnd:        'android=new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1,30)',
     scrollIntoView:     (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView("${data}")`,
     scrollTextIntoView: (data) => `android=new UiScrollable(new UiSelector().scrollable(true)).scrollTextIntoView("${data}")`,
 }
@@ -72,6 +72,7 @@ export const mensajes = {
     'mensajeDocumentoPagado':       'Documento ya fue pagado',
     'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
     'pagoListo':                    '¡Tu pago está listo!',
+    'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
 }
 
 export const opcionesMenuLateral = {
