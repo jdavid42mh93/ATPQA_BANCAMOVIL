@@ -24,6 +24,10 @@ class CommonActions{
         return $(buttonsSelectores.button(buttons.Cerrar));
     }
 
+    get getCuentaDebitoSelector() {
+        return $(commonsSelectores.cuentaDebito);
+    }
+
 // Funcion para validar mensaje de confirmacion
     async validarConfirmacionOK() {
         await this.getMensajeConfirmacionSelector.waitForDisplayed();
@@ -33,7 +37,7 @@ class CommonActions{
 // Funcion para dar clik en el boton Continuar
     async clickBtnContinuar() {
         // Seleccionar boton de continuar
-        await this.getBtnContinuarSelector.waitForDisplayed({timeout: 30000});
+        await this.getBtnContinuarSelector.waitForDisplayed({timeout: 35000});
         await this.getBtnContinuarSelector.click();
     }
 
@@ -57,6 +61,12 @@ class CommonActions{
 // Funcion para obtener el selector de mensajes de error
     async mensajeError(mensajeError){
         await $(commonsSelectores.mensaje(mensajeError)).waitForDisplayed({timeout:20000});
+    }
+
+// Funciones para seleccionar cuenta de debito
+    async seleccionarCuentaDebito(cuentaDebito){
+        await $(commonsSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
+        await $(commonsSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
     }
 
     async login(){

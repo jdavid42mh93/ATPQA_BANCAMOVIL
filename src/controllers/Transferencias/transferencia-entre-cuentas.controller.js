@@ -9,20 +9,11 @@ import CommonActions from "../../page-objects/android/common-actions/CommonActio
 // Seccion de transferencias entre cuentas propias del usuario
 class TransferenciaEntreMisCuentas {
 // Funciones para obtener los selectores de transferencias entre mis cuentas
-    get getCuentaDebitoSelector() {
-        return $(transferenciaEntreMisCuentasSelectores.cuentaDebito);
-    }
-
     get getCuentaBeneficiariaSelector(){
         return $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiaria);
     }
 
 // Funciones para seleccionar cuenta de debito y cuenta beneficiaria
-    async seleccionarCuentaDebito(cuentaDebito){
-        await $(transferenciaEntreMisCuentasSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
-        await $(transferenciaEntreMisCuentasSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
-    }
-
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
         await $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
         await $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
@@ -31,14 +22,16 @@ class TransferenciaEntreMisCuentas {
 // Funcion para ingresr los datos de la transferencia en el formulario
     async transferenciaEntreMisCuentasForm(elemento){
         try{
-            // Seleccionar la cuenta de debito
-            await this.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
-            await this.getCuentaDebitoSelector.click();
-            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar cuenta de debito
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
+            await CommonActions.getCuentaDebitoSelector.click();
+            // Seleccionar cuenta de debito opcion
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
 
             // Seleccionar la cuenta beneficiaria
             await this.getCuentaBeneficiariaSelector.waitForDisplayed({timeout:30000});
             await this.getCuentaBeneficiariaSelector.click();
+            // Seleccionar la cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
             // Ingresar Descripcion y Monto
@@ -50,7 +43,7 @@ class TransferenciaEntreMisCuentas {
                 await CommonActions.clickBtnContinuar();
 
                 // Visualizar mensaje de error
-                await CommonsTransferencias.mensajeError(mensajes.mensajeError);
+                await CommonActions.mensajeError(mensajes.mensajeError);
                 await $(buttonsSelectores.button(buttons.Ok)).click();
 
                 // Editar registro en archivo data.txt

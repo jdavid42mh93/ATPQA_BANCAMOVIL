@@ -6,7 +6,6 @@ export const transferenciaSelectores = {
     'institucionFinanciera':`${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.TextView[2]`,
     'descripcion':          `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[5]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'monto':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[6]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
-    'cuentaDebito':         `${editTextClass}[@text="118043573-CUENTA DE AHORROS"]`,
     'cuentaBeneficiaria':   `${editTextClass}[@text="630709065-CUENTA DE AHORROS"]`,
     'transferenciaOpcion':  (data) => `${textViewClass}[@text="${data}"]`,
     'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
