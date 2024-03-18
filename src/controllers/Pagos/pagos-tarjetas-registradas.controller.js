@@ -2,7 +2,6 @@ import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import { pagosTarjetasRegistradasSelectores } from "../../constants/pagos/pagosTarjetasRegistradas";
-import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
 import { datosGenerales } from "../../constants/common";
 
 // Seccion de pagos de tarjetas registradas del usuario
@@ -40,11 +39,11 @@ class PagosTarjetasRegistradas {
 // Funcion para ingresr los datos de la transferencia en el formulario
     async pagosTarjetasRegistradasForm(elemento){
         try{
-            // Seleccionar la cuenta de debito
-            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
-            await CommonsPagos.getCuentaDebitoSelector.click();
-            // Seleccionar la opcion de cuenta de debito
-            await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar cuenta de debito
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
+            await CommonActions.getCuentaDebitoSelector.click();
+            // Seleccionar cuenta de debito opcion
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
 
             // Ingresar Descripcion y Monto
             await this.ingresarMonto();

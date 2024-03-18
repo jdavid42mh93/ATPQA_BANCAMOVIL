@@ -36,11 +36,6 @@ class TransferenciaRegistrada {
         await driver.hideKeyboard();
     }
 
-    async seleccionarCuentaDebito(cuentaDebito) {
-        await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
-        await $(transferenciaRegistradasSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
-    }
-
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria) {
         await $(UIAutomatorSelectores.scrollTextIntoView(cuentaBeneficiaria));   // scroll hasta encontrar la cuenta beneficiaria
         await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
@@ -51,13 +46,15 @@ class TransferenciaRegistrada {
     async transferenciaRegistradaForm(elemento){
         try{
             // Seleccionar cuenta debito
-            await this.getSeleccionarCuentaDebitoSelector.waitForDisplayed({timeout:30000})
-            await this.getSeleccionarCuentaDebitoSelector.click();
-            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000})
+            await CommonActions.getCuentaDebitoSelector.click();
+            // Seleccionar cuenta debito opcion
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
             
             // Seleccionar cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
             await this.getSeleccionarBeneficiarioSelector.click();
+            // Seleccionar cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
 
             await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto

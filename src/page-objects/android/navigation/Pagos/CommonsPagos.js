@@ -16,10 +16,6 @@ class CommonsPagos{
         return $(pagosSelectors.tipoPago);
     }
 
-    get getCuentaDebitoSelector(){
-        return $(pagosSelectors.cuentaDebito);
-    }
-
     get getTarjetaSelector(){
         return $(pagosSelectors.tarjeta);
     }
@@ -45,11 +41,6 @@ class CommonsPagos{
     async seleccionarTipoPago(tipoPago){
         await $(pagosSelectors.tipoPagoOpcion(tipoPago)).waitForDisplayed();
         await $(pagosSelectors.tipoPagoOpcion(tipoPago)).click();
-    }
-
-    async seleccionarCuentaDebito(cuentaDebito){
-        await $(pagosSelectors.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
-        await $(pagosSelectors.cuentaDebitoOpcion(cuentaDebito)).click();
     }
 
     async seleccionarNumeroTarjeta(numeroTarjeta){

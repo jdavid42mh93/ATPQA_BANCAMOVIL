@@ -17,7 +17,7 @@ class TransferenciaExterior {
     }
 
     get getMontoSelector() {
-        return $(transferenciaAlExteriorSelectores.Monto);
+        return $(transferenciaAlExteriorSelectores.monto);
     }
 
     get getReferenciaSelector() {
@@ -29,7 +29,7 @@ class TransferenciaExterior {
     }
     
     async ingresarMonto(){
-        await this.getMontoSelector.click();
+        await this.getMontoSelector.doubleClick();
         await this.getMontoSelector.addValue(datosGenerales.monto);
         await driver.hideKeyboard();
     }
@@ -58,7 +58,6 @@ class TransferenciaExterior {
             // Seleccionar cuenta beneficiaria
             await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
             await this.getSeleccionarBeneficiarioSelector.click();
-
             // Seleccionar cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
@@ -68,19 +67,20 @@ class TransferenciaExterior {
             await this.seleccionarMotivoEconomico(elemento.motivo_economico);
             
             // Ingresar monto
-            await this.ingresarMonto()
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
+            await this.ingresarMonto()
             
             // Seleccionar opcion de gasto exterior
-            await this.getGastoExteriorSelector.click();
+            await this.getGastoExteriorSelector.doubleClick();
             await this.seleccionarGastoExterior(elemento.gastos_del_exterior);
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
 
-            // Click en boton Finalizar
-            await CommonActions.clickBtnFinalizar();
+            // Click en boton Cerrar
+            await CommonActions.clickBtnCerrar();
 
             // Editar registro en archivo data.txt
             editEntry(files.data,    

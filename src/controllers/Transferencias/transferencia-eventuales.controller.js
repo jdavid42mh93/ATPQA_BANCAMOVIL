@@ -115,19 +115,11 @@ class TransferenciaEventual {
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             
             // Click en boton Cerrar
-            await this.getBotonCerrarSelector.waitForDisplayed();
-            await this.getBotonCerrarSelector.click();
-
-            // Click en boton Finalizar
-            // await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
-            //     return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
-            // },{
-            //     timeout: 20000
-            // });
-            // await CommonActions.getBtnFinalizarSelector.click();
+            await CommonActions.clickBtnCerrar();
 
             // Editar registro en archivo data.txt
             editEntry(files.data,    
