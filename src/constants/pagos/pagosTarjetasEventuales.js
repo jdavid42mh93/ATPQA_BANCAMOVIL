@@ -8,6 +8,7 @@ export const pagosTarjetasEventualesSelectores = {
     'numeroTarjeta':                          `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[3]/android.view.ViewGroup[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'nombreBeneficiario':                     `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[3]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'tipoIdentificacion':                     `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[4]/android.widget.TextView[1]`,
+    'TipoIdentificacion':                     `${textViewClass}[@text="Tipo de Identificación"]`,
     'tipoIdentificacionOpcion':     (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
     'numeroIdentificacion':                   `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup[5]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
 }

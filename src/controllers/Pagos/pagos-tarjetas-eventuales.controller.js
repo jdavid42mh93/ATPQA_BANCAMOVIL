@@ -3,8 +3,8 @@ import { files, dataConditions, dataInstructions, dataStatus } from "../../const
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
 import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
-import { UIAutomatorSelectores, buttons, buttonsSelectores, datosGenerales, mensajes, opciones } from "../../constants/common";
-import { labels, pagosTarjetasEventualesSelectores } from "../../constants/pagos/pagosTarjetasEventuales";
+import { UIAutomatorSelectores, datosGenerales, opciones } from "../../constants/common";
+import { pagosTarjetasEventualesSelectores } from "../../constants/pagos/pagosTarjetasEventuales";
 
 // Seccion de pagos de tarjetas eventuales del usuario
 class PagosTarjetasEventuales {
@@ -30,7 +30,7 @@ class PagosTarjetasEventuales {
     }
 
     get getTipoIdentificacionSelector(){
-        return $(pagosTarjetasEventualesSelectores.tipoIdentificacion);
+        return $(pagosTarjetasEventualesSelectores.TipoIdentificacion);
     }
 
     get getNumeroIdentificacionSelector(){
@@ -96,7 +96,7 @@ class PagosTarjetasEventuales {
 
             // Seleccionar tipo de identificacion
             await this.getTipoIdentificacionSelector.waitForDisplayed({timeout:30000});
-            await this.getTipoIdentificacionSelector.click();
+            await this.getTipoIdentificacionSelector.doubleClick();
             // Seleccionar tipo de identificacion opcion
             await this.selectionTipoIdentificacion(elemento.tipo_documento);
 
@@ -105,32 +105,48 @@ class PagosTarjetasEventuales {
 
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
-                // Visualizar mensaje de error
-                await $(buttonsSelectores.button(buttons.Ok)).click();
+            // if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
+            //     // Visualizar mensaje de error
+            //     await $(buttonsSelectores.button(buttons.Ok)).click();
 
-                // Editar registro en archivo data.txt
-                editEntry(files.data,    
-                    [dataConditions.caseIs(elemento.case)],
-                    [dataInstructions.assignStatus(dataStatus.canceled)]);
-            } else {
-                // Click en boton Continuar
-                await CommonActions.clickBtnContinuar();
+            //     // Editar registro en archivo data.txt
+            //     editEntry(files.data,    
+            //         [dataConditions.caseIs(elemento.case)],
+            //         [dataInstructions.assignStatus(dataStatus.canceled)]);
+            // } else {
+            //     // Click en boton Continuar
+            //     await CommonActions.clickBtnContinuar();
 
-                // Click en boton Cerrar
-                await CommonActions.clickBtnCerrar();
+            //     // Click en boton Cerrar
+            //     await CommonActions.clickBtnCerrar();
                 
-                // Editar registro en archivo data.txt
-                editEntry(files.data,    
-                    [dataConditions.caseIs(elemento.case)],
-                    [dataInstructions.assignStatus(dataStatus.active)]);
+            //     // Editar registro en archivo data.txt
+            //     editEntry(files.data,    
+            //         [dataConditions.caseIs(elemento.case)],
+            //         [dataInstructions.assignStatus(dataStatus.active)]);
     
-                // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
-                await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-                await MenuNavigation.getToogleMenuSelector.click();
-                // Seleccionar opcion de menu lateral
-                await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
-            } 
+            //     // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
+            //     await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+            //     await MenuNavigation.getToogleMenuSelector.click();
+            //     // Seleccionar opcion de menu lateral
+            //     await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
+            // }
+            // Click en boton Continuar
+            await CommonActions.clickBtnContinuar();
+
+            // Click en boton Cerrar
+            await CommonActions.clickBtnCerrar();
+            
+            // Editar registro en archivo data.txt
+            editEntry(files.data,    
+                [dataConditions.caseIs(elemento.case)],
+                [dataInstructions.assignStatus(dataStatus.active)]);
+
+            // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
+            await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+            await MenuNavigation.getToogleMenuSelector.click();
+            // Seleccionar opcion de menu lateral
+            await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
         }catch(error){
             console.error('Error en ingresar datos en pagos de tarjetas eventuales', error);
         }
