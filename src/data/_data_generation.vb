@@ -41,6 +41,8 @@ Private Sub CommandButton1_Click()
         strBeneficiarioAgua = Hoja1.Range("N" & i).Value
         strOpcionPago = Hoja1.Range("O" & i).Value
         strInstitucionFinanciera = Hoja1.Range("P" & i).Value
+        strFormaPago = Hoja1.Range("Q" & i).Value
+        strMesesPlazo = Hoja1.Range("R" & i).Value
         
         If (strTipo <> "") Then
               strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
@@ -319,7 +321,38 @@ Private Sub CommandButton1_Click()
                                     Exit Sub
                                 End If
                                    
-                         End Select
+                        End Select
+                    Case "Avances"
+                        strLinea = strLinea & ",""type"":""Avances"""
+
+                        Select Case strSubTipo
+                            Case "Efectivo"
+                                strSubTipoLine = "Efectivo"
+                                strLinea = strLinea & ",""subtype"":""" & strSubTipoLine & """"
+                                
+                                If (strCuentaBeneficiario <> "") Then
+                                    strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
+                                Else
+                                    MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
+                                    Exit Sub
+                                End If
+
+                                If (strNumeroTarjeta <> "") Then
+                                    strLinea = strLinea & " ,""numero_tarjeta"": """ & strNumeroTarjeta & """"
+                                Else
+                                    MsgBox "Campo -Numero de Tarjeta- se encuentra vacio."
+                                End If
+                                
+                                If (strFormaPago <> "") Then
+                                    strLinea = strLinea & " ,""forma_pago"": """ & strFormaPago & """"
+                                Else
+                                    MsgBox "Campo -Forma de Pago- se encuentra vacio."
+                                End If
+                                
+                                If (strMesesPlazo <> "") Then
+                                    strLinea = strLinea & " ,""meses_plazo"": """ & strMesesPlazo & """"
+                                End If
+                        End Select
               End Select
               fnTransferencias.Write strLinea & "}" & vbCrLf
         End If

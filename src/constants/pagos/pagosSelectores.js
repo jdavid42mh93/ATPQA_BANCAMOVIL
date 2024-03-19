@@ -41,4 +41,5 @@ export const opcionesTipoPago = {
 
 export const formaPago = {
     'Corriente':    'CORRIENTE',
+    'Diferido':     'DIFERIDO',
 }

@@ -16,6 +16,7 @@ export const dataConditions = {
 export const dataTypes = {
   'transferencias': 'Transferencias',
   'pagos':          'Pagos',
+  'avances':        'Avances'
 };
 
 export const dataSubtypes = {
@@ -28,6 +29,7 @@ export const dataSubtypes = {
   'MisTarjetas':          'Mis Tarjetas',
   'TarjetasRegistradas':  'Tarjetas Registradas',
   'TarjetasEventuales':   'Tarjetas Eventuales',
+  'Efectivo':             'Efectivo'
 };
 
 export const dataStatus = {
