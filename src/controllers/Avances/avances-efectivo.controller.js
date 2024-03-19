@@ -115,7 +115,7 @@ class AvancesEfectivos {
 
     async ingresarAvanceSolicitado(){
         await this.getAvanceSolicitadoSelector.click();
-        await this.getAvanceSolicitadoSelector.addValue(datosGenerales.monto);
+        await this.getAvanceSolicitadoSelector.addValue(datosGenerales.avance);
         await driver.hideKeyboard();
     }
 

@@ -20,6 +20,7 @@ export const datosGenerales = {
     numeroIdentificacion:   '1722146485',
     numeroSuministro:       '7190431',
     cvv:                    '123',
+    avance:                 '200',
 }
 
 // Selectores UIAutomator
