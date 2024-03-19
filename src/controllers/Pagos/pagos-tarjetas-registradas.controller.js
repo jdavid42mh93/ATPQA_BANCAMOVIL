@@ -2,7 +2,7 @@ import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import { pagosTarjetasRegistradasSelectores } from "../../constants/pagos/pagosTarjetasRegistradas";
-import { datosGenerales } from "../../constants/common";
+import { buttons, buttonsSelectores, datosGenerales, mensajes } from "../../constants/common";
 
 // Seccion de pagos de tarjetas registradas del usuario
 class PagosTarjetasRegistradas {
@@ -57,15 +57,24 @@ class PagosTarjetasRegistradas {
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
 
-            // Click en boton Finalizar
-            await CommonActions.clickBtnFinalizar();
+            if(CommonActions.mensajeError(mensajes.transaccionNoProcesada)){
+                await $(buttonsSelectores.button(buttons.Ok)).click();
+                // Editar registro en archivo data.txt
+                editEntry(files.data,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.active)]);
+            } else {
+                // Click en boton Finalizar
+                await CommonActions.clickBtnFinalizar();
 
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
-                [dataConditions.caseIs(elemento.case)],
-                [dataInstructions.assignStatus(dataStatus.active)]);
+                // Editar registro en archivo data.txt
+                editEntry(files.data,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.active)]);
+            }
         }catch(error){
             console.error('Error en ingresar datos en pagos de tarjetas registradas', error);
         }
