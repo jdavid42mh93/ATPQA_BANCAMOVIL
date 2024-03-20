@@ -61,6 +61,7 @@ export const buttons = {
     'CompartirComprobante': 'Compartir comprobante',
     'Cancelar':             'Cancel',
     'Cerrar':               'CERRAR',
+    'CONTINUAR':            'CONTINUAR',
     'Ok':                   'Ok',
 }
 
@@ -68,6 +69,7 @@ export const commonsSelectores = {
     'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
     'cuentaDebito':                   `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
     'cuentaDebitoOpcion':   (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
+    'codigoVerificacion':             `${editTextClass}`
 }
 
 export const mensajes = {

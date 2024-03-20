@@ -1,4 +1,4 @@
-import { checkedTextViewClass, textViewClass, scrollViewClass, editTextClass } from "../common";
+import { checkedTextViewClass, textViewClass, scrollViewClass } from "../common";
 
 export const transferenciaEventualesSelectores = {
     'insitucionBancaria':       `${textViewClass}[@text="BANCO INTERNACIONAL"]`,
@@ -10,7 +10,6 @@ export const transferenciaEventualesSelectores = {
     'correoElectronico':        `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[6]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'descripcion':              `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[7]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
     'monto':                    `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[8]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
-    'codigoVerificacion':       `${editTextClass}`
 };
 
 export const institucionBancariaSelectores = {
