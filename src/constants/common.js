@@ -10,6 +10,8 @@ export const textViewClass =           `${androidWidgetSelector}TextView`;
 export const checkedTextViewClass =    `${androidWidgetSelector}CheckedTextView`;
 export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
+export const compoundButtonClass =     `${androidWidgetSelector}CompoundButton`;
+export const switchClass =             `${androidWidgetSelector}Switch`;
 
 export const datosGenerales = {
     monto:                  '10',
@@ -18,6 +20,7 @@ export const datosGenerales = {
     numeroIdentificacion:   '1722146485',
     numeroSuministro:       '7190431',
     cvv:                    '123',
+    avance:                 '200',
 }
 
 // Selectores UIAutomator
@@ -75,6 +78,7 @@ export const mensajes = {
     'pagoListo':                    '¡Tu pago está listo!',
     'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
     'transaccionNoProcesada':       'Transacción no procesada, por favor intenta más tarde (6097)',
+    'transaccionInvalida':          'Transacción inválida, valor de avance mayor al cupo disponible',
 }
 
 export const opcionesMenuLateral = {
@@ -82,7 +86,8 @@ export const opcionesMenuLateral = {
 }
 
 export const opciones = {
-    'Pagos':            'Pagos',
-    'Transferencias':   'Transferencias',
-    'Resumen':          'Resumen',
+    'Pagos':                'Pagos',
+    'Transferencias':       'Transferencias',
+    'Resumen':              'Resumen',
+    'AvanceEfectivo':       'Avance en Efectivo',
 }

@@ -4,6 +4,7 @@ import LoginScreen from "./LoginScreen";
 import PosicionConsolidadaScreen from "./PosConsolidada/PosicionConsolidadaScreen";
 import PagosScreen from "./Pagos/PagosScreen";
 import CertificadosScreen from "./Certificados/CertificadosScreen";
+import AvancesNavigation from "./Avances/AvancesNavigation";
 
 // Clase: Navigacion entre el menu
 class MenuNavigation{
@@ -55,6 +56,14 @@ class MenuNavigation{
             await CertificadosScreen.certificateSection();
         }catch(error){
             console.error('Error navegando a la seccion de certificados', error);
+        }
+    }
+
+    async navegarSeccionAvanceEfectivo(){
+        try{
+            await AvancesNavigation.seleccionarAvanceEfectivo();
+        }catch(error){
+            console.error('Error navegando a la seccion de avance en efectivo', error)
         }
     }
 

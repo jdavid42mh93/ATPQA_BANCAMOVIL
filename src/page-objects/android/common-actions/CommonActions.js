@@ -1,6 +1,7 @@
 import LoginScreen from "../navigation/LoginScreen";
 import LogoutScreen from "../navigation/LogoutScreen";
 import { buttons, buttonsSelectores, commonsSelectores, mensajes } from "../../../constants/common";
+import MenuNavigation from "../navigation/MenuNavigation";
 
 // Clase: contiene funciones para login, logout y omitir pin
 class CommonActions{
@@ -56,6 +57,11 @@ class CommonActions{
     async clickBtnCerrar(){
         await this.getBtnCerrarSelector.waitForDisplayed();
         await this.getBtnCerrarSelector.click();
+    }
+
+    async clickBtnToggleMenu(){
+        await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+        await MenuNavigation.getToogleMenuSelector.click();
     }
 
 // Funcion para obtener el selector de mensajes de error

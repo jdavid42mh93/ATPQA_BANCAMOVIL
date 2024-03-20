@@ -1,6 +1,5 @@
 import { logoutSelectors } from "../../../constants/common";
-import MenuNavigation from "./MenuNavigation";
-
+import CommonActions from "../common-actions/CommonActions";
 
 // Seccion Logout Screen
 class LogoutScreen{
@@ -9,8 +8,7 @@ class LogoutScreen{
     }
 
     async logout(){
-        await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-        await MenuNavigation.getToogleMenuSelector.click();
+        await CommonActions.clickBtnToggleMenu();
         await this.getBtnSalirSelector.click();
     }
 }
