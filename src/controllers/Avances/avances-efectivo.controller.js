@@ -1,5 +1,5 @@
 import { dataConditions, dataInstructions, dataStatus, files } from "../../constants/_data_generation";
-import { avancesSelectores, beneficiarioOpcion, labels } from "../../constants/avances/avancesSelectores";
+import { avancesSelectores, beneficiarioOpcion, cuentaEventual, labels } from "../../constants/avances/avancesSelectores";
 import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { tarjetas } from "../../constants/pagos/pagosMisTarjetas";
 import { formaPago, pagosSelectors } from "../../constants/pagos/pagosSelectores";
@@ -46,6 +46,27 @@ class AvancesEfectivos {
         return $(avancesSelectores.cuentaRegistrada);
     }
 
+// Funciones para obtener los selectores de la opcion e cuenta eventual
+    get getNumeroCuentaBeneficiarioSelector(){
+        return $(cuentaEventual.numeroCuentaBeneficiaria);
+    }
+
+    get getTipoCuentaSelector() {
+        return $(cuentaEventual.tipoCuenta);
+    }
+
+    get getNombreBeneficiarioSelector(){
+        return $(cuentaEventual.nombreBeneficiario);
+    }
+
+    get getTipoIdentificacionSelector(){
+        return $(cuentaEventual.tipoIdentificacion);
+    }
+
+    get getNumeroIdentificacionSelector(){
+        return $(cuentaEventual.numeroIdentificacion);
+    }
+
     async seleccionarFormaPago(formaPago){
         await $(pagosSelectors.formaPagoOpcion(formaPago)).waitForDisplayed();
         await $(pagosSelectors.formaPagoOpcion(formaPago)).click();
@@ -72,6 +93,43 @@ class AvancesEfectivos {
 
     }
 
+    async seleccionarCuentaEventual(elemento){
+        // Seleccionar institucion bancaria
+        await transferenciaEventualesController.getInstitucionBancariaSelector.waitForDisplayed();
+        await transferenciaEventualesController.getInstitucionBancariaSelector.click();
+        // Seleccionar institucion bancaria opcion
+        await transferenciaEventualesController.seleccionarInstitucionBancaria(elemento.institucion_bancaria);
+        await $(UIAutomatorSelectores.scrollTextIntoView(labels.Condiciones));
+
+        // Ingresear numero de cuenta del beneficiario
+        await this.getNumeroCuentaBeneficiarioSelector.doubleClick();
+        await this.getNumeroCuentaBeneficiarioSelector.addValue(elemento.numero_cuenta_beneficiario)
+
+        // Seleccionar tipo de cuenta
+        await this.getTipoCuentaSelector.doubleClick();
+
+        // Seleccionar opcion de tipo de cuenta
+        await transferenciaEventualesController.seleccionarTipoCuenta(elemento.tipo_cuenta);
+
+        // Ingresar nombre beneficiario
+        await this.getNombreBeneficiarioSelector.doubleClick();
+        await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario);
+
+        // Seleccionar tipo de identificacion
+        await this.getTipoIdentificacionSelector.waitForDisplayed();
+        await this.getTipoIdentificacionSelector.doubleClick();
+        // Seleccionar opcion de tipo de identificacion
+        await transferenciaEventualesController.seleccionarTipoDocumento(elemento.tipo_documento);
+
+        // Ingresar numero de identificacion
+        await this.getNumeroIdentificacionSelector.doubleClick();
+        await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identificacion);
+        await driver.hideKeyboard();
+
+        // Ingresar descripcion del avance en efectivo
+        await this.ingresarDescripcionAvance();
+    }
+
     async seleccionarCuentaDeBeneficiario(tipoBeneficiario, elemento){
         switch (tipoBeneficiario) {
             case beneficiarioOpcion.MisCuentas:
@@ -94,7 +152,7 @@ class AvancesEfectivos {
                 break;
             case beneficiarioOpcion.Eventual:
                 // Seleccionar cuenta beneficiaria
-                await transferenciaEventualesController.transferenciaEventualForm(elemento);
+                await this.seleccionarCuentaEventual(elemento);
                 break;
             default:
                 break;

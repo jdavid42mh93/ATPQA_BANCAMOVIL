@@ -24,4 +24,14 @@ export const beneficiarioOpcion = {
 export const labels = {
     'Selecciona':           'Selecciona',
     'DescripcionAvance':    'Descripción del Avance',
+    'Condiciones':          'Condiciones de Avance en Efectivo'
+}
+
+export const cuentaEventual = {
+    'numeroCuentaBeneficiaria': `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
+    'tipoCuenta':               `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[3]/android.widget.TextView[1]`,
+    'nombreBeneficiario':       `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[4]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
+    'tipoIdentificacion':       `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[5]/android.widget.TextView[1]`,
+    'numeroIdentificacion':     `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[6]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
+    'descripcionAvance':        `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[8]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
 }

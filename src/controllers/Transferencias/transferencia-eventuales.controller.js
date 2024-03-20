@@ -93,7 +93,7 @@ class TransferenciaEventual {
             await this.getTipoCuentaSelector.waitForDisplayed();
             await this.getTipoCuentaSelector.click();
             // Seleccionar opcion de tipo de cuenta
-            await this.seleccionarTipoCuenta(elemento.tipo_cuenta)
+            await this.seleccionarTipoCuenta(elemento.tipo_cuenta);
             
             // Seleccionar tipo de identificacion
             await this.getTipoIdentificacionSelector.waitForDisplayed();
@@ -107,7 +107,7 @@ class TransferenciaEventual {
             await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identificacion);
             
             // Ingresar nombre beneficiario
-            await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario)
+            await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario);
             
             // Ingresa Monto y Descripcion
             this.ingresarDescripcion();
