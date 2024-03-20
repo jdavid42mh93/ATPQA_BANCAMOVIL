@@ -67,32 +67,37 @@ class AvancesEfectivos {
         return $(cuentaEventual.numeroIdentificacion);
     }
 
+// Funcion para seleccionar una forma de pago
     async seleccionarFormaPago(formaPago){
         await $(pagosSelectors.formaPagoOpcion(formaPago)).waitForDisplayed();
         await $(pagosSelectors.formaPagoOpcion(formaPago)).click();
     }
 
+// Funcion para seleccionar un numero de tarjeta
     async seleccionarNumeroTarjeta(numeroTarjeta){
         await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
         await $(tarjetas.tarjetaOpcion(numeroTarjeta)).click();
     }
 
+// Funcion para seleccionar un numero de meses plazo
     async seleccionarPlazo(plazoOpcion){
         await $(avancesSelectores.plazoOpcion(plazoOpcion)).waitForDisplayed();
         await $(avancesSelectores.plazoOpcion(plazoOpcion)).click();
     }
 
+// Funcion para seleccionar un beneficiario
     async seleccionarBeneficiario(beneficiario) {
         await $(avancesSelectores.seleccionarBeneficiario(beneficiario)).waitForDisplayed();
         await $(avancesSelectores.seleccionarBeneficiario(beneficiario)).click();
     }
 
+// Funcion para seleccionar una cuenta beneficiaria
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
         await $(avancesSelectores.cuentaBeneficiarioOpcion(cuentaBeneficiaria)).waitForDisplayed();
         await $(avancesSelectores.cuentaBeneficiarioOpcion(cuentaBeneficiaria)).click();
-
     }
 
+// Funcion para ingresar los datos de una cuenta eventual en avance en efectivo
     async seleccionarCuentaEventual(elemento){
         // Seleccionar institucion bancaria
         await transferenciaEventualesController.getInstitucionBancariaSelector.waitForDisplayed();
@@ -130,6 +135,7 @@ class AvancesEfectivos {
         await this.ingresarDescripcionAvance();
     }
 
+// Funcion para seleccionar un tipo de beneficiario dependiendo del archivo data.txt
     async seleccionarCuentaDeBeneficiario(tipoBeneficiario, elemento){
         switch (tipoBeneficiario) {
             case beneficiarioOpcion.MisCuentas:
@@ -159,6 +165,7 @@ class AvancesEfectivos {
         }
     }
 
+// Funciones para ingresar descripcion, cvv y monto del avance
     async ingresarDescripcionAvance(){
         await this.getDescripcionAvanceSelector.doubleClick();
         await this.getDescripcionAvanceSelector.addValue(datosGenerales.descripcion);
@@ -177,6 +184,7 @@ class AvancesEfectivos {
         await driver.hideKeyboard();
     }
 
+// Funcion para ingresar datos en el formulario de avance en efectivo
     async avanceEfectivoForm(elemento){
         try{
             // Seleccionar tarjeta de credito
@@ -218,7 +226,13 @@ class AvancesEfectivos {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             // Click en boton Continuar
-            // await CommonActions.clickBtnContinuar();
+            await CommonActions.clickBtnContinuar();
+
+            // Ingresar codigo de confirmacion
+            await CommonActions.ingresarCodigoVerificacion();
+
+            // Click en boton Continuar
+            await CommonActions.clickBtnCONTINUAR();
 
             // Click en boton Finalizar
             // await CommonActions.clickBtnFinalizar();

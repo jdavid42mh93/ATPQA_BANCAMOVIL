@@ -3,7 +3,8 @@ import { createBasePath } from "../helpers/fileEditor.helper";
 const basePath = createBasePath();
 
 export const files = {
-  'data':   `${basePath}data.txt`,
+  'data':             `${basePath}data.txt`,
+  'codigoSeguridad':  `${basePath}codigoSeguridad.txt`
 };
 
 export const dataConditions = {
