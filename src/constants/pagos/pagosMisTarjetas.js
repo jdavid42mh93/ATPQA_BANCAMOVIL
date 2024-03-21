@@ -5,10 +5,6 @@ export const pagosMisTarjetasSelectores = {
     'monto':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[1]/android.view.ViewGroup[7]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
 }
 
-export const constMisTarjetas = {
-    'monto':    'Monto a Pagar',
-}
-
 export const tarjetas = {
     'tarjetaOpcion': (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
 }

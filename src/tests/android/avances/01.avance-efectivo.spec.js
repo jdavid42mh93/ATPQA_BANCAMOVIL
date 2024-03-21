@@ -7,7 +7,7 @@ import MenuNavigation from "../../../page-objects/android/navigation/MenuNavigat
 // Test de seccion de Avances en efectivo
 describe('Generacion de Avances', () => {
     it('Generacion de Avances en Efectivo', async() => {
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.avances),dataConditions.subtypeIs(dataSubtypes.Efectivo), dataConditions.statusIs(dataStatus.pending)]);
+        const data = searchEntry(files.avances, [dataConditions.typeIs(dataTypes.avances),dataConditions.subtypeIs(dataSubtypes.Efectivo), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
         for (let i=0; i < data.length; i++){

@@ -1,8 +1,8 @@
 import { transferenciaAlExteriorSelectores, 
     cuentasBeneficiariasOpcionSelectores, 
     motivoEconomicoOpcionSelectores, 
-    gastoExteriorOpcionSelectores, 
-    constTransferenciasAlExterior } from "../../constants/transferencia/transferenciaAlExterior";
+    gastoExteriorOpcionSelectores,
+    labels} from "../../constants/transferencia/transferenciaAlExterior";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { UIAutomatorSelectores } from "../../constants/common";
 import { editEntry } from "../../helpers/fileEditor.helper";
@@ -12,8 +12,8 @@ import CommonActions from "../../page-objects/android/common-actions/CommonActio
 // Seccion de transferencias al exterior
 class TransferenciaExterior {
 // Funciones para obtener los selectores
-    get getSeleccionarBeneficiarioSelector() {
-        return $(transferenciaAlExteriorSelectores.cuentaBeneficiariaExterior);
+    get getBeneficiarioSelector() {
+        return $(transferenciaAlExteriorSelectores.beneficiario);
     }
 
     get getMontoSelector() {
@@ -56,12 +56,12 @@ class TransferenciaExterior {
     async transferenciaAlExteriorForm(elemento){
         try{
             // Seleccionar cuenta beneficiaria
-            await this.getSeleccionarBeneficiarioSelector.waitForDisplayed({timeout:30000});
-            await this.getSeleccionarBeneficiarioSelector.click();
+            await this.getBeneficiarioSelector.waitForDisplayed({timeout:30000});
+            await this.getBeneficiarioSelector.click();
             // Seleccionar cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario)
 
-            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferenciasAlExterior.MotivoEconomico)).click();   // Scroll hasta encontrar Motivo Economico
+            await $(UIAutomatorSelectores.scrollTextIntoView(labels.MotivoEconomico)).click();   // Scroll hasta encontrar Motivo Economico
                         
             // Obtener motivo economico
             await this.seleccionarMotivoEconomico(elemento.motivo_economico);
@@ -77,13 +77,21 @@ class TransferenciaExterior {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             // Click en boton Continuar
-            await CommonActions.clickBtnContinuar();
+            // await CommonActions.clickBtnContinuar();
 
-            // Click en boton Cerrar
-            await CommonActions.clickBtnCerrar();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
+
+            // Click en boton CONTINUAR
+            // await CommonActions.clickBtnCONTINUAR();
+
+            // Click en boton Finalizar
+            // await CommonActions.clickBtnFinalizar();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
 
             // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

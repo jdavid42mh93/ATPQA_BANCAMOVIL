@@ -11,7 +11,7 @@ import transferenciaController from "../../../../controllers/Transferencias/tran
 // Test de seccion de Transferencias y Transferencias Al Exterior
 describe('Generacion de Transferencias',() =>{
     it('Generacion de Transferencias Al Exterior', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior), dataConditions.statusIs(dataStatus.pending)]);
+        const data = searchEntry(files.transferencias, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.AlExterior), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
         for (let i=0; i < data.length; i++){

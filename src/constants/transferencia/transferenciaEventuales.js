@@ -24,22 +24,6 @@ export const tipoDocumentoOpcionSelectores = {
     'tipoDocumentoOpcion':    (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,   
 };
 
-export const bancos = {
-    'bancoAmazonas':        'BANCO AMAZONAS',
-    'bancoAustro':          'BANCO DEL AUSTRO',
-    'bancoGuayaquil':       'BANCO DE GUAYAQUIL',
-    'bancoBolivariano':     'BANCO BOLIVARIANO',
-    'bancoManabi':          'BANCO COMERCIAL DE MANABÍ',
-    'bancoLitoral':         'BANCO DEL LITORAL',
-    'bancoRuminahui':       'BANCO RUMIÑAHUI',
-    'bancoLoja':            'BANCO DE LOJA',
-    'bancoMachala':         'BANCO DE MACHALA',
-    'bancoPacifico':        'BANCO DEL PACIFICO',
-    'bancoPichincha':       'BANCO PICHINCHA',
-    'produbanco':           'PRODUBANCO-PROMERICA',
-    'bancoSolidario':       'BANCO SOLIDARIO',
-};
-
 export const tipoCuenta = {
     'cuentaCorriente':  'CUENTA CORRIENTE',
     'cuentaAhorros':    'CUENTA DE AHORROS',  

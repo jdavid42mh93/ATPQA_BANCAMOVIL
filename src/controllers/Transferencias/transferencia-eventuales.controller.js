@@ -116,13 +116,18 @@ class TransferenciaEventual {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             // Click en boton Continuar
-            await CommonActions.clickBtnContinuar();
+            // await CommonActions.clickBtnContinuar();
             
-            // Click en boton Cerrar
-            await CommonActions.clickBtnCerrar();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
+
+            // Click en boton Continuar
+            // await CommonActions.clickBtnCONTINUAR();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
 
             // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

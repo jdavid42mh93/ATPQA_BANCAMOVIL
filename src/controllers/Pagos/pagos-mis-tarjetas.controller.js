@@ -1,7 +1,7 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { pagosMisTarjetasSelectores, tarjetas } from "../../constants/pagos/pagosMisTarjetas";
-import { datosGenerales } from "../../constants/common";
+import { buttons, buttonsSelectores, datosGenerales, mensajes } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de pagos de tarjetas propias del usuario
@@ -48,13 +48,21 @@ class PagosMisTarjetas {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
 
-            // Click en boton Finalizar
-            await CommonActions.clickBtnFinalizar();
-    
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            if(CommonActions.mensajeError(mensajes.transaccionNoProcesada)){
+                await $(buttonsSelectores.button(buttons.Ok)).click();
+                // Editar registro en archivo data.txt
+                editEntry(files.pagos,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.canceled)]);
+            } else {
+                // Click en boton Finalizar
+                await CommonActions.clickBtnFinalizar();
+
+                // Editar registro en archivo data.txt
+                editEntry(files.pagos,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);
+            }
         }catch(error){
             console.error('Error en ingresar datos en pagos de mis tarjetas', error);
         }

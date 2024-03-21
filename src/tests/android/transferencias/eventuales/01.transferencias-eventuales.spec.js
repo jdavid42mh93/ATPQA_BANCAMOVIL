@@ -11,7 +11,7 @@ import transferenciaController from "../../../../controllers/Transferencias/tran
 // Test de seccion de Transferencias y Transferencias Eventuales
 describe('Generacion de Transferencias',() =>{
     it('Generacion de Transferencias Eventuales', async()=>{
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Eventuales), dataConditions.statusIs(dataStatus.pending)]);
+        const data = searchEntry(files.transferencias, [dataConditions.typeIs(dataTypes.transferencias),dataConditions.subtypeIs(dataSubtypes.Eventuales), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
         for (let i=0; i < data.length; i++){

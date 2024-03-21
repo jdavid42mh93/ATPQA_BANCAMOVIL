@@ -4,7 +4,10 @@ const basePath = createBasePath();
 
 export const files = {
   'data':             `${basePath}data.txt`,
-  'codigoSeguridad':  `${basePath}codigoSeguridad.txt`
+  'codigoSeguridad':  `${basePath}codigoSeguridad.txt`,
+  'transferencias':   `${basePath}transferencias.txt`,
+  'pagos':            `${basePath}pagos.txt`,
+  'avances':          `${basePath}avances.txt`,
 };
 
 export const dataConditions = {
