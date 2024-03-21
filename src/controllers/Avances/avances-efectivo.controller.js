@@ -226,19 +226,19 @@ class AvancesEfectivos {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             // Click en boton Continuar
-            await CommonActions.clickBtnContinuar();
+            // await CommonActions.clickBtnContinuar();
 
-            // Ingresar codigo de confirmacion
-            await CommonActions.ingresarCodigoVerificacion();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
 
             // Click en boton Continuar
-            await CommonActions.clickBtnCONTINUAR();
+            // await CommonActions.clickBtnCONTINUAR();
 
             // Click en boton Finalizar
             // await CommonActions.clickBtnFinalizar();
     
             // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.avances,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

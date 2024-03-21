@@ -63,15 +63,15 @@ class PagosTarjetasRegistradas {
             if(CommonActions.mensajeError(mensajes.transaccionNoProcesada)){
                 await $(buttonsSelectores.button(buttons.Ok)).click();
                 // Editar registro en archivo data.txt
-                editEntry(files.data,    
+                editEntry(files.pagos,    
                     [dataConditions.caseIs(elemento.case)],
-                    [dataInstructions.assignStatus(dataStatus.active)]);
+                    [dataInstructions.assignStatus(dataStatus.canceled)]);
             } else {
                 // Click en boton Finalizar
                 await CommonActions.clickBtnFinalizar();
 
                 // Editar registro en archivo data.txt
-                editEntry(files.data,    
+                editEntry(files.pagos,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);
             }

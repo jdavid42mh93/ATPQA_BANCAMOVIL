@@ -1,1 +1,7 @@
-{"descripcion":"ATP TEST","monto":"1"}
+{"case":"4","status":"active","msg":"","orderStatus":"","type":"Transferencias","subtype":"Eventuales","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"1052458576","institucion_bancaria":"BANCO DEL PACIFICO","tipo_documento":"CEDULA","tipo_cuenta":"CUENTA DE AHORROS","numero_identificacion":"1722146485"}
+{"case":"5","status":"canceled","msg":"","orderStatus":"","type":"Transferencias","subtype":"Entre Mis Cuentas","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"110609286-CUENTA CORRIENTE"}
+{"case":"6","status":"active","msg":"","orderStatus":"","type":"Transferencias","subtype":"Entre Mis Cuentas","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"420818482-CUENTA DE AHORRO PROGRAMADO"}
+{"case":"7","status":"active","msg":"","orderStatus":"","type":"Transferencias","subtype":"Registradas","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"CONTIFICO"}
+{"case":"8","status":"active","msg":"","orderStatus":"","type":"Transferencias","subtype":"Al Exterior","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"THIRDB","motivo_economico":"110 - ANTICIPOS POR IMPORTACIONES","gastos_del_exterior":"N - OUR"}
+{"case":"9","status":"active","msg":"","orderStatus":"","type":"Transferencias","subtype":"Entre Mis Cuentas","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"630709065-CUENTA DE AHORROS"}
+{"case":"10","status":"canceled","msg":"","orderStatus":"","type":"Transferencias","subtype":"Entre Mis Cuentas","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"110609286-CUENTA CORRIENTE"}

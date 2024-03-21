@@ -1,8 +1,8 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
-import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
-import { UIAutomatorSelectores, datosGenerales, opciones } from "../../constants/common";
+// import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
+import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { pagosTarjetasEventualesSelectores } from "../../constants/pagos/pagosTarjetasEventuales";
 
 // Seccion de pagos de tarjetas eventuales del usuario
@@ -105,21 +105,26 @@ class PagosTarjetasEventuales {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
             // Click en boton Continuar
-            await CommonActions.clickBtnContinuar();
+            // await CommonActions.clickBtnContinuar();
 
-            // Click en boton Cerrar
-            await CommonActions.clickBtnCerrar();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
+
+            // Click en boton Continuar
+            // await CommonActions.clickBtnCONTINUAR();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
             
             // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.pagos,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
 
-            // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
-            await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-            await MenuNavigation.getToogleMenuSelector.click();
-            // Seleccionar opcion de menu lateral
-            await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
+            // // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
+            // await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+            // await MenuNavigation.getToogleMenuSelector.click();
+            // // Seleccionar opcion de menu lateral
+            // await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
         }catch(error){
             console.error('Error en ingresar datos en pagos de tarjetas eventuales', error);
         }

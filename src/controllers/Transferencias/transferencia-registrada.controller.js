@@ -72,7 +72,7 @@ class TransferenciaRegistrada {
             await CommonActions.clickBtnFinalizar();
 
             // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

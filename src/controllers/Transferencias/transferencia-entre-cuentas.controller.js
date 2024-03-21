@@ -47,7 +47,7 @@ class TransferenciaEntreMisCuentas {
                 await $(buttonsSelectores.button(buttons.Ok)).click();
 
                 // Editar registro en archivo data.txt
-                editEntry(files.data,    
+                editEntry(files.transferencias,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.canceled)]);
             } else {
@@ -59,7 +59,7 @@ class TransferenciaEntreMisCuentas {
                 await CommonActions.clickBtnFinalizar();
 
                 // Editar registro en archivo data.txt
-                editEntry(files.data,    
+                editEntry(files.transferencias,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);
             }

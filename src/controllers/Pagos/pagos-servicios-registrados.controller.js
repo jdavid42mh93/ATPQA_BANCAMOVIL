@@ -51,7 +51,7 @@ class PagosServiciosRegistrados {
             await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
 
            // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            editEntry(files.pagos,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){
