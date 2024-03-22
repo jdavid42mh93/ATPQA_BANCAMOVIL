@@ -71,7 +71,7 @@ class TransferenciaRegistrada {
             // Click en boton Finalizar
             await CommonActions.clickBtnFinalizar();
 
-            // Editar registro en archivo data.txt
+            // Editar registro en archivo transferencias.txt
             editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);

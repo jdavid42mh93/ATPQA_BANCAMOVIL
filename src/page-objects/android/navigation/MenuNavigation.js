@@ -5,6 +5,7 @@ import PosicionConsolidadaScreen from "./PosConsolidada/PosicionConsolidadaScree
 import PagosScreen from "./Pagos/PagosScreen";
 import CertificadosScreen from "./Certificados/CertificadosScreen";
 import AvancesNavigation from "./Avances/AvancesNavigation";
+import RecargasNavigation from "./Recargas/RecargasNavigation";
 
 // Clase: Navigacion entre el menu
 class MenuNavigation{
@@ -64,6 +65,14 @@ class MenuNavigation{
             await AvancesNavigation.seleccionarAvanceEfectivo();
         }catch(error){
             console.error('Error navegando a la seccion de avance en efectivo', error)
+        }
+    }
+
+    async navegarSeccionRecargaElectronica(){
+        try{
+            await RecargasNavigation.seleccionarRecargasElectronicas();
+        }catch(error){
+            console.error('Error navegando a la seccion de recargas electronicas', error)
         }
     }
 

@@ -70,7 +70,7 @@ class PagosTarjetasRegistradas {
                 // Click en boton Finalizar
                 await CommonActions.clickBtnFinalizar();
 
-                // Editar registro en archivo data.txt
+                // Editar registro en archivo pagos.txt
                 editEntry(files.pagos,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);

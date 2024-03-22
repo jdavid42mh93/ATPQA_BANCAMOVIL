@@ -1,0 +1,6 @@
+{"case":"4","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"CLARO","opcion_pago":"DÉBITO CUENTA","valor_recarga":"3.00","cuenta_debito":"110609286-CUENTA CORRIENTE"}
+{"case":"5","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"MOVISTAR","opcion_pago":"DÉBITO CUENTA","valor_recarga":"5.00","cuenta_debito":"110609286-CUENTA CORRIENTE"}
+{"case":"6","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"CNT","opcion_pago":"DÉBITO CUENTA","valor_recarga":"10.00","cuenta_debito":"630709065-CUENTA DE AHORROS"}
+{"case":"7","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"RECARGA TUENTI","opcion_pago":"DÉBITO CUENTA","valor_recarga":"20.00","cuenta_debito":"630709065-CUENTA DE AHORROS"}
+{"case":"8","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"RECARGAS GOLTV","opcion_pago":"DÉBITO CUENTA","valor_recarga":"30.00","cuenta_debito":"638031091-CUENTA DE AHORROS"}
+{"case":"9","status":"active","msg":"","orderStatus":"","type":"Recargas","subtype":"RECARGAS","servicio":"RECARGAS CNT PAQUETE","opcion_pago":"DÉBITO CUENTA","valor_recarga":"3.00","cuenta_debito":"638031091-CUENTA DE AHORROS"}

@@ -8,6 +8,7 @@ export const files = {
   'transferencias':   `${basePath}transferencias.txt`,
   'pagos':            `${basePath}pagos.txt`,
   'avances':          `${basePath}avances.txt`,
+  'recargas':         `${basePath}recargas.txt`,
 };
 
 export const dataConditions = {
@@ -20,7 +21,8 @@ export const dataConditions = {
 export const dataTypes = {
   'transferencias': 'Transferencias',
   'pagos':          'Pagos',
-  'avances':        'Avances'
+  'avances':        'Avances',
+  'recargas':       'Recargas',
 };
 
 export const dataSubtypes = {

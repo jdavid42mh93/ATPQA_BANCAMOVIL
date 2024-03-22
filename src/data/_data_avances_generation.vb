@@ -39,7 +39,7 @@ Private Sub CommandButton1_Click()
         
         
         If (strTipo <> "") Then
-              strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
+            strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
             Select Case strTipo
                     Case "Avances"
                         strLinea = strLinea & ",""type"":""Avances"""
@@ -103,54 +103,54 @@ Private Sub CommandButton1_Click()
                                         End If
                                         
                                     Case "Eventual"
-                                    strLinea = strLinea & " ,""tipo_beneficiario"": """ & strTipoBeneficiario & """"
+                                        strLinea = strLinea & " ,""tipo_beneficiario"": """ & strTipoBeneficiario & """"
+                                        
+                                        If (strCuentaBeneficiario <> "") Then
+                                        strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
+                                        Else
+                                            MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
+                                            Exit Sub
+                                        End If
+                                        
+                                        If (strNumeroTarjeta <> "") Then
+                                        strLinea = strLinea & " ,""numero_tarjeta"": """ & strNumeroTarjeta & """"
+                                        Else
+                                            MsgBox "Campo -Numero de Tarjeta- se encuentra vacio."
+                                        End If
                                     
-                                    If (strCuentaBeneficiario <> "") Then
-                                    strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
-                                    Else
-                                        MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
-                                        Exit Sub
-                                    End If
+                                        If (strFormaPago <> "") Then
+                                        strLinea = strLinea & " ,""forma_pago"": """ & strFormaPago & """"
+                                        Else
+                                            MsgBox "Campo -Forma de Pago- se encuentra vacio."
+                                        End If
+                                        
+                                        If (strMesesPlazo <> "") Then
+                                            strLinea = strLinea & " ,""meses_plazo"": """ & strMesesPlazo & """"
+                                        End If
+                                        
+                                        If (strInstitucionBancaria <> "") Then
+                                            strLinea = strLinea & " ,""institucion_bancaria"": """ & strInstitucionBancaria & """"
+                                        Else
+                                            MsgBox "Campo -Institucion Bancaria- se encuentra vacio."
+                                        End If
                                     
-                                    If (strNumeroTarjeta <> "") Then
-                                    strLinea = strLinea & " ,""numero_tarjeta"": """ & strNumeroTarjeta & """"
-                                    Else
-                                        MsgBox "Campo -Numero de Tarjeta- se encuentra vacio."
-                                    End If
-                                    
-                                    If (strFormaPago <> "") Then
-                                    strLinea = strLinea & " ,""forma_pago"": """ & strFormaPago & """"
-                                    Else
-                                        MsgBox "Campo -Forma de Pago- se encuentra vacio."
-                                    End If
-                                    
-                                    If (strMesesPlazo <> "") Then
-                                        strLinea = strLinea & " ,""meses_plazo"": """ & strMesesPlazo & """"
-                                    End If
-                                    
-                                    If (strInstitucionBancaria <> "") Then
-                                        strLinea = strLinea & " ,""institucion_bancaria"": """ & strInstitucionBancaria & """"
-                                    Else
-                                        MsgBox "Campo -Institucion Bancaria- se encuentra vacio."
-                                    End If
-                                    
-                                    If (strTipoDocumento <> "") Then
-                                        strLinea = strLinea & " ,""tipo_documento"": """ & strTipoDocumento & """"
-                                    Else
-                                        MsgBox "Campo -Tipo de Documento- se encuentra vacio."
-                                    End If
-                                    
-                                    If (strTipoCuenta <> "") Then
-                                        strLinea = strLinea & " ,""tipo_cuenta"": """ & strTipoCuenta & """"
-                                    Else
-                                        MsgBox "Campo -Tipo de Cuenta- se encuentra vacio."
-                                    End If
-                                    
-                                    If (strNumeroIdentificacion <> "") Then
-                                        strLinea = strLinea & " ,""numero_identificacion"": """ & strNumeroIdentificacion & """"
-                                    Else
-                                        MsgBox "Campo -Numero de Identificacion- se encuentra vacio."
-                                    End If
+                                        If (strTipoDocumento <> "") Then
+                                            strLinea = strLinea & " ,""tipo_documento"": """ & strTipoDocumento & """"
+                                        Else
+                                            MsgBox "Campo -Tipo de Documento- se encuentra vacio."
+                                        End If
+                                        
+                                        If (strTipoCuenta <> "") Then
+                                            strLinea = strLinea & " ,""tipo_cuenta"": """ & strTipoCuenta & """"
+                                        Else
+                                            MsgBox "Campo -Tipo de Cuenta- se encuentra vacio."
+                                        End If
+                                        
+                                        If (strNumeroIdentificacion <> "") Then
+                                            strLinea = strLinea & " ,""numero_identificacion"": """ & strNumeroIdentificacion & """"
+                                        Else
+                                            MsgBox "Campo -Numero de Identificacion- se encuentra vacio."
+                                        End If
                                 End Select
                         End Select
             End Select

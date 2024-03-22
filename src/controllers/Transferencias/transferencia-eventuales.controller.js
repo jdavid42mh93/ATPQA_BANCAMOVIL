@@ -126,7 +126,7 @@ class TransferenciaEventual {
             // // Click en boton Cerrar
             // await CommonActions.clickBtnCerrar();
 
-            // Editar registro en archivo data.txt
+            // Editar registro en archivo transferencias.txt
             editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
