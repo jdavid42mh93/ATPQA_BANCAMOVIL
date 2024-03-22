@@ -87,7 +87,7 @@ class CommonActions{
     }
 
     async clickBtnToggleMenu(){
-        await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+        await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 30000});
         await MenuNavigation.getToogleMenuSelector.click();
     }
 

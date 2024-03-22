@@ -21,6 +21,7 @@ export const datosGenerales = {
     numeroSuministro:       '7190431',
     cvv:                    '123',
     avance:                 '200',
+    numeroCelular:          '0987033304',
 }
 
 // Selectores UIAutomator
@@ -92,4 +93,5 @@ export const opciones = {
     'Transferencias':       'Transferencias',
     'Resumen':              'Resumen',
     'AvanceEfectivo':       'Avance en Efectivo',
+    'RecargasElectronicas': 'Recargas Electrónicas',
 }
