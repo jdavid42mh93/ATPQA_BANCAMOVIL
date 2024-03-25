@@ -21,6 +21,7 @@ export const transferenciaOpcion = {
     'registradas':          'Registradas',
     'eventuales':           'Eventuales',
     'alExterior':           'Al Exterior',
+    'otrasCuentas':         'Otras Cuentas',
 }
 
 export const mensajes = {

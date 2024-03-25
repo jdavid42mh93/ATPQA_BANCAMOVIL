@@ -6,6 +6,7 @@ import PagosScreen from "./Pagos/PagosScreen";
 import CertificadosScreen from "./Certificados/CertificadosScreen";
 import AvancesNavigation from "./Avances/AvancesNavigation";
 import RecargasNavigation from "./Recargas/RecargasNavigation";
+import BeneficiariosNavigation from "./Beneficiarios/BeneficiariosNavigation";
 
 // Clase: Navigacion entre el menu
 class MenuNavigation{
@@ -73,6 +74,14 @@ class MenuNavigation{
             await RecargasNavigation.seleccionarRecargasElectronicas();
         }catch(error){
             console.error('Error navegando a la seccion de recargas electronicas', error)
+        }
+    }
+
+    async navegarSeccionBeneficiarios(){
+        try{
+            await BeneficiariosNavigation.seleccionarBeneficiarios();
+        }catch(error){
+            console.error('Error navegando a la seccion de beneficiarios', error)
         }
     }
 

@@ -9,13 +9,15 @@ export const files = {
   'pagos':            `${basePath}pagos.txt`,
   'avances':          `${basePath}avances.txt`,
   'recargas':         `${basePath}recargas.txt`,
+  'beneficiarios':    `${basePath}beneficiarios.txt`,
 };
 
 export const dataConditions = {
-  'typeIs':       (data) => `.type === '${data}'`,
-  'subtypeIs':    (data) => `.subtype === '${data}'`,
-  'statusIs':     (data) => `.status === '${data}'`,
-  'caseIs':       (data) => `.case === '${data}'`, 
+  'typeIs':           (data) => `.type === '${data}'`,
+  'subtypeIs':        (data) => `.subtype === '${data}'`,
+  'statusIs':         (data) => `.status === '${data}'`,
+  'caseIs':           (data) => `.case === '${data}'`,
+  'transferTypeIs':   (data) => `.transfer_type === '${data}'`,
 };
 
 export const dataTypes = {
@@ -23,6 +25,7 @@ export const dataTypes = {
   'pagos':          'Pagos',
   'avances':        'Avances',
   'recargas':       'Recargas',
+  'beneficiarios':  'Beneficiarios'
 };
 
 export const dataSubtypes = {
@@ -35,7 +38,8 @@ export const dataSubtypes = {
   'MisTarjetas':          'Mis Tarjetas',
   'TarjetasRegistradas':  'Tarjetas Registradas',
   'TarjetasEventuales':   'Tarjetas Eventuales',
-  'Efectivo':             'Efectivo'
+  'Efectivo':             'Efectivo',
+  'OtrasCuentas':         'Otras Cuentas',
 };
 
 export const dataStatus = {
