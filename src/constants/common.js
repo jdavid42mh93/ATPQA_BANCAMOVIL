@@ -22,6 +22,7 @@ export const datosGenerales = {
     cvv:                    '123',
     avance:                 '200',
     numeroCelular:          '0987033304',
+    direccion:              'Santa Monica'
 }
 
 // Selectores UIAutomator
@@ -70,7 +71,9 @@ export const commonsSelectores = {
     'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
     'cuentaDebito':                   `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
     'cuentaDebitoOpcion':   (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
-    'codigoVerificacion':             `${editTextClass}`
+    'codigoVerificacion':             `${editTextClass}`,
+    'textOpcion':           (data) => `${textViewClass}[@text="${data}"]`,
+    'checkedOpcion':        (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,    
 }
 
 export const mensajes = {
@@ -82,6 +85,7 @@ export const mensajes = {
     'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
     'transaccionNoProcesada':       'Transacción no procesada, por favor intenta más tarde (6097)',
     'transaccionInvalida':          'Transacción inválida, valor de avance mayor al cupo disponible',
+    'error':                        'Al momento nuestros servicios no estan disponibles, por favor intentalo mas tarde'
 }
 
 export const opcionesMenuLateral = {
@@ -94,4 +98,5 @@ export const opciones = {
     'Resumen':              'Resumen',
     'AvanceEfectivo':       'Avance en Efectivo',
     'RecargasElectronicas': 'Recargas Electrónicas',
+    'Beneficiarios':        'Beneficiarios',
 }

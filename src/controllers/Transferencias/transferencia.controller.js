@@ -20,6 +20,9 @@ class TransferenciaOpciones{
         return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.alExterior));
     }
     
+    get getTransferenciaOtrasCuentasSelector(){
+        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.otrasCuentas));
+    }
 // Funciones para navegar entre las distintas opciones de transferencias
     async transferenciaEntreMisCuentasSeccion(){
         await this.getTransferenciaEntreMisCuentasSelector.waitUntil(async () => {
@@ -55,6 +58,15 @@ class TransferenciaOpciones{
             timeout:timeOut
         });
         await this.getTransferenciaAlExteriorSelector.click();
+    }
+
+    async transferenciaOtrasCuentasSeccion(){
+        await this.getTransferenciaOtrasCuentasSelector.waitUntil(async () => {
+            return (await this.getTransferenciaOtrasCuentasSelector).isDisplayed()
+        },{ 
+            timeout:timeOut
+        });
+        await this.getTransferenciaOtrasCuentasSelector.click();
     }
 }
 
