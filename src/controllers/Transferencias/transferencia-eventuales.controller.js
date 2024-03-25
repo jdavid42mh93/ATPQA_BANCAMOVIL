@@ -93,7 +93,7 @@ class TransferenciaEventual {
             await this.getTipoCuentaSelector.waitForDisplayed();
             await this.getTipoCuentaSelector.click();
             // Seleccionar opcion de tipo de cuenta
-            await this.seleccionarTipoCuenta(elemento.tipo_cuenta)
+            await this.seleccionarTipoCuenta(elemento.tipo_cuenta);
             
             // Seleccionar tipo de identificacion
             await this.getTipoIdentificacionSelector.waitForDisplayed();
@@ -107,7 +107,7 @@ class TransferenciaEventual {
             await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identificacion);
             
             // Ingresar nombre beneficiario
-            await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario)
+            await this.getNombreBeneficiarioSelector.addValue(datosGenerales.nombreBeneficiario);
             
             // Ingresa Monto y Descripcion
             this.ingresarDescripcion();
@@ -115,22 +115,19 @@ class TransferenciaEventual {
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
+            // await CommonActions.clickBtnContinuar();
             
-            // Click en boton Cerrar
-            await this.getBotonCerrarSelector.waitForDisplayed();
-            await this.getBotonCerrarSelector.click();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
 
-            // Click en boton Finalizar
-            // await CommonActions.getBtnFinalizarSelector.waitUntil(async () => {
-            //     return (await CommonActions.getBtnFinalizarSelector).isDisplayed();
-            // },{
-            //     timeout: 20000
-            // });
-            // await CommonActions.getBtnFinalizarSelector.click();
+            // Click en boton Continuar
+            // await CommonActions.clickBtnCONTINUAR();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
 
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            // Editar registro en archivo transferencias.txt
+            editEntry(files.transferencias,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

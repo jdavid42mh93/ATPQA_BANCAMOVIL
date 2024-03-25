@@ -2,8 +2,7 @@ import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import { pagosTarjetasRegistradasSelectores } from "../../constants/pagos/pagosTarjetasRegistradas";
-import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
-import { datosGenerales } from "../../constants/common";
+import { buttons, buttonsSelectores, datosGenerales, mensajes } from "../../constants/common";
 
 // Seccion de pagos de tarjetas registradas del usuario
 class PagosTarjetasRegistradas {
@@ -40,11 +39,11 @@ class PagosTarjetasRegistradas {
 // Funcion para ingresr los datos de la transferencia en el formulario
     async pagosTarjetasRegistradasForm(elemento){
         try{
-            // Seleccionar la cuenta de debito
-            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
-            await CommonsPagos.getCuentaDebitoSelector.click();
-            // Seleccionar la opcion de cuenta de debito
-            await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar cuenta de debito
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
+            await CommonActions.getCuentaDebitoSelector.click();
+            // Seleccionar cuenta de debito opcion
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
 
             // Ingresar Descripcion y Monto
             await this.ingresarMonto();
@@ -58,15 +57,24 @@ class PagosTarjetasRegistradas {
             
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
+            // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
 
-            // Click en boton Finalizar
-            await CommonActions.clickBtnFinalizar();
+            if(CommonActions.mensajeError(mensajes.transaccionNoProcesada)){
+                await $(buttonsSelectores.button(buttons.Ok)).click();
+                // Editar registro en archivo data.txt
+                editEntry(files.pagos,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.canceled)]);
+            } else {
+                // Click en boton Finalizar
+                await CommonActions.clickBtnFinalizar();
 
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
-                [dataConditions.caseIs(elemento.case)],
-                [dataInstructions.assignStatus(dataStatus.active)]);
+                // Editar registro en archivo pagos.txt
+                editEntry(files.pagos,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.active)]);
+            }
         }catch(error){
             console.error('Error en ingresar datos en pagos de tarjetas registradas', error);
         }

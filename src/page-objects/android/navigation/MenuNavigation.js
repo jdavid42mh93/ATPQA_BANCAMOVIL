@@ -4,6 +4,9 @@ import LoginScreen from "./LoginScreen";
 import PosicionConsolidadaScreen from "./PosConsolidada/PosicionConsolidadaScreen";
 import PagosScreen from "./Pagos/PagosScreen";
 import CertificadosScreen from "./Certificados/CertificadosScreen";
+import AvancesNavigation from "./Avances/AvancesNavigation";
+import RecargasNavigation from "./Recargas/RecargasNavigation";
+import BeneficiariosNavigation from "./Beneficiarios/BeneficiariosNavigation";
 
 // Clase: Navigacion entre el menu
 class MenuNavigation{
@@ -55,6 +58,30 @@ class MenuNavigation{
             await CertificadosScreen.certificateSection();
         }catch(error){
             console.error('Error navegando a la seccion de certificados', error);
+        }
+    }
+
+    async navegarSeccionAvanceEfectivo(){
+        try{
+            await AvancesNavigation.seleccionarAvanceEfectivo();
+        }catch(error){
+            console.error('Error navegando a la seccion de avance en efectivo', error)
+        }
+    }
+
+    async navegarSeccionRecargaElectronica(){
+        try{
+            await RecargasNavigation.seleccionarRecargasElectronicas();
+        }catch(error){
+            console.error('Error navegando a la seccion de recargas electronicas', error)
+        }
+    }
+
+    async navegarSeccionBeneficiarios(){
+        try{
+            await BeneficiariosNavigation.seleccionarBeneficiarios();
+        }catch(error){
+            console.error('Error navegando a la seccion de beneficiarios', error)
         }
     }
 

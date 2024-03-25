@@ -50,20 +50,8 @@ class PagosServiciosRegistrados {
             // Seleccionar opcion de menu lateral
             await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
 
-            // Seleccionar tipo de pago
-            // await $(UIAutomatorSelectores.scrollTextIntoView(labels.tipoPago)).click();
-            // Seleccioanr tipo de pago opcion
-            // await this.seleccionarTipoPago(elemento.opcion_pago);
-            
-            // Click en boton Continuar
-            // await CommonActions.clickBtnContinuar();
-            // await CommonActions.clickBtnContinuar();
-
-            // Click en boton Finalizar
-            // await CommonActions.clickBtnFinalizar();
-
-           // Editar registro en archivo data.txt
-            editEntry(files.data,    
+           // Editar registro en archivo pagos.txt
+            editEntry(files.pagos,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
         }catch(error){

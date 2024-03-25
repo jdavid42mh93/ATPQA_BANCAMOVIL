@@ -1,9 +1,8 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
-import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
-import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
-import { UIAutomatorSelectores, datosGenerales, opciones } from "../../constants/common";
+// import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
+import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { pagosTarjetasEventualesSelectores } from "../../constants/pagos/pagosTarjetasEventuales";
 
 // Seccion de pagos de tarjetas eventuales del usuario
@@ -69,11 +68,11 @@ class PagosTarjetasEventuales {
 // Funcion para ingresr los datos pagos de tarjetas eventuales en el formulario
     async pagosTarjetasEventualesForm(elemento){
         try{
-            // Seleccionar la cuenta de debito
-            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
-            await CommonsPagos.getCuentaDebitoSelector.click();
-            // Seleccionar la opcion de cuenta de debito
-            await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
+            // Seleccionar cuenta de debito
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:30000});
+            await CommonActions.getCuentaDebitoSelector.click();
+            // Seleccionar cuenta de debito opcion
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
 
             // Ingresar Descripcion y Monto
             await this.ingresarMonto();
@@ -105,48 +104,27 @@ class PagosTarjetasEventuales {
 
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            // if (CommonActions.mensajeError(mensajes.mensajeFondosInsuficientes)){
-            //     // Visualizar mensaje de error
-            //     await $(buttonsSelectores.button(buttons.Ok)).click();
-
-            //     // Editar registro en archivo data.txt
-            //     editEntry(files.data,    
-            //         [dataConditions.caseIs(elemento.case)],
-            //         [dataInstructions.assignStatus(dataStatus.canceled)]);
-            // } else {
-            //     // Click en boton Continuar
-            //     await CommonActions.clickBtnContinuar();
-
-            //     // Click en boton Cerrar
-            //     await CommonActions.clickBtnCerrar();
-                
-            //     // Editar registro en archivo data.txt
-            //     editEntry(files.data,    
-            //         [dataConditions.caseIs(elemento.case)],
-            //         [dataInstructions.assignStatus(dataStatus.active)]);
-    
-            //     // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
-            //     await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-            //     await MenuNavigation.getToogleMenuSelector.click();
-            //     // Seleccionar opcion de menu lateral
-            //     await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
-            // }
             // Click en boton Continuar
-            await CommonActions.clickBtnContinuar();
+            // await CommonActions.clickBtnContinuar();
 
-            // Click en boton Cerrar
-            await CommonActions.clickBtnCerrar();
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
+
+            // Click en boton Continuar
+            // await CommonActions.clickBtnCONTINUAR();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
             
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            // Editar registro en archivo pagos.txt
+            editEntry(files.pagos,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
 
-            // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
-            await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-            await MenuNavigation.getToogleMenuSelector.click();
-            // Seleccionar opcion de menu lateral
-            await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
+            // // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
+            // await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+            // await MenuNavigation.getToogleMenuSelector.click();
+            // // Seleccionar opcion de menu lateral
+            // await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
         }catch(error){
             console.error('Error en ingresar datos en pagos de tarjetas eventuales', error);
         }

@@ -8,7 +8,7 @@ import pagosController from "../../../../controllers/Pagos/pagos.controller";
 // Test de seccion de Pagos y Pagos de Mis Tarjetas
 describe('Generacion de Pagos', () => {
     it('Generacion de Pagos de Mis Tarjetas', async() => {
-        const data = searchEntry(files.data, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.MisTarjetas), dataConditions.statusIs(dataStatus.pending)]);
+        const data = searchEntry(files.pagos, [dataConditions.typeIs(dataTypes.pagos),dataConditions.subtypeIs(dataSubtypes.MisTarjetas), dataConditions.statusIs(dataStatus.pending)]);
         await MenuNavigation.navegarAInicioSesion();
         await CommonActions.login();
         for (let i=0; i < data.length; i++){

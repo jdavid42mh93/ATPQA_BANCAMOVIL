@@ -3,19 +3,29 @@ import { createBasePath } from "../helpers/fileEditor.helper";
 const basePath = createBasePath();
 
 export const files = {
-  'data':   `${basePath}data.txt`,
+  'data':             `${basePath}data.txt`,
+  'codigoSeguridad':  `${basePath}codigoSeguridad.txt`,
+  'transferencias':   `${basePath}transferencias.txt`,
+  'pagos':            `${basePath}pagos.txt`,
+  'avances':          `${basePath}avances.txt`,
+  'recargas':         `${basePath}recargas.txt`,
+  'beneficiarios':    `${basePath}beneficiarios.txt`,
 };
 
 export const dataConditions = {
-  'typeIs':       (data) => `.type === '${data}'`,
-  'subtypeIs':    (data) => `.subtype === '${data}'`,
-  'statusIs':     (data) => `.status === '${data}'`,
-  'caseIs':       (data) => `.case === '${data}'`, 
+  'typeIs':           (data) => `.type === '${data}'`,
+  'subtypeIs':        (data) => `.subtype === '${data}'`,
+  'statusIs':         (data) => `.status === '${data}'`,
+  'caseIs':           (data) => `.case === '${data}'`,
+  'transferTypeIs':   (data) => `.transfer_type === '${data}'`,
 };
 
 export const dataTypes = {
   'transferencias': 'Transferencias',
   'pagos':          'Pagos',
+  'avances':        'Avances',
+  'recargas':       'Recargas',
+  'beneficiarios':  'Beneficiarios'
 };
 
 export const dataSubtypes = {
@@ -28,6 +38,8 @@ export const dataSubtypes = {
   'MisTarjetas':          'Mis Tarjetas',
   'TarjetasRegistradas':  'Tarjetas Registradas',
   'TarjetasEventuales':   'Tarjetas Eventuales',
+  'Efectivo':             'Efectivo',
+  'OtrasCuentas':         'Otras Cuentas',
 };
 
 export const dataStatus = {

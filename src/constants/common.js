@@ -10,6 +10,8 @@ export const textViewClass =           `${androidWidgetSelector}TextView`;
 export const checkedTextViewClass =    `${androidWidgetSelector}CheckedTextView`;
 export const scrollViewClass =         `${androidWidgetSelector}ScrollView`;
 export const editTextClass =           `${androidWidgetSelector}EditText`;
+export const compoundButtonClass =     `${androidWidgetSelector}CompoundButton`;
+export const switchClass =             `${androidWidgetSelector}Switch`;
 
 export const datosGenerales = {
     monto:                  '10',
@@ -18,6 +20,9 @@ export const datosGenerales = {
     numeroIdentificacion:   '1722146485',
     numeroSuministro:       '7190431',
     cvv:                    '123',
+    avance:                 '200',
+    numeroCelular:          '0987033304',
+    direccion:              'Santa Monica'
 }
 
 // Selectores UIAutomator
@@ -58,12 +63,17 @@ export const buttons = {
     'CompartirComprobante': 'Compartir comprobante',
     'Cancelar':             'Cancel',
     'Cerrar':               'CERRAR',
+    'CONTINUAR':            'CONTINUAR',
     'Ok':                   'Ok',
 }
 
 export const commonsSelectores = {
     'mensaje':              (data) => `${textViewClass}[@text="${data}"]`,
     'cuentaDebito':                   `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
+    'cuentaDebitoOpcion':   (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
+    'codigoVerificacion':             `${editTextClass}`,
+    'textOpcion':           (data) => `${textViewClass}[@text="${data}"]`,
+    'checkedOpcion':        (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,    
 }
 
 export const mensajes = {
@@ -73,6 +83,9 @@ export const mensajes = {
     'mensajeConfirmacion':          'Tu transacción se realizó con éxito',
     'pagoListo':                    '¡Tu pago está listo!',
     'registroNoEncontrado':         'Registro no encontrado, verifique datos ingresados. (8049)',
+    'transaccionNoProcesada':       'Transacción no procesada, por favor intenta más tarde (6097)',
+    'transaccionInvalida':          'Transacción inválida, valor de avance mayor al cupo disponible',
+    'error':                        'Al momento nuestros servicios no estan disponibles, por favor intentalo mas tarde'
 }
 
 export const opcionesMenuLateral = {
@@ -80,7 +93,10 @@ export const opcionesMenuLateral = {
 }
 
 export const opciones = {
-    'Pagos':            'Pagos',
-    'Transferencias':   'Transferencias',
-    'Resumen':          'Resumen',
+    'Pagos':                'Pagos',
+    'Transferencias':       'Transferencias',
+    'Resumen':              'Resumen',
+    'AvanceEfectivo':       'Avance en Efectivo',
+    'RecargasElectronicas': 'Recargas Electrónicas',
+    'Beneficiarios':        'Beneficiarios',
 }

@@ -1,9 +1,8 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { pagosMisTarjetasSelectores, tarjetas } from "../../constants/pagos/pagosMisTarjetas";
-import { datosGenerales } from "../../constants/common";
+import { buttons, buttonsSelectores, datosGenerales, mensajes } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
-import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
 
 // Seccion de pagos de tarjetas propias del usuario
 class PagosMisTarjetas {
@@ -16,30 +15,24 @@ class PagosMisTarjetas {
         return $(pagosMisTarjetasSelectores.monto)
     }
 
-    async seleccionarCuentaDebito(cuentaDebito){
-        await $(pagosMisTarjetasSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
-        await $(pagosMisTarjetasSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
-    }
-
     async ingresarMonto(){
-        await this.getMontoSelector.waitForDisplayed();
-        await this.getMontoSelector.click();
+        await this.getMontoSelector.doubleClick();
         await this.getMontoSelector.addValue(datosGenerales.monto);
         await driver.hideKeyboard();
     }
 
     async seleccionarNumeroTarjeta(numeroTarjeta){
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed()
+        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
         await $(tarjetas.tarjetaOpcion(numeroTarjeta)).click();
     }
 // Funcion para ingresr los datos del pago en el formulario
     async pagosMisTarjetasForm(elemento){
         try{
             // Seleccionar cuenta debito
-            await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed({timeout:30000})
-            await CommonsPagos.getCuentaDebitoSelector.click();
+            await CommonActions.getCuentaDebitoSelector.waitForDisplayed({timeout:35000});
+            await CommonActions.getCuentaDebitoSelector.click();
             // Seleccionar cuenta debito opcion
-            await this.seleccionarCuentaDebito(elemento.cuenta_debito);
+            await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
             
             // Seleccionar la tarjeta a pagar
             await this.getSeleccionarTarjetaSelector.waitForDisplayed({timeout:30000});
@@ -55,13 +48,21 @@ class PagosMisTarjetas {
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
 
-            // Click en boton Finalizar
-            await CommonActions.clickBtnFinalizar();
-    
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
+            if(CommonActions.mensajeError(mensajes.transaccionNoProcesada)){
+                await $(buttonsSelectores.button(buttons.Ok)).click();
+                // Editar registro en archivo data.txt
+                editEntry(files.pagos,    
+                    [dataConditions.caseIs(elemento.case)],
+                    [dataInstructions.assignStatus(dataStatus.canceled)]);
+            } else {
+                // Click en boton Finalizar
+                await CommonActions.clickBtnFinalizar();
+
+                // Editar registro en archivo pagos.txt
+                editEntry(files.pagos,    
                     [dataConditions.caseIs(elemento.case)],
                     [dataInstructions.assignStatus(dataStatus.active)]);
+            }
         }catch(error){
             console.error('Error en ingresar datos en pagos de mis tarjetas', error);
         }

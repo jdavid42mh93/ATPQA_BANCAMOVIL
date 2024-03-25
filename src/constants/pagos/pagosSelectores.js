@@ -11,8 +11,6 @@ export const pagosSelectors = {
     'tipoPago':                `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[10]/android.widget.TextView[1]`,
     'tipoPagoOpcion':           (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
     'mensaje':                  (data) => `${textViewClass}[@text="${data}"]`,
-    'cuentaDebito':            `${textViewClass}[@text="110609286-CUENTA CORRIENTE"]`,
-    'cuentaDebitoOpcion':       (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
     'tarjeta':                 `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[9]/android.widget.TextView[1]`,
     'tarjetaOpcion':            (data) => `${checkedTextViewClass}[@resource-id="android:id/text1" and @text="${data}"]`,
     'cvv':                     `${scrollViewClass}/android.view.ViewGroup/android.view.ViewGroup[9]/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.EditText`,
@@ -43,4 +41,5 @@ export const opcionesTipoPago = {
 
 export const formaPago = {
     'Corriente':    'CORRIENTE',
+    'Diferido':     'DIFERIDO',
 }

@@ -3,9 +3,9 @@ import { files, dataConditions, dataInstructions, dataStatus } from "../../const
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import { pagosServiciosEventualesSelectores, servicioBasicoAgua } from "../../constants/pagos/pagosServiciosEventuales";
 import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
-import { UIAutomatorSelectores, datosGenerales, opciones } from "../../constants/common";
+import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { formaPago, labels, opcionesTipoPago } from "../../constants/pagos/pagosSelectores";
-import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
+// import MenuNavigation from "../../page-objects/android/navigation/MenuNavigation";
 
 // Seccion de pagos de servicios eventuales
 class PagosServiciosEventuales {
@@ -63,10 +63,10 @@ class PagosServiciosEventuales {
             await $(UIAutomatorSelectores.scrollToEnd); //Scroll hasta el final
             if(elemento.opcion_pago === opcionesTipoPago.debitoCuenta){
                 // Selecionar cuenta de debito
-                await CommonsPagos.getCuentaDebitoSelector.waitForDisplayed();
-                await CommonsPagos.getCuentaDebitoSelector.click();
+                await CommonActions.getCuentaDebitoSelector.waitForDisplayed();
+                await CommonActions.getCuentaDebitoSelector.click();
                 // Seleccionar cuenta de debito opcion
-                await CommonsPagos.seleccionarCuentaDebito(elemento.cuenta_debito);
+                await CommonActions.seleccionarCuentaDebito(elemento.cuenta_debito);
             } else {
                 // Seleccionar tarjeta de credito
                 await CommonsPagos.getTarjetaSelector.waitForDisplayed();
@@ -87,21 +87,27 @@ class PagosServiciosEventuales {
             }
             // Click en boton Continuar
             await CommonActions.clickBtnContinuar();
-            await CommonActions.clickBtnContinuar();
-
-            // Click en boton Cerrar
-            await CommonActions.clickBtnCerrar();
+            // Click en boton Continuar
+            // await CommonActions.clickBtnContinuar();
             
-            // Editar registro en archivo data.txt
-            editEntry(files.data,    
-                [dataConditions.caseIs(elemento.case)],
-                [dataInstructions.assignStatus(dataStatus.active)]);
+            // Ingresar codigo de verificacion
+            // await CommonActions.ingresarCodigoVerificacion();
 
-            // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
-            await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
-            await MenuNavigation.getToogleMenuSelector.click();
-            // Seleccionar opcion de menu lateral
-            await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
+            // Click en boton Continuar
+            // await CommonActions.clickBtnCONTINUAR();
+            // // Click en boton Cerrar
+            // await CommonActions.clickBtnCerrar();
+            
+            // Editar registro en archivo pagos.txt
+            editEntry(files.pagos,    
+                 [dataConditions.caseIs(elemento.case)],
+                 [dataInstructions.assignStatus(dataStatus.active)]);
+
+            // // Temporal: se despliega el menu lateral y se redirige a seccion de pagos
+            // await MenuNavigation.getToogleMenuSelector.waitForDisplayed({timeout: 20000});
+            // await MenuNavigation.getToogleMenuSelector.click();
+            // // Seleccionar opcion de menu lateral
+            // await MenuNavigation.seleccionarOpcionMenuLateral(opciones.Resumen);
 
 
         }catch(error){
