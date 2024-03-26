@@ -65,6 +65,7 @@ export const buttons = {
     'Cerrar':               'CERRAR',
     'CONTINUAR':            'CONTINUAR',
     'Ok':                   'Ok',
+    'OK':                   'OK',
 }
 
 export const commonsSelectores = {
@@ -99,4 +100,5 @@ export const opciones = {
     'AvanceEfectivo':       'Avance en Efectivo',
     'RecargasElectronicas': 'Recargas Electrónicas',
     'Beneficiarios':        'Beneficiarios',
+    'Programacion':         'Programación',
 }

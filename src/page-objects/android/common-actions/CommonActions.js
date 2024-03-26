@@ -39,6 +39,16 @@ class CommonActions{
         return $(commonsSelectores.codigoVerificacion);
     }
 
+    async getTextOpcion(opcion){
+        await $(commonsSelectores.textOpcion(opcion)).waitForDisplayed();
+        await $(commonsSelectores.textOpcion(opcion)).click();
+    }
+
+    async getCheckedOpcion(opcion){
+        await $(commonsSelectores.checkedOpcion(opcion)).waitForDisplayed();
+        await $(commonsSelectores.checkedOpcion(opcion)).click();
+    }
+
 // Funcion para validar mensaje de confirmacion
     async validarConfirmacionOK() {
         await this.getMensajeConfirmacionSelector.waitForDisplayed();

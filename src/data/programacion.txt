@@ -1,0 +1,2 @@
+{"case":"4","status":"pending","msg":"","orderStatus":"","type":"Programacion","subtype":"Transferencias","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"CTA PROPIA-065","fecha_inicio":"Tue, Mar 26","fecha_fin":"Thu, Apr 25","dia_pago":"1"}
+{"case":"5","status":"active","msg":"","orderStatus":"","type":"Programacion","subtype":"Transferencias","cuenta_debito":"110609286-CUENTA CORRIENTE","numero_cuenta_beneficiario":"CTA PROPIA-091","fecha_inicio":"Sat, Mar 30","fecha_fin":"Wed, May 1","dia_pago":"4"}

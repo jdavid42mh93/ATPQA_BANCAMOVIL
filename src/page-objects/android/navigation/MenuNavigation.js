@@ -7,6 +7,7 @@ import CertificadosScreen from "./Certificados/CertificadosScreen";
 import AvancesNavigation from "./Avances/AvancesNavigation";
 import RecargasNavigation from "./Recargas/RecargasNavigation";
 import BeneficiariosNavigation from "./Beneficiarios/BeneficiariosNavigation";
+import ProgramacionNavigation from "./Programacion/ProgramacionNavigation";
 
 // Clase: Navigacion entre el menu
 class MenuNavigation{
@@ -82,6 +83,14 @@ class MenuNavigation{
             await BeneficiariosNavigation.seleccionarBeneficiarios();
         }catch(error){
             console.error('Error navegando a la seccion de beneficiarios', error)
+        }
+    }
+
+    async navegarSeccionProgramacion(){
+        try{
+            await ProgramacionNavigation.seleccionarProgramacion();
+        }catch(error){
+            console.error('Error navegando a la seccion de programacion', error)
         }
     }
 
