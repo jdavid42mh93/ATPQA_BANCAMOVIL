@@ -1,4 +1,4 @@
-import { buttonsSelectores, opcionesMenuLateral } from "../../../constants/common";
+import { buttonsSelectores, commonsSelectores } from "../../../constants/common";
 import TransferenciasScreen from "../../../page-objects/android/navigation/Transferencias/TransferenciasScreen";
 import LoginScreen from "./LoginScreen";
 import PosicionConsolidadaScreen from "./PosConsolidada/PosicionConsolidadaScreen";
@@ -96,7 +96,7 @@ class MenuNavigation{
 
 // Funcion para seleccionar una opcion del menu lateral
     async seleccionarOpcionMenuLateral(opcion){
-        await $(opcionesMenuLateral.opcion(opcion)).click();
+        await $(commonsSelectores.textOpcion(opcion)).click();
     }
 }
 

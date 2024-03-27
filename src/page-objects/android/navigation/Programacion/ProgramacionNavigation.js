@@ -1,9 +1,9 @@
-import { opciones, opcionesMenuLateral } from "../../../../constants/common";
+import { commonsSelectores, opciones } from "../../../../constants/common";
 
 // Seccion de Pagos
 class ProgramacionNavigation{
     async seleccionarProgramacion(){
-        await $(opcionesMenuLateral.opcion(opciones.Programacion)).click();
+        await $(commonsSelectores.textOpcion(opciones.Programacion)).click();
     }
 }
 

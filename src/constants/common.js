@@ -88,9 +88,9 @@ export const mensajes = {
     'error':                        'Al momento nuestros servicios no estan disponibles, por favor intentalo mas tarde'
 }
 
-export const opcionesMenuLateral = {
-    'opcion':   (data) => `${textViewClass}[@text="${data}"]`,
-}
+// export const opcionesMenuLateral = {
+//     'opcion':   (data) => `${textViewClass}[@text="${data}"]`,
+// }
 
 export const opciones = {
     'Pagos':                'Pagos',

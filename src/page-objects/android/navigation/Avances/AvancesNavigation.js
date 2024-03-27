@@ -1,9 +1,9 @@
-import { opciones, opcionesMenuLateral } from "../../../../constants/common";
+import { commonsSelectores, opciones } from "../../../../constants/common";
 
 // Seccion de Pagos
 class AvanceEfectivoNavigation{
     async seleccionarAvanceEfectivo(){
-        await $(opcionesMenuLateral.opcion(opciones.AvanceEfectivo)).click();
+        await $(commonsSelectores.textOpcion(opciones.AvanceEfectivo)).click();
     }
 }
 
