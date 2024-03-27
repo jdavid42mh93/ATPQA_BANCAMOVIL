@@ -1,7 +1,6 @@
 import { dataConditions, dataInstructions, dataStatus, files } from "../../constants/_data_generation";
 import { beneficiarioSelectores } from "../../constants/beneficiarios/beneficiariosSelectores";
-import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
-import { labels } from "../../constants/transferencia/transferenciaAlExterior";
+import { UIAutomatorSelectores, datosGenerales, labels } from "../../constants/common";
 import { transferenciaOpcion } from "../../constants/transferencia/transferenciaSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";

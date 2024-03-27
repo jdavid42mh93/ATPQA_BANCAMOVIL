@@ -84,12 +84,10 @@ class ProgramacionTransferencia {
             // Clck en boton Finalizar
             await CommonActions.clickBtnFinalizar();
 
+            // Editar registro en archivo programacion.txt
             editEntry(files.programacion,    
                 [dataConditions.caseIs(elemento.case)],
                 [dataInstructions.assignStatus(dataStatus.active)]);
-            console.log("Conditions =====>",[dataConditions.caseIs(elemento.case)],
-                [dataInstructions.assignStatus(dataStatus.active)])
-            
         }catch(error){
             console.error('Error al ingresar los datos en programacion de transferencias seccion', error)
         }

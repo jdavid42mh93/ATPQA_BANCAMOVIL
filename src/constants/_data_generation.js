@@ -42,6 +42,8 @@ export const dataSubtypes = {
   'TarjetasEventuales':   'Tarjetas Eventuales',
   'Efectivo':             'Efectivo',
   'OtrasCuentas':         'Otras Cuentas',
+  'Tarjetas':             'Tarjetas',
+  'PagosServicios':       'Pagos de Servicios'
 };
 
 export const dataStatus = {

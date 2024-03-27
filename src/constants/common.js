@@ -102,3 +102,8 @@ export const opciones = {
     'Beneficiarios':        'Beneficiarios',
     'Programacion':         'Programación',
 }
+
+export const labels = {
+    'CorreoElectronico':    'Correo Electrónico',
+    'Finaliza':         'Finaliza',
+}

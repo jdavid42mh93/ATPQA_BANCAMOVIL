@@ -15,7 +15,3 @@ export const programacionSelectores = {
     'buscarMes':                '//android.widget.Button[@content-desc="Change to next month"]',
     'mes':                      '//android.widget.Button[@resource-id="com.fisa.omnia.mobile.baninterv404:id/month_navigation_fragment_toggle"]',
 }
-
-export const labels = {
-    'Finaliza':         'Finaliza',
-}
