@@ -11,8 +11,6 @@ export const transferenciaAlExteriorSelectores = {
 export const labels = {
     'MotivoEconomico':      'Motivo Económico',
     'Monto':                'Monto',
-    'Referencia':           'Referencia',
-    'CorreoElectronico':    'Correo Electrónico',
 }
 
 export const motivoEconomicoOpcionSelectores = {
