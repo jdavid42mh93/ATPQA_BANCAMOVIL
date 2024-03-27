@@ -55,7 +55,7 @@ class Programacion {
     }
     
     async seleccionarTipoProgramacion(tipoProgramacion){
-        await CommonActions.getTextOpcion(tipoProgramacion);
+        await CommonActions.selectTextOpcion(tipoProgramacion);
     }
 
     async buscarFecha(fecha){

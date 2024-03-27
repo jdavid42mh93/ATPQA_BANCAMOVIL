@@ -19,7 +19,7 @@ class ProgramacionTransferencia {
     }
 
     async seleccionarBeneficiario(beneficiario){
-        await CommonActions.getTextOpcion(beneficiario);
+        await CommonActions.selectTextOpcion(beneficiario);
     }
 
     async ingresarDescripcion(){
