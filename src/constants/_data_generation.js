@@ -10,6 +10,7 @@ export const files = {
   'avances':          `${basePath}avances.txt`,
   'recargas':         `${basePath}recargas.txt`,
   'beneficiarios':    `${basePath}beneficiarios.txt`,
+  'programacion':     `${basePath}programacion.txt`
 };
 
 export const dataConditions = {
@@ -25,7 +26,8 @@ export const dataTypes = {
   'pagos':          'Pagos',
   'avances':        'Avances',
   'recargas':       'Recargas',
-  'beneficiarios':  'Beneficiarios'
+  'beneficiarios':  'Beneficiarios',
+  'programacion':   'Programacion',
 };
 
 export const dataSubtypes = {
@@ -40,6 +42,8 @@ export const dataSubtypes = {
   'TarjetasEventuales':   'Tarjetas Eventuales',
   'Efectivo':             'Efectivo',
   'OtrasCuentas':         'Otras Cuentas',
+  'Tarjetas':             'Tarjetas',
+  'PagosServicios':       'Pagos de Servicios'
 };
 
 export const dataStatus = {
