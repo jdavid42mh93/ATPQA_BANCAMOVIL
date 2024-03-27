@@ -1,27 +1,28 @@
-import { transferenciaOpcion, transferenciaSelectores } from "../../constants/transferencia/transferenciaSelectores";
+import { commonsSelectores } from "../../constants/common";
+import { transferenciaOpcion } from "../../constants/transferencia/transferenciaSelectores";
 
 const timeOut = 20000;
 // Seccion de Opciones de Transferencias
 class TransferenciaOpciones{
 // Funciones para obtener los selectores
     get getTransferenciaEntreMisCuentasSelector() {
-        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.entreMisCuentas));
+        return $(commonsSelectores.textOpcion(transferenciaOpcion.entreMisCuentas));
     }
 
     get getTransferenciaRegistradasSelector() {
-        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.registradas));
+        return $(commonsSelectores.textOpcion(transferenciaOpcion.registradas));
     }
 
     get getTransferenciaEventualesSelector() {
-        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.eventuales));
+        return $(commonsSelectores.textOpcion(transferenciaOpcion.eventuales));
     }
 
     get getTransferenciaAlExteriorSelector() {
-        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.alExterior));
+        return $(commonsSelectores.textOpcion(transferenciaOpcion.alExterior));
     }
     
     get getTransferenciaOtrasCuentasSelector(){
-        return $(transferenciaSelectores.transferenciaOpcion(transferenciaOpcion.otrasCuentas));
+        return $(commonsSelectores.textOpcion(transferenciaOpcion.otrasCuentas));
     }
 // Funciones para navegar entre las distintas opciones de transferencias
     async transferenciaEntreMisCuentasSeccion(){

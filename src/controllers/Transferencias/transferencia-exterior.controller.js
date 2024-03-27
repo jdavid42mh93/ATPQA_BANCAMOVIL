@@ -1,8 +1,4 @@
-import { transferenciaAlExteriorSelectores, 
-    cuentasBeneficiariasOpcionSelectores, 
-    motivoEconomicoOpcionSelectores, 
-    gastoExteriorOpcionSelectores,
-    labels} from "../../constants/transferencia/transferenciaAlExterior";
+import { transferenciaAlExteriorSelectores, labels} from "../../constants/transferencia/transferenciaAlExterior";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { UIAutomatorSelectores } from "../../constants/common";
 import { editEntry } from "../../helpers/fileEditor.helper";
@@ -20,10 +16,6 @@ class TransferenciaExterior {
         return $(transferenciaAlExteriorSelectores.monto);
     }
 
-    get getReferenciaSelector() {
-        return $(transferenciaAlExteriorSelectores.referencia);
-    }
-
     get getGastoExteriorSelector(){
         return $(transferenciaAlExteriorSelectores.gastosExterior); 
     }
@@ -36,20 +28,17 @@ class TransferenciaExterior {
 
 // Funcion para seleccionar una cuenta beneficiaria
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
-        await $(cuentasBeneficiariasOpcionSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
-        await $(cuentasBeneficiariasOpcionSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
+        await CommonActions.selectTextOpcion(cuentaBeneficiaria);
     }
 
 // Funcion para seleccionar un motivo economico
     async seleccionarMotivoEconomico(motivoEconomico){
-        await $(motivoEconomicoOpcionSelectores.motivoEconomicoOpcion(motivoEconomico)).waitForDisplayed();
-        await $(motivoEconomicoOpcionSelectores.motivoEconomicoOpcion(motivoEconomico)).click();
+        await CommonActions.selectCheckedOpcion(motivoEconomico);
     }
 
 // Funcion para seleccionar una opcion de gastos del exterior
     async seleccionarGastoExterior(gastoExterior){
-        await $(gastoExteriorOpcionSelectores.gastoExteriorOpcion(gastoExterior)).waitForDisplayed();
-        await $(gastoExteriorOpcionSelectores.gastoExteriorOpcion(gastoExterior)).click();
+        await CommonActions.selectCheckedOpcion(gastoExterior);
     }
 
 // Funcion para completar los datos de transferencia exterior

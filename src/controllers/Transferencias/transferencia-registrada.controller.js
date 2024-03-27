@@ -1,7 +1,7 @@
 import { files, dataConditions, dataInstructions, dataStatus} from "../../constants/_data_generation";
 import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
 import { transferenciaRegistradasSelectores } from "../../constants/transferencia/transferenciaRegistradas";
-import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
+import { labels } from "../../constants/transferencia/transferenciaSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
@@ -38,8 +38,7 @@ class TransferenciaRegistrada {
 
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria) {
         await $(UIAutomatorSelectores.scrollTextIntoView(cuentaBeneficiaria));   // scroll hasta encontrar la cuenta beneficiaria
-        await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
-        await $(transferenciaRegistradasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
+        await CommonActions.selectTextOpcion(cuentaBeneficiaria);
     }
 
 // Funcion para completar los datos de transferencia en cuentas registradas
@@ -57,7 +56,7 @@ class TransferenciaRegistrada {
             // Seleccionar cuenta beneficiaria opcion
             await this.seleccionarCuentaBeneficiaria(elemento.numero_cuenta_beneficiario);
 
-            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));   // scroll hasta encontrar la palabra Monto
+            await $(UIAutomatorSelectores.scrollTextIntoView(labels.Monto));   // scroll hasta encontrar la palabra Monto
             
             // Ingresar Monto y Descripcion
             await this.ingresarDescripcion();

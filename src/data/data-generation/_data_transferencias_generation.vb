@@ -11,7 +11,7 @@ Private Sub CommandButton1_Click()
     ' Utilizar la función CreateObject para crear una instancia de FileSystemObject
     Set fs = CreateObject("Scripting.FileSystemObject")
     '-------------------------------------------------------
-    '  GENERA DATOS PARA INGRESAR ARCHIVO DE PAGOS y TRANSFERENCIAS
+    '  GENERA DATOS PARA INGRESAR ARCHIVO DE TRANSFERENCIAS
     '--------------------------------------------------------
     ' Validar Datos
     Set Hoja1 = ThisWorkbook.Sheets("Transferencias")
@@ -32,19 +32,9 @@ Private Sub CommandButton1_Click()
         strMotivoEconomico = Hoja1.Range("E" & i).Value
         strGastosExterior = Hoja1.Range("F" & i).Value
         strInstitucionBancaria = Hoja1.Range("G" & i).Value
-        strGrupoServicio = Hoja1.Range("H" & i).Value
-        strServicio = Hoja1.Range("I" & i).Value
-        strNumeroTarjeta = Hoja1.Range("J" & i).Value
-        strTipoDocumento = Hoja1.Range("K" & i).Value
-        strTipoCuenta = Hoja1.Range("L" & i).Value
-        strNumeroIdentificacion = Hoja1.Range("M" & i).Value
-        strBeneficiarioAgua = Hoja1.Range("N" & i).Value
-        strOpcionPago = Hoja1.Range("O" & i).Value
-        strInstitucionFinanciera = Hoja1.Range("P" & i).Value
-        strFormaPago = Hoja1.Range("Q" & i).Value
-        strMesesPlazo = Hoja1.Range("R" & i).Value
-        strTipoBeneficiario = Hoja1.Range("S" & i).Value
-        strCuentaBeneficiaria = Hoja1.Range("T" & i).Value  'solo para avances en efectivo
+        strTipoDocumento = Hoja1.Range("H" & i).Value
+        strTipoCuenta = Hoja1.Range("I" & i).Value
+        strNumeroIdentificacion = Hoja1.Range("J" & i).Value
         
         If (strTipo <> "") Then
             strLinea = "{""case"":""" & i & """, ""status"": ""pending"", ""msg"": """", ""orderStatus"":"""""
@@ -74,13 +64,7 @@ Private Sub CommandButton1_Click()
                         Select Case strSubTipo
                           
                             Case "Eventuales"
-                                If (strInstitucionBancaria <> "") Then
-                                    strLinea = strLinea & " ,""institucion_bancaria"": """ & strInstitucionBancaria & """"
-                                Else
-                                    MsgBox "Campo -Institucion Bancaria- se encuentra vacio."
-                                    Exit Sub
-                                End If
-                                
+                            
                                 If (strCuentaDebito <> "") Then
                                     strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
                                 Else
@@ -92,6 +76,13 @@ Private Sub CommandButton1_Click()
                                     strLinea = strLinea & " ,""numero_cuenta_beneficiario"": """ & strCuentaBeneficiario & """"
                                 Else
                                     MsgBox "Campo -Cuenta Beneficiaria- se encuentra vacio."
+                                    Exit Sub
+                                End If
+                                
+                                If (strInstitucionBancaria <> "") Then
+                                    strLinea = strLinea & " ,""institucion_bancaria"": """ & strInstitucionBancaria & """"
+                                Else
+                                    MsgBox "Campo -Institucion Bancaria- se encuentra vacio."
                                     Exit Sub
                                 End If
                                 
@@ -148,6 +139,7 @@ Private Sub CommandButton1_Click()
                                 End If
                             
                             Case "Entre Mis Cuentas"
+                            
                                 If (strCuentaDebito <> "") Then
                                     strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
                                 Else
@@ -163,6 +155,7 @@ Private Sub CommandButton1_Click()
                                 End If
                             
                             Case "Registradas"
+                            
                                 If (strCuentaDebito <> "") Then
                                     strLinea = strLinea & " ,""cuenta_debito"": """ & strCuentaDebito & """"
                                 Else
@@ -177,12 +170,10 @@ Private Sub CommandButton1_Click()
                                     Exit Sub
                                 End If
                                 
-                        End Select     
+                        End Select
             End Select
             fnTransferencias.Write strLinea & "}" & vbCrLf
         End If
     Next
     MsgBox "Se ha creado el archivo en la ruta: " & PathFile
 End Sub
-
-
