@@ -1,5 +1,6 @@
 import { datosGenerales } from "../../../../constants/common";
 import { pagosSelectors } from "../../../../constants/pagos/pagosSelectores";
+import CommonActions from "../../common-actions/CommonActions";
 
 // Seccion de Pagos que contiene funciones comunes
 class CommonsPagos{
@@ -29,28 +30,23 @@ class CommonsPagos{
     }
 
     async seleccionarGrupoServicio(grupoServicio){
-        await $(pagosSelectors.grupoServicioOpcion(grupoServicio)).waitForDisplayed();
-        await $(pagosSelectors.grupoServicioOpcion(grupoServicio)).click();
+        await CommonActions.selectCheckedOpcion(grupoServicio);
     }
 
     async seleccionarServicio(servicio){
-        await $(pagosSelectors.servicioOpcion(servicio)).waitForDisplayed();
-        await $(pagosSelectors.servicioOpcion(servicio)).click();
+        await CommonActions.selectCheckedOpcion(servicio);
     }
 
     async seleccionarTipoPago(tipoPago){
-        await $(pagosSelectors.tipoPagoOpcion(tipoPago)).waitForDisplayed();
-        await $(pagosSelectors.tipoPagoOpcion(tipoPago)).click();
+        await CommonActions.selectCheckedOpcion(tipoPago);
     }
 
     async seleccionarNumeroTarjeta(numeroTarjeta){
-        await $(pagosSelectors.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
-        await $(pagosSelectors.tarjetaOpcion(numeroTarjeta)).click();
+        await CommonActions.selectCheckedOpcion(numeroTarjeta);
     }
 
     async seleccionarFormaPago(formaPago){
-        await $(pagosSelectors.formaPagoOpcion(formaPago)).waitForDisplayed();
-        await $(pagosSelectors.formaPagoOpcion(formaPago)).click();
+        await CommonActions.selectCheckedOpcion(formaPago);
     }
 
     async ingresarCVV(){

@@ -1,26 +1,27 @@
-import { pagosOpciones, pagosSelectors } from "../../constants/pagos/pagosSelectores";
+import { commonsSelectores } from "../../constants/common";
+import { pagosOpciones } from "../../constants/pagos/pagosSelectores";
 
 // Seccion de Opciones de Pagos
 class PagosOpciones{
 // Funciones para obtener los selectores
     get getPagosServiciosRegistradosSelector() {
-        return $(pagosSelectors.pagoOpcion(pagosOpciones.serviciosRegistrados));
+        return $(commonsSelectores.textOpcion(pagosOpciones.serviciosRegistrados));
     }
 
     get getPagosServiciosEventualesSelector() {
-        return $(pagosSelectors.pagoOpcion(pagosOpciones.serviciosEventuales));
+        return $(commonsSelectores.textOpcion(pagosOpciones.serviciosEventuales));
     }
 
     get getPagosMisTarjetasSelector() {
-        return $(pagosSelectors.pagoOpcion(pagosOpciones.misTarjetas));
+        return $(commonsSelectores.textOpcion(pagosOpciones.misTarjetas));
     }
 
     get getPagosTarjetasRegistradasSelector() {
-        return $(pagosSelectors.pagoOpcion(pagosOpciones.tarjetasRegistradas));
+        return $(commonsSelectores.textOpcion(pagosOpciones.tarjetasRegistradas));
     }
 
     get getPagosTarjetasEventualesSelector() {
-        return $(pagosSelectors.pagoOpcion(pagosOpciones.tarjetasEventuales));
+        return $(commonsSelectores.textOpcion(pagosOpciones.tarjetasEventuales));
     }
     
 // Funciones para navegar entre las distintas opciones de pagos

@@ -1,6 +1,6 @@
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
-import { pagosMisTarjetasSelectores, tarjetas } from "../../constants/pagos/pagosMisTarjetas";
+import { pagosMisTarjetasSelectores } from "../../constants/pagos/pagosMisTarjetas";
 import { buttons, buttonsSelectores, datosGenerales, mensajes } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
@@ -22,9 +22,9 @@ class PagosMisTarjetas {
     }
 
     async seleccionarNumeroTarjeta(numeroTarjeta){
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).click();
+        await CommonActions.selectCheckedOpcion(numeroTarjeta);
     }
+    
 // Funcion para ingresr los datos del pago en el formulario
     async pagosMisTarjetasForm(elemento){
         try{

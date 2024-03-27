@@ -56,13 +56,11 @@ class PagosTarjetasEventuales {
     }
 
     async seleccionarInstitucionFinanciera(institucionFinanciera){
-        await $(pagosTarjetasEventualesSelectores.institucionFinancieraOpcion(institucionFinanciera)).waitForDisplayed();
-        await $(pagosTarjetasEventualesSelectores.institucionFinancieraOpcion(institucionFinanciera)).click();
+        await CommonActions.selectCheckedOpcion(institucionFinanciera);
     }
 
     async selectionTipoIdentificacion(tipoIdentificacion){
-        await $(pagosTarjetasEventualesSelectores.tipoIdentificacionOpcion(tipoIdentificacion)).waitForDisplayed();
-        await $(pagosTarjetasEventualesSelectores.tipoIdentificacionOpcion(tipoIdentificacion)).click();
+        await CommonActions.selectCheckedOpcion(tipoIdentificacion);
     }
 
 // Funcion para ingresr los datos pagos de tarjetas eventuales en el formulario
