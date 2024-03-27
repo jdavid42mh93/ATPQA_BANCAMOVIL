@@ -1,9 +1,8 @@
 import { transferenciaEntreMisCuentasSelectores } from "../../constants/transferencia/transferenciaEntreMisCuentas";
-import { mensajes } from "../../constants/transferencia/transferenciaSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import CommonsTransferencias from "../../page-objects/android/navigation/Transferencias/CommonsTransferencias";
-import { buttons, buttonsSelectores } from "../../constants/common";
+import { buttons, buttonsSelectores, mensajes } from "../../constants/common";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias entre cuentas propias del usuario
@@ -15,8 +14,7 @@ class TransferenciaEntreMisCuentas {
 
 // Funciones para seleccionar cuenta de debito y cuenta beneficiaria
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
-        await $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).waitForDisplayed();
-        await $(transferenciaEntreMisCuentasSelectores.cuentaBeneficiariaOpcion(cuentaBeneficiaria)).click();
+        await CommonActions.selectCheckedOpcion(cuentaBeneficiaria)
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario

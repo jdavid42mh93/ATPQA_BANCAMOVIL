@@ -12,10 +12,6 @@ class CommonsTransferencias{
         return $(transferenciaSelectores.descripcion);
     }
 
-    get getMensajeConfirmacionSelector() {
-        return $(transferenciaSelectores.mensajeConfirmacion)
-    }
-
 // Funciones para ingresra monto y descripcion en el formulario
     async ingresarDescripcion(){
         await this.getDescripcionSelector.click();
@@ -27,12 +23,6 @@ class CommonsTransferencias{
         await this.getMontoSelector.click();
         await this.getMontoSelector.addValue(datosGenerales.monto);
         await driver.hideKeyboard();
-    }
-
-// Funcion para validar mensaje de confirmacion
-    async validarConfirmacionOK() {
-        await this.getMensajeConfirmacionSelector.waitForDisplayed();
-        await expect(this.getMensajeConfirmacionSelector).toHaveText(expect.stringContaining('Tu transacción se realizó con éxito'))
     }
 }
 

@@ -1,12 +1,9 @@
 import { files, dataConditions, dataInstructions, dataStatus } from "../../constants/_data_generation";
 import { UIAutomatorSelectores, buttons, buttonsSelectores } from "../../constants/common";
 import { editEntry } from "../../helpers/fileEditor.helper";
-import { transferenciaEventualesSelectores, 
-    institucionBancariaSelectores, 
-    tipoDocumentoOpcionSelectores, 
-    tipoCuentaOpcionSelectores } from "../../constants/transferencia/transferenciaEventuales";
+import { transferenciaEventualesSelectores } from "../../constants/transferencia/transferenciaEventuales";
 import { datosGenerales } from "../../constants/common";
-import { constTransferencias } from "../../constants/transferencia/transferenciaSelectores";
+import { labels } from "../../constants/transferencia/transferenciaSelectores";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 
 // Seccion de transferencias eventuales
@@ -63,18 +60,15 @@ class TransferenciaEventual {
 
     async seleccionarInstitucionBancaria(insitucionBancaria){
         await $(UIAutomatorSelectores.scrollTextIntoView(insitucionBancaria));
-        await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).waitForDisplayed();
-        await $(institucionBancariaSelectores.institucionBancariaOpcion(insitucionBancaria)).click();
+        await CommonActions.selectCheckedOpcion(insitucionBancaria);
     }
 
     async seleccionarTipoDocumento(tipoDocumento){
-        await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(tipoDocumento)).waitForDisplayed();
-        await $(tipoDocumentoOpcionSelectores.tipoDocumentoOpcion(tipoDocumento)).click();
+        await CommonActions.selectCheckedOpcion(tipoDocumento);
     }
 
     async seleccionarTipoCuenta(tipoCuenta){
-        await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(tipoCuenta)).waitForDisplayed();
-        await $(tipoCuentaOpcionSelectores.tipoCuentaOpcion(tipoCuenta)).click();
+        await CommonActions.selectCheckedOpcion(tipoCuenta);
     }
 
 // Funcion para completar los datos de transferencia exterior
@@ -101,7 +95,7 @@ class TransferenciaEventual {
             // Seleccionar opcion de tipo de identificacion
             await this.seleccionarTipoDocumento(elemento.tipo_documento);
             
-            await $(UIAutomatorSelectores.scrollTextIntoView(constTransferencias.Monto));  //Scroll hasta encontrar la palabra Monto
+            await $(UIAutomatorSelectores.scrollTextIntoView(labels.Monto));  //Scroll hasta encontrar la palabra Monto
             
             // Ingresar numero de identificacion
             await this.getNumeroIdentificacionSelector.addValue(elemento.numero_identificacion);

@@ -86,7 +86,6 @@ class CommonActions{
             },{
                  timeout: 30000
             });
-        // await this.validarConfirmacionOK();
         await this.getBtnFinalizarSelector.click();
     }
 
@@ -108,8 +107,7 @@ class CommonActions{
 
 // Funciones para seleccionar cuenta de debito
     async seleccionarCuentaDebito(cuentaDebito){
-        await $(commonsSelectores.cuentaDebitoOpcion(cuentaDebito)).waitForDisplayed();
-        await $(commonsSelectores.cuentaDebitoOpcion(cuentaDebito)).click();
+        await this.selectCheckedOpcion(cuentaDebito);
     }
 
     async login(){
