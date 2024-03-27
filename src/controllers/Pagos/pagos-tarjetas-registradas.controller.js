@@ -32,8 +32,7 @@ class PagosTarjetasRegistradas {
     }
 
     async seleccionarBeneficiario(beneficiario) {
-        await $(pagosTarjetasRegistradasSelectores.beneficiarioOpcion(beneficiario)).waitForDisplayed();
-        await $(pagosTarjetasRegistradasSelectores.beneficiarioOpcion(beneficiario)).click();
+        await CommonActions.selectTextOpcion(beneficiario);
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario

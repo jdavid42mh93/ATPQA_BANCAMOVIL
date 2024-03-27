@@ -14,8 +14,7 @@ class PagosServiciosRegistrados {
     }
 
     async seleccionarBeneficiario(beneficiario) {
-        await $(pagosServiciosRegistradosSelectores.beneficiarioOpcion(beneficiario)).waitForDisplayed();
-        await $(pagosServiciosRegistradosSelectores.beneficiarioOpcion(beneficiario)).click();
+        await CommonActions.selectCheckedOpcion(beneficiario);
     }
 
 // Funcion para ingresr los datos de la transferencia en el formulario

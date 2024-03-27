@@ -9,12 +9,9 @@ export const splitDate = (date) => {
 
 export const validateMonth = async (date) => {
     let month = splitDate(date);
-    console.log("Month =====>", month)
     let monthSelectorPromise = programacionController.getMesSelector.getText();
-    console.log("Month Selector Promise =====>", monthSelectorPromise);
     try {
         let monthSelector = await monthSelectorPromise;
-        console.log("Month Selector Text =====>", monthSelector);
         if(monthSelector.includes(month)){
             return true;
         }else{

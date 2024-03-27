@@ -20,8 +20,3 @@ export const transferenciaOpcion = {
     'alExterior':           'Al Exterior',
     'otrasCuentas':         'Otras Cuentas',
 }
-
-// export const mensajes = {
-//     'mensajeError':                 'Cuenta de débito y crédito no pueden ser la mismas',
-//     'mensajeFondosInsuficientes':   'La cuenta no dispone de los fondos para realizar su transacción',
-// }
