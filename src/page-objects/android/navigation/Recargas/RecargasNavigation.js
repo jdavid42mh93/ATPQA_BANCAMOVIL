@@ -1,9 +1,9 @@
-import { opciones, opcionesMenuLateral } from "../../../../constants/common";
+import { commonsSelectores, opciones } from "../../../../constants/common";
 
 // Seccion de Pagos
 class RecargasElectronicasNavigation{
     async seleccionarRecargasElectronicas(){
-        await $(opcionesMenuLateral.opcion(opciones.RecargasElectronicas)).click();
+        await $(commonsSelectores.textOpcion(opciones.RecargasElectronicas)).click();
     }
 }
 

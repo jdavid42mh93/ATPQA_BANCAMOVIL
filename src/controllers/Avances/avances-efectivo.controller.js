@@ -1,8 +1,7 @@
 import { dataConditions, dataInstructions, dataStatus, files } from "../../constants/_data_generation";
 import { avancesSelectores, beneficiarioOpcion, cuentaEventual, labels } from "../../constants/avances/avancesSelectores";
 import { UIAutomatorSelectores, datosGenerales } from "../../constants/common";
-import { tarjetas } from "../../constants/pagos/pagosMisTarjetas";
-import { formaPago, pagosSelectors } from "../../constants/pagos/pagosSelectores";
+import { formaPago } from "../../constants/pagos/pagosSelectores";
 import { editEntry } from "../../helpers/fileEditor.helper";
 import CommonActions from "../../page-objects/android/common-actions/CommonActions";
 import CommonsPagos from "../../page-objects/android/navigation/Pagos/CommonsPagos";
@@ -69,20 +68,17 @@ class AvancesEfectivos {
 
 // Funcion para seleccionar una forma de pago
     async seleccionarFormaPago(formaPago){
-        await $(pagosSelectors.formaPagoOpcion(formaPago)).waitForDisplayed();
-        await $(pagosSelectors.formaPagoOpcion(formaPago)).click();
+        await CommonActions.selectCheckedOpcion(formaPago);
     }
 
 // Funcion para seleccionar un numero de tarjeta
     async seleccionarNumeroTarjeta(numeroTarjeta){
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).waitForDisplayed();
-        await $(tarjetas.tarjetaOpcion(numeroTarjeta)).click();
+        await CommonActions.selectCheckedOpcion(numeroTarjeta);
     }
 
 // Funcion para seleccionar un numero de meses plazo
     async seleccionarPlazo(plazoOpcion){
-        await $(avancesSelectores.plazoOpcion(plazoOpcion)).waitForDisplayed();
-        await $(avancesSelectores.plazoOpcion(plazoOpcion)).click();
+        await CommonActions.selectCheckedOpcion(plazoOpcion);
     }
 
 // Funcion para seleccionar un beneficiario
@@ -93,8 +89,7 @@ class AvancesEfectivos {
 
 // Funcion para seleccionar una cuenta beneficiaria
     async seleccionarCuentaBeneficiaria(cuentaBeneficiaria){
-        await $(avancesSelectores.cuentaBeneficiarioOpcion(cuentaBeneficiaria)).waitForDisplayed();
-        await $(avancesSelectores.cuentaBeneficiarioOpcion(cuentaBeneficiaria)).click();
+        await CommonActions.selectCheckedOpcion(cuentaBeneficiaria);
     }
 
 // Funcion para ingresar los datos de una cuenta eventual en avance en efectivo
